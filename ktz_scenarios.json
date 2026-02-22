@@ -1,0 +1,707 @@
+{
+  "company": "Kazakhstan Temir Zholy (KTZ)",
+  "industry": "Transportation & Logistics",
+  "total_scenarios": 50,
+  "scenarios": [
+    {
+      "id": 1,
+      "name": "Automated Freight Classification",
+      "type": "process_automation",
+      "description": "Computer vision for cargo classification and routing",
+      "expected_impact": {
+        "revenue_increase": 0.11803189831179987,
+        "cost_reduction": 0.0900529729307528,
+        "profit_margin_improvement": 0.20808487124255268
+      },
+      "investment_required": 4509214.953342276,
+      "implementation_time_months": 12,
+      "risk_level": "medium"
+    },
+    {
+      "id": 2,
+      "name": "Predictive Maintenance System",
+      "type": "operational_efficiency",
+      "description": "IoT sensors + AI for predictive equipment maintenance",
+      "expected_impact": {
+        "revenue_increase": 0.06619697958716686,
+        "cost_reduction": 0.24906923211339657,
+        "profit_margin_improvement": 0.31526621170056346
+      },
+      "investment_required": 13307329.840842884,
+      "implementation_time_months": 22,
+      "risk_level": "high"
+    },
+    {
+      "id": 3,
+      "name": "Automated Freight Classification",
+      "type": "process_automation",
+      "description": "Computer vision for cargo classification and routing",
+      "expected_impact": {
+        "revenue_increase": 0.08134272295018483,
+        "cost_reduction": 0.1175002206301356,
+        "profit_margin_improvement": 0.19884294358032042
+      },
+      "investment_required": 2141372.326651743,
+      "implementation_time_months": 9,
+      "risk_level": "medium"
+    },
+    {
+      "id": 4,
+      "name": "AI-Powered Route Optimization",
+      "type": "process_automation",
+      "description": "Machine learning for optimal routing and scheduling",
+      "expected_impact": {
+        "revenue_increase": 0.10181148569305504,
+        "cost_reduction": 0.16263670824066084,
+        "profit_margin_improvement": 0.2644481939337159
+      },
+      "investment_required": 7474813.916985591,
+      "implementation_time_months": 13,
+      "risk_level": "medium"
+    },
+    {
+      "id": 5,
+      "name": "Predictive Maintenance System",
+      "type": "operational_efficiency",
+      "description": "IoT sensors + AI for predictive equipment maintenance",
+      "expected_impact": {
+        "revenue_increase": 0.04390848834882759,
+        "cost_reduction": 0.19184698100912123,
+        "profit_margin_improvement": 0.23575546935794883
+      },
+      "investment_required": 12584111.585566236,
+      "implementation_time_months": 13,
+      "risk_level": "high"
+    },
+    {
+      "id": 6,
+      "name": "Automated Freight Classification",
+      "type": "process_automation",
+      "description": "Computer vision for cargo classification and routing",
+      "expected_impact": {
+        "revenue_increase": 0.11813940253659548,
+        "cost_reduction": 0.08464603517182706,
+        "profit_margin_improvement": 0.20278543770842256
+      },
+      "investment_required": 5022748.079896552,
+      "implementation_time_months": 13,
+      "risk_level": "medium"
+    },
+    {
+      "id": 7,
+      "name": "Dynamic Pricing Implementation (Conservative)",
+      "type": "pricing_optimization",
+      "description": "Real-time pricing based on demand, route, and capacity",
+      "expected_impact": {
+        "revenue_increase": 0.17719777203030207,
+        "cost_reduction": 0.043155739117400393,
+        "profit_margin_improvement": 0.22035351114770246
+      },
+      "investment_required": 3050329.123739714,
+      "implementation_time_months": 7,
+      "risk_level": "medium"
+    },
+    {
+      "id": 8,
+      "name": "Dynamic Pricing Implementation",
+      "type": "pricing_optimization",
+      "description": "Real-time pricing based on demand, route, and capacity",
+      "expected_impact": {
+        "revenue_increase": 0.2100843914345305,
+        "cost_reduction": 0.041322988929118495,
+        "profit_margin_improvement": 0.251407380363649
+      },
+      "investment_required": 4548268.859256303,
+      "implementation_time_months": 10,
+      "risk_level": "medium"
+    },
+    {
+      "id": 9,
+      "name": "Real-Time Tracking & Notifications",
+      "type": "customer_experience",
+      "description": "GPS tracking with automated customer notifications",
+      "expected_impact": {
+        "revenue_increase": 0.07520736811887771,
+        "cost_reduction": 0.0346072207347327,
+        "profit_margin_improvement": 0.10981458885361041
+      },
+      "investment_required": 941592.1021409933,
+      "implementation_time_months": 6,
+      "risk_level": "low"
+    },
+    {
+      "id": 10,
+      "name": "Real-Time Tracking & Notifications (Aggressive)",
+      "type": "customer_experience",
+      "description": "GPS tracking with automated customer notifications",
+      "expected_impact": {
+        "revenue_increase": 0.06690341718254876,
+        "cost_reduction": 0.040109019040910056,
+        "profit_margin_improvement": 0.10701243622345882
+      },
+      "investment_required": 957863.8264431515,
+      "implementation_time_months": 6,
+      "risk_level": "low"
+    },
+    {
+      "id": 11,
+      "name": "Automated Freight Classification",
+      "type": "process_automation",
+      "description": "Computer vision for cargo classification and routing",
+      "expected_impact": {
+        "revenue_increase": 0.09041836693008107,
+        "cost_reduction": 0.10502699695772803,
+        "profit_margin_improvement": 0.1954453638878091
+      },
+      "investment_required": 5540181.613044239,
+      "implementation_time_months": 11,
+      "risk_level": "medium"
+    },
+    {
+      "id": 12,
+      "name": "Real-Time Tracking & Notifications",
+      "type": "customer_experience",
+      "description": "GPS tracking with automated customer notifications",
+      "expected_impact": {
+        "revenue_increase": 0.04499883696644195,
+        "cost_reduction": 0.03332838768315122,
+        "profit_margin_improvement": 0.07832722464959316
+      },
+      "investment_required": 635579.9376161448,
+      "implementation_time_months": 4,
+      "risk_level": "low"
+    },
+    {
+      "id": 13,
+      "name": "Digital Booking Platform",
+      "type": "digital_transformation",
+      "description": "Modern online booking system with mobile app",
+      "expected_impact": {
+        "revenue_increase": 0.1232162020540562,
+        "cost_reduction": 0.0829497338286764,
+        "profit_margin_improvement": 0.2061659358827326
+      },
+      "investment_required": 1066188.9265672402,
+      "implementation_time_months": 6,
+      "risk_level": "low"
+    },
+    {
+      "id": 14,
+      "name": "Automated Freight Classification (Conservative)",
+      "type": "process_automation",
+      "description": "Computer vision for cargo classification and routing",
+      "expected_impact": {
+        "revenue_increase": 0.04998811773225489,
+        "cost_reduction": 0.13215449332916046,
+        "profit_margin_improvement": 0.18214261106141535
+      },
+      "investment_required": 3424873.670627578,
+      "implementation_time_months": 12,
+      "risk_level": "medium"
+    },
+    {
+      "id": 15,
+      "name": "Real-Time Tracking & Notifications",
+      "type": "customer_experience",
+      "description": "GPS tracking with automated customer notifications",
+      "expected_impact": {
+        "revenue_increase": 0.08762066118678802,
+        "cost_reduction": 0.029800098731725587,
+        "profit_margin_improvement": 0.11742075991851361
+      },
+      "investment_required": 1013506.541651837,
+      "implementation_time_months": 4,
+      "risk_level": "low"
+    },
+    {
+      "id": 16,
+      "name": "Dynamic Pricing Implementation",
+      "type": "pricing_optimization",
+      "description": "Real-time pricing based on demand, route, and capacity",
+      "expected_impact": {
+        "revenue_increase": 0.20687687079209546,
+        "cost_reduction": 0.020384511770946374,
+        "profit_margin_improvement": 0.22726138256304185
+      },
+      "investment_required": 4552130.103226449,
+      "implementation_time_months": 10,
+      "risk_level": "medium"
+    },
+    {
+      "id": 17,
+      "name": "Digital Booking Platform",
+      "type": "digital_transformation",
+      "description": "Modern online booking system with mobile app",
+      "expected_impact": {
+        "revenue_increase": 0.12002913111934445,
+        "cost_reduction": 0.08080406860502884,
+        "profit_margin_improvement": 0.2008331997243733
+      },
+      "investment_required": 1457808.155117908,
+      "implementation_time_months": 6,
+      "risk_level": "low"
+    },
+    {
+      "id": 18,
+      "name": "Digital Booking Platform",
+      "type": "digital_transformation",
+      "description": "Modern online booking system with mobile app",
+      "expected_impact": {
+        "revenue_increase": 0.13264212468258296,
+        "cost_reduction": 0.058799061310742314,
+        "profit_margin_improvement": 0.19144118599332527
+      },
+      "investment_required": 2632539.569447019,
+      "implementation_time_months": 6,
+      "risk_level": "low"
+    },
+    {
+      "id": 19,
+      "name": "Dynamic Pricing Implementation",
+      "type": "pricing_optimization",
+      "description": "Real-time pricing based on demand, route, and capacity",
+      "expected_impact": {
+        "revenue_increase": 0.16243828284978518,
+        "cost_reduction": 0.04815956372850522,
+        "profit_margin_improvement": 0.2105978465782904
+      },
+      "investment_required": 2779352.2093501594,
+      "implementation_time_months": 6,
+      "risk_level": "medium"
+    },
+    {
+      "id": 20,
+      "name": "Predictive Maintenance System (Aggressive)",
+      "type": "operational_efficiency",
+      "description": "IoT sensors + AI for predictive equipment maintenance",
+      "expected_impact": {
+        "revenue_increase": 0.08731039050302918,
+        "cost_reduction": 0.24044473397911847,
+        "profit_margin_improvement": 0.32775512448214766
+      },
+      "investment_required": 9836021.072764073,
+      "implementation_time_months": 18,
+      "risk_level": "high"
+    },
+    {
+      "id": 21,
+      "name": "Automated Freight Classification (Conservative)",
+      "type": "process_automation",
+      "description": "Computer vision for cargo classification and routing",
+      "expected_impact": {
+        "revenue_increase": 0.06549658041918476,
+        "cost_reduction": 0.14856328002204436,
+        "profit_margin_improvement": 0.2140598604412291
+      },
+      "investment_required": 2658898.8844147893,
+      "implementation_time_months": 11,
+      "risk_level": "medium"
+    },
+    {
+      "id": 22,
+      "name": "Predictive Maintenance System",
+      "type": "operational_efficiency",
+      "description": "IoT sensors + AI for predictive equipment maintenance",
+      "expected_impact": {
+        "revenue_increase": 0.05585708615769246,
+        "cost_reduction": 0.15970367541700464,
+        "profit_margin_improvement": 0.2155607615746971
+      },
+      "investment_required": 13571359.701629117,
+      "implementation_time_months": 16,
+      "risk_level": "high"
+    },
+    {
+      "id": 23,
+      "name": "Digital Booking Platform",
+      "type": "digital_transformation",
+      "description": "Modern online booking system with mobile app",
+      "expected_impact": {
+        "revenue_increase": 0.1714071563347619,
+        "cost_reduction": 0.08053160675468414,
+        "profit_margin_improvement": 0.251938763089446
+      },
+      "investment_required": 1002729.8141468609,
+      "implementation_time_months": 4,
+      "risk_level": "low"
+    },
+    {
+      "id": 24,
+      "name": "AI-Powered Route Optimization",
+      "type": "process_automation",
+      "description": "Machine learning for optimal routing and scheduling",
+      "expected_impact": {
+        "revenue_increase": 0.06781514773406107,
+        "cost_reduction": 0.17887044821182668,
+        "profit_margin_improvement": 0.24668559594588774
+      },
+      "investment_required": 3202750.0751401233,
+      "implementation_time_months": 10,
+      "risk_level": "medium"
+    },
+    {
+      "id": 25,
+      "name": "Automated Freight Classification",
+      "type": "process_automation",
+      "description": "Computer vision for cargo classification and routing",
+      "expected_impact": {
+        "revenue_increase": 0.06116048089372279,
+        "cost_reduction": 0.10956738071763047,
+        "profit_margin_improvement": 0.17072786161135328
+      },
+      "investment_required": 4972369.474915916,
+      "implementation_time_months": 14,
+      "risk_level": "medium"
+    },
+    {
+      "id": 26,
+      "name": "Automated Freight Classification",
+      "type": "process_automation",
+      "description": "Computer vision for cargo classification and routing",
+      "expected_impact": {
+        "revenue_increase": 0.05749570313782771,
+        "cost_reduction": 0.09988368708339117,
+        "profit_margin_improvement": 0.15737939022121888
+      },
+      "investment_required": 4486087.483207005,
+      "implementation_time_months": 12,
+      "risk_level": "medium"
+    },
+    {
+      "id": 27,
+      "name": "Predictive Maintenance System",
+      "type": "operational_efficiency",
+      "description": "IoT sensors + AI for predictive equipment maintenance",
+      "expected_impact": {
+        "revenue_increase": 0.05385975813045664,
+        "cost_reduction": 0.192902143452044,
+        "profit_margin_improvement": 0.24676190158250066
+      },
+      "investment_required": 6786260.3022374315,
+      "implementation_time_months": 17,
+      "risk_level": "high"
+    },
+    {
+      "id": 28,
+      "name": "Automated Freight Classification (Conservative)",
+      "type": "process_automation",
+      "description": "Computer vision for cargo classification and routing",
+      "expected_impact": {
+        "revenue_increase": 0.08817880590768605,
+        "cost_reduction": 0.14428527157862725,
+        "profit_margin_improvement": 0.23246407748631331
+      },
+      "investment_required": 2439922.1115458915,
+      "implementation_time_months": 9,
+      "risk_level": "medium"
+    },
+    {
+      "id": 29,
+      "name": "Digital Booking Platform",
+      "type": "digital_transformation",
+      "description": "Modern online booking system with mobile app",
+      "expected_impact": {
+        "revenue_increase": 0.13860607805979147,
+        "cost_reduction": 0.06874232321600332,
+        "profit_margin_improvement": 0.2073484012757948
+      },
+      "investment_required": 1639031.9943666314,
+      "implementation_time_months": 6,
+      "risk_level": "low"
+    },
+    {
+      "id": 30,
+      "name": "Automated Freight Classification (Aggressive)",
+      "type": "process_automation",
+      "description": "Computer vision for cargo classification and routing",
+      "expected_impact": {
+        "revenue_increase": 0.0903700191415567,
+        "cost_reduction": 0.08977758368004,
+        "profit_margin_improvement": 0.1801476028215967
+      },
+      "investment_required": 7305693.223543799,
+      "implementation_time_months": 10,
+      "risk_level": "medium"
+    },
+    {
+      "id": 31,
+      "name": "Predictive Maintenance System",
+      "type": "operational_efficiency",
+      "description": "IoT sensors + AI for predictive equipment maintenance",
+      "expected_impact": {
+        "revenue_increase": 0.0322909575750766,
+        "cost_reduction": 0.25327479583177864,
+        "profit_margin_improvement": 0.28556575340685525
+      },
+      "investment_required": 5961312.653172065,
+      "implementation_time_months": 23,
+      "risk_level": "high"
+    },
+    {
+      "id": 32,
+      "name": "Predictive Maintenance System",
+      "type": "operational_efficiency",
+      "description": "IoT sensors + AI for predictive equipment maintenance",
+      "expected_impact": {
+        "revenue_increase": 0.07021412414655055,
+        "cost_reduction": 0.1607077996001875,
+        "profit_margin_improvement": 0.23092192374673803
+      },
+      "investment_required": 13244364.463853657,
+      "implementation_time_months": 21,
+      "risk_level": "high"
+    },
+    {
+      "id": 33,
+      "name": "Real-Time Tracking & Notifications",
+      "type": "customer_experience",
+      "description": "GPS tracking with automated customer notifications",
+      "expected_impact": {
+        "revenue_increase": 0.06269342237505737,
+        "cost_reduction": 0.03724767436935238,
+        "profit_margin_improvement": 0.09994109674440976
+      },
+      "investment_required": 1155172.005478559,
+      "implementation_time_months": 3,
+      "risk_level": "low"
+    },
+    {
+      "id": 34,
+      "name": "Real-Time Tracking & Notifications",
+      "type": "customer_experience",
+      "description": "GPS tracking with automated customer notifications",
+      "expected_impact": {
+        "revenue_increase": 0.06952426956866832,
+        "cost_reduction": 0.03980263733471724,
+        "profit_margin_improvement": 0.10932690690338556
+      },
+      "investment_required": 1734713.436070601,
+      "implementation_time_months": 4,
+      "risk_level": "low"
+    },
+    {
+      "id": 35,
+      "name": "Digital Booking Platform (Conservative)",
+      "type": "digital_transformation",
+      "description": "Modern online booking system with mobile app",
+      "expected_impact": {
+        "revenue_increase": 0.09505825947778852,
+        "cost_reduction": 0.06570932741280608,
+        "profit_margin_improvement": 0.16076758689059462
+      },
+      "investment_required": 1555228.676103471,
+      "implementation_time_months": 6,
+      "risk_level": "low"
+    },
+    {
+      "id": 36,
+      "name": "Real-Time Tracking & Notifications",
+      "type": "customer_experience",
+      "description": "GPS tracking with automated customer notifications",
+      "expected_impact": {
+        "revenue_increase": 0.07326035323642509,
+        "cost_reduction": 0.02433331012710284,
+        "profit_margin_improvement": 0.09759366336352793
+      },
+      "investment_required": 1528673.2453728302,
+      "implementation_time_months": 4,
+      "risk_level": "low"
+    },
+    {
+      "id": 37,
+      "name": "AI-Powered Route Optimization",
+      "type": "process_automation",
+      "description": "Machine learning for optimal routing and scheduling",
+      "expected_impact": {
+        "revenue_increase": 0.07519700553803922,
+        "cost_reduction": 0.11093462851249804,
+        "profit_margin_improvement": 0.18613163405053726
+      },
+      "investment_required": 4620331.787043049,
+      "implementation_time_months": 14,
+      "risk_level": "medium"
+    },
+    {
+      "id": 38,
+      "name": "Dynamic Pricing Implementation",
+      "type": "pricing_optimization",
+      "description": "Real-time pricing based on demand, route, and capacity",
+      "expected_impact": {
+        "revenue_increase": 0.16921557406171175,
+        "cost_reduction": 0.038812918122227855,
+        "profit_margin_improvement": 0.2080284921839396
+      },
+      "investment_required": 4298876.838100677,
+      "implementation_time_months": 9,
+      "risk_level": "medium"
+    },
+    {
+      "id": 39,
+      "name": "Automated Freight Classification",
+      "type": "process_automation",
+      "description": "Computer vision for cargo classification and routing",
+      "expected_impact": {
+        "revenue_increase": 0.10745876662227993,
+        "cost_reduction": 0.12777751248735678,
+        "profit_margin_improvement": 0.2352362791096367
+      },
+      "investment_required": 2831720.0232675746,
+      "implementation_time_months": 9,
+      "risk_level": "medium"
+    },
+    {
+      "id": 40,
+      "name": "Automated Freight Classification (Aggressive)",
+      "type": "process_automation",
+      "description": "Computer vision for cargo classification and routing",
+      "expected_impact": {
+        "revenue_increase": 0.10608620161635125,
+        "cost_reduction": 0.12488226305846001,
+        "profit_margin_improvement": 0.23096846467481125
+      },
+      "investment_required": 5006524.032583499,
+      "implementation_time_months": 13,
+      "risk_level": "medium"
+    },
+    {
+      "id": 41,
+      "name": "Dynamic Pricing Implementation",
+      "type": "pricing_optimization",
+      "description": "Real-time pricing based on demand, route, and capacity",
+      "expected_impact": {
+        "revenue_increase": 0.21045559898560873,
+        "cost_reduction": 0.043543556773531916,
+        "profit_margin_improvement": 0.25399915575914067
+      },
+      "investment_required": 2292137.3069653413,
+      "implementation_time_months": 12,
+      "risk_level": "medium"
+    },
+    {
+      "id": 42,
+      "name": "Digital Booking Platform (Conservative)",
+      "type": "digital_transformation",
+      "description": "Modern online booking system with mobile app",
+      "expected_impact": {
+        "revenue_increase": 0.10684577739593182,
+        "cost_reduction": 0.055356090130245186,
+        "profit_margin_improvement": 0.162201867526177
+      },
+      "investment_required": 1286075.1827143133,
+      "implementation_time_months": 6,
+      "risk_level": "low"
+    },
+    {
+      "id": 43,
+      "name": "Automated Freight Classification",
+      "type": "process_automation",
+      "description": "Computer vision for cargo classification and routing",
+      "expected_impact": {
+        "revenue_increase": 0.09764850637582667,
+        "cost_reduction": 0.1349419646382096,
+        "profit_margin_improvement": 0.23259047101403627
+      },
+      "investment_required": 2963619.746265671,
+      "implementation_time_months": 13,
+      "risk_level": "medium"
+    },
+    {
+      "id": 44,
+      "name": "AI-Powered Route Optimization",
+      "type": "process_automation",
+      "description": "Machine learning for optimal routing and scheduling",
+      "expected_impact": {
+        "revenue_increase": 0.14339922830460272,
+        "cost_reduction": 0.16540143236612964,
+        "profit_margin_improvement": 0.30880066067073236
+      },
+      "investment_required": 7756773.594975626,
+      "implementation_time_months": 10,
+      "risk_level": "medium"
+    },
+    {
+      "id": 45,
+      "name": "AI-Powered Route Optimization",
+      "type": "process_automation",
+      "description": "Machine learning for optimal routing and scheduling",
+      "expected_impact": {
+        "revenue_increase": 0.12986169601917708,
+        "cost_reduction": 0.19982591789123477,
+        "profit_margin_improvement": 0.32968761391041185
+      },
+      "investment_required": 4163488.4903214574,
+      "implementation_time_months": 10,
+      "risk_level": "medium"
+    },
+    {
+      "id": 46,
+      "name": "Dynamic Pricing Implementation",
+      "type": "pricing_optimization",
+      "description": "Real-time pricing based on demand, route, and capacity",
+      "expected_impact": {
+        "revenue_increase": 0.15307992944964038,
+        "cost_reduction": 0.021601741911215062,
+        "profit_margin_improvement": 0.17468167136085544
+      },
+      "investment_required": 2548515.9417693694,
+      "implementation_time_months": 8,
+      "risk_level": "medium"
+    },
+    {
+      "id": 47,
+      "name": "Digital Booking Platform",
+      "type": "digital_transformation",
+      "description": "Modern online booking system with mobile app",
+      "expected_impact": {
+        "revenue_increase": 0.11824538242221862,
+        "cost_reduction": 0.07817983840778653,
+        "profit_margin_improvement": 0.19642522083000513
+      },
+      "investment_required": 1261344.2264105189,
+      "implementation_time_months": 5,
+      "risk_level": "low"
+    },
+    {
+      "id": 48,
+      "name": "Digital Booking Platform",
+      "type": "digital_transformation",
+      "description": "Modern online booking system with mobile app",
+      "expected_impact": {
+        "revenue_increase": 0.12935155679108815,
+        "cost_reduction": 0.05328856106590662,
+        "profit_margin_improvement": 0.18264011785699477
+      },
+      "investment_required": 2055757.162621125,
+      "implementation_time_months": 7,
+      "risk_level": "low"
+    },
+    {
+      "id": 49,
+      "name": "AI-Powered Route Optimization (Conservative)",
+      "type": "process_automation",
+      "description": "Machine learning for optimal routing and scheduling",
+      "expected_impact": {
+        "revenue_increase": 0.09430901398754536,
+        "cost_reduction": 0.11695460707980701,
+        "profit_margin_improvement": 0.21126362106735236
+      },
+      "investment_required": 4880088.662630725,
+      "implementation_time_months": 11,
+      "risk_level": "medium"
+    },
+    {
+      "id": 50,
+      "name": "Dynamic Pricing Implementation (Aggressive)",
+      "type": "pricing_optimization",
+      "description": "Real-time pricing based on demand, route, and capacity",
+      "expected_impact": {
+        "revenue_increase": 0.26176825612322496,
+        "cost_reduction": 0.03947702014011393,
+        "profit_margin_improvement": 0.3012452762633389
+      },
+      "investment_required": 3725730.7302002846,
+      "implementation_time_months": 11,
+      "risk_level": "medium"
+    }
+  ]
+}
