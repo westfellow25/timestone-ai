@@ -1,0 +1,20 @@
+{
+  "company_name": "Kaspi.kz",
+  "metrics": {
+    "revenue": 4501000000.0,
+    "operating_costs": 3066979581.5138836,
+    "employee_count": 9372,
+    "market_share": 0.2878440870688532,
+    "customer_count": 51885,
+    "avg_transaction_value": 86749.11873500547,
+    "growth_rate": 0.1210294822999566,
+    "industry": "fintech"
+  },
+  "metadata": {
+    "industry": "fintech",
+    "scale": "large",
+    "template_used": true
+  },
+  "created_at": "2026-02-23T07:06:53.185278",
+  "version": "1.0.0"
+}

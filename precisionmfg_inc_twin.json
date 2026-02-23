@@ -1,0 +1,20 @@
+{
+  "company_name": "PrecisionMfg Inc",
+  "metrics": {
+    "revenue": 10025000000.0,
+    "operating_costs": 8904597302.55754,
+    "employee_count": 37695,
+    "market_share": 0.096713491495662,
+    "customer_count": 53209,
+    "avg_transaction_value": 188407.7804816848,
+    "growth_rate": 0.06502261640465865,
+    "industry": "manufacturing"
+  },
+  "metadata": {
+    "industry": "manufacturing",
+    "scale": "medium",
+    "template_used": true
+  },
+  "created_at": "2026-02-23T07:06:53.185335",
+  "version": "1.0.0"
+}
