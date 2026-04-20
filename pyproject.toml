@@ -1,0 +1,75 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "timestone-ai"
+version = "1.0.0"
+description = "Temporal Intelligence Platform — Predict business transformation outcomes before you commit."
+readme = "README.md"
+license = {text = "Proprietary"}
+requires-python = ">=3.11"
+authors = [
+    {name = "TimeStone AI", email = "team@timestone.ai"},
+]
+keywords = ["simulation", "monte-carlo", "causal-inference", "digital-twin", "ai"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Financial and Insurance Industry",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+]
+
+dependencies = [
+    "numpy>=1.24.0",
+    "pandas>=2.0.0",
+    "scipy>=1.11.0",
+    "pydantic>=2.0.0",
+    "python-dotenv>=1.0.0",
+    "scikit-learn>=1.3.0",
+    "networkx>=3.1",
+    "fastapi>=0.104.0",
+    "uvicorn[standard]>=0.24.0",
+    "python-jose[cryptography]>=3.3.0",
+    "httpx>=0.25.0",
+    "orjson>=3.9.0",
+    "structlog>=23.2.0",
+]
+
+[project.optional-dependencies]
+ai = ["anthropic>=0.18.0"]
+viz = ["streamlit>=1.28.0", "plotly>=5.17.0"]
+dev = [
+    "pytest>=7.4.0",
+    "pytest-asyncio>=0.21.0",
+    "pytest-cov>=4.1.0",
+    "ruff>=0.1.0",
+    "pyright>=1.1.0",
+]
+all = ["timestone-ai[ai,viz,dev]"]
+
+[project.urls]
+Homepage = "https://github.com/westfellow25/timestone-ai"
+Documentation = "https://github.com/westfellow25/timestone-ai#readme"
+
+[project.scripts]
+timestone = "src.api.app:main"
+
+[tool.setuptools.packages.find]
+include = ["src*", "sdk*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-v --tb=short"
+
+[tool.ruff]
+target-version = "py311"
+line-length = 120
+select = ["E", "F", "W", "I"]
+ignore = ["E501"]
+
+[tool.pyright]
+include = ["src"]
+reportMissingImports = false
+pythonVersion = "3.11"

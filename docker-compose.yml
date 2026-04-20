@@ -1,0 +1,42 @@
+version: "3.9"
+
+services:
+  api:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY:-}
+      - TIMESTONE_ENV=production
+      - LOG_LEVEL=info
+    healthcheck:
+      test: ["CMD", "python", "-c", "import httpx; httpx.get('http://localhost:8000/health').raise_for_status()"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          memory: 2G
+          cpus: "2.0"
+        reservations:
+          memory: 512M
+          cpus: "0.5"
+
+  # Simulation worker for heavy compute (future: Celery/RQ)
+  worker:
+    build: .
+    command: ["python", "-c", "print('Worker ready — connect task queue')"]
+    environment:
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY:-}
+      - TIMESTONE_ENV=production
+      - WORKER_CONCURRENCY=4
+    deploy:
+      resources:
+        limits:
+          memory: 4G
+          cpus: "4.0"
+    profiles:
+      - full
