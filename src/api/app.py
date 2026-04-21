@@ -32,13 +32,21 @@ from src.models.knowledge_graph import KnowledgeGraphBuilder
 from src.simulation.advanced_monte_carlo import AdvancedMonteCarloEngine, SimulationConfig, SamplingMethod
 from src.simulation.regime_detector import RegimeDetector, ExtremeValueAnalyzer
 from src.simulation.sensitivity_analyzer import SensitivityAnalyzer
+from src.persistence.database import initialize_database, get_session
+from src.persistence.repositories import (
+    TenantRepository,
+    CompanyRepository,
+    SimulationRepository,
+    AuditLogRepository,
+)
 
 
-# ---- In-memory stores (replace with database in production) ----
+# ---- Stores ----
 _twins_store: Dict[str, Dict] = {}
 _simulation_store: Dict[str, Dict] = {}
 _genome_store: Dict[str, CompanyGenome] = {}
 _graph_store: Dict[str, CausalGraph] = {}
+_demo_tenant_id: Optional[str] = None
 
 
 # ---- Pydantic Models ----
@@ -125,13 +133,22 @@ async def verify_token(
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    # Startup: preload industry knowledge
+    global _demo_tenant_id
+    # Initialize database
+    initialize_database()
+    with get_session() as session:
+        tenant_repo = TenantRepository(session)
+        demo_tenant = tenant_repo.get_by_slug("demo")
+        if not demo_tenant:
+            demo_tenant = tenant_repo.create("Demo", "demo", plan="enterprise")
+        _demo_tenant_id = demo_tenant.id
+
+    # Preload industry knowledge
     for industry in KnowledgeGraphBuilder.list_supported_industries():
         knowledge = KnowledgeGraphBuilder.get_industry_knowledge(industry)
         if knowledge:
             _graph_store[industry] = knowledge.typical_causal_graph
     yield
-    # Shutdown
     _twins_store.clear()
     _simulation_store.clear()
 

@@ -174,20 +174,48 @@ class AdvancedMonteCarloEngine:
         # Market adoption (beta-like, bounded [0, 1.2])
         adoption_rate = np.clip(1.0 + 0.2 * risk_sigma * z_all[:, 4], 0.3, 1.2)
 
-        # ROI calculation
-        annual_benefit = (
-            baseline_revenue * actual_revenue * adoption_rate
-            + baseline_revenue * 0.9 * actual_cost
+        # Incremental profit model (not raw revenue)
+        # Revenue uplift contributes at marginal profit margin (~25-40%)
+        # Cost savings drop to bottom line at ~70% realization rate
+        # Realization rate: empirically, transformations deliver 40-70% of projections
+        marginal_margin = 0.30
+        cost_realization = 0.70
+        realization_rate = np.clip(
+            0.55 + 0.15 * z_all[:, 4],  # centered at 55%, spread ±15%
+            0.25, 0.85,
         )
 
-        # 3-year cumulative with time-value discounting (10% annual)
-        discount_rate = 0.10
-        benefit_3y = np.zeros(actual_n)
-        for year in range(1, 4):
-            year_benefit = annual_benefit * (1 + 0.05 * (year - 1))  # slight ramp
-            benefit_3y += year_benefit / (1 + discount_rate) ** year
+        annual_incremental_profit = (
+            baseline_revenue * actual_revenue * adoption_rate * marginal_margin * realization_rate
+            + baseline_revenue * actual_cost * cost_realization * realization_rate
+        )
 
-        roi = (benefit_3y - actual_investment) / actual_investment
+        # Ramp-up: Year 1 = 40%, Year 2 = 80%, Year 3 = 100% of steady-state
+        ramp_schedule = [0.40, 0.80, 1.00]
+
+        # Total transformation cost (fully loaded):
+        # Direct investment + internal team cost + management bandwidth + disruption
+        # Internal team: ~0.5% of revenue per year of implementation
+        internal_team_cost = baseline_revenue * 0.005 * (actual_impl / 12)
+        # Management bandwidth + change management: ~30% of direct investment
+        change_mgmt_cost = actual_investment * 0.30
+        # Productivity dip during transition: ~1% of revenue for implementation period
+        disruption_cost = baseline_revenue * 0.01 * (actual_impl / 12)
+
+        total_cost = actual_investment + internal_team_cost + change_mgmt_cost + disruption_cost
+
+        # 3-year NPV of incremental profit
+        discount_rate = 0.12  # WACC
+        npv_benefit = np.zeros(actual_n)
+        for year_idx, ramp in enumerate(ramp_schedule):
+            year = year_idx + 1
+            # No benefit during implementation period
+            months_into_project = year * 12
+            if_implemented = np.where(months_into_project > actual_impl, 1.0, 0.0)
+            year_benefit = annual_incremental_profit * ramp * if_implemented
+            npv_benefit += year_benefit / (1 + discount_rate) ** year
+
+        roi = (npv_benefit - total_cost) / total_cost
 
         # Importance sampling weight adjustment (if tail-focused)
         weights = np.ones(actual_n)
