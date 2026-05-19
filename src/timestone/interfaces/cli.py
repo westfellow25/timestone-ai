@@ -70,6 +70,71 @@ def cmd_list_runs(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_report(args: argparse.Namespace) -> int:
+    """Regenerate the executive PDF for an existing run."""
+    import json
+    from ..application.assess_company import AssessOptions  # noqa: F401
+    from ..domain.report import AssessmentReport, Recommendation
+    from ..repositories.results import ResultsRepository
+    from ..repositories.case_library import CaseLibraryRepository
+    from .reports import generate_pdf, ReportContext
+
+    runs_repo = ResultsRepository()
+    matching = [p for p in runs_repo.list_runs()
+                if args.run_id in p.name]
+    if not matching:
+        print(f"No run matching: {args.run_id}", file=sys.stderr)
+        return 1
+    run_dir = matching[0]
+    data = runs_repo.load_run(run_dir)
+    rep_data = data.get("report")
+    scen_data = data.get("scenarios")
+    sim_data = data.get("simulation")
+    if not (rep_data and scen_data and sim_data):
+        print(f"Run is missing artifacts: {run_dir.name}", file=sys.stderr)
+        return 1
+
+    # Rebuild AssessmentReport
+    recs = [Recommendation(**r) for r in rep_data["top_recommendations"]]
+    report = AssessmentReport(
+        run_id=rep_data["run_id"], company_name=rep_data["company_name"],
+        generated_at=rep_data["generated_at"],
+        config_summary=rep_data["config_summary"],
+        top_recommendations=recs,
+        total_scenarios=rep_data["total_scenarios"],
+        failure_rate_among_scenarios=rep_data["failure_rate_among_scenarios"],
+        case_library_size=rep_data["case_library_size"],
+        notes=rep_data.get("notes", ""),
+    )
+
+    # Load cases for sources appendix
+    cases = CaseLibraryRepository().load_all()
+    cases_by_id = {}
+    for case in cases:
+        cases_by_id[case.id] = {
+            "company": case.company, "industry": case.industry,
+            "geography": case.geography,
+            "transformation": {
+                "status": case.status, "description": case.description,
+                "start_year": case.start_year,
+            },
+            "financials": {
+                "actual_revenue_uplift_pct": case.actual_revenue_uplift_pct,
+                "actual_cost_reduction_pct": case.actual_cost_reduction_pct,
+                "writeoff_usd": case.writeoff_usd,
+            },
+            "sources": case.sources, "tacit_notes": case.tacit_notes,
+        }
+
+    ctx = ReportContext(
+        report=report, scenarios_payload=scen_data,
+        simulation_payload=sim_data, cases_by_id=cases_by_id,
+    )
+    out = generate_pdf(ctx, run_dir / "report.pdf")
+    print(f"PDF written to: {out}")
+    return 0
+
+
 def build_parser() -> argparse.ArgumentParser:
     p = argparse.ArgumentParser(prog="timestone", description="TimeStone AI CLI")
     sub = p.add_subparsers(dest="cmd", required=True)
@@ -87,6 +152,10 @@ def build_parser() -> argparse.ArgumentParser:
 
     lr = sub.add_parser("list-runs", help="List recent assessment runs.")
     lr.set_defaults(func=cmd_list_runs)
+
+    r = sub.add_parser("report", help="Regenerate the PDF report for an existing run.")
+    r.add_argument("run_id", help="Run id or partial match (e.g. 'ktz').")
+    r.set_defaults(func=cmd_report)
     return p
 
 

@@ -18,6 +18,7 @@ from ..services.knowledge_retrieval import CaseLibrary
 from ..services.scenario_generation import ScenarioGenerator
 from ..services.monte_carlo import MonteCarloSimulator
 from ..services.recommendation import build_report
+from ..interfaces.reports import generate_pdf, ReportContext
 
 
 @dataclass
@@ -109,5 +110,51 @@ def assess_company(twin: Company,
         "results": [r.to_dict() for r in results],
     })
     results_repo.save_report(run_dir, report.to_dict())
+
+    # 6. Generate executive PDF (best-effort; do not fail the pipeline if it crashes)
+    try:
+        scenarios_payload = {
+            "company": twin.company_name,
+            "industry": twin.metrics.industry,
+            "total_scenarios": len(scenarios),
+            "uses_case_library": library is not None,
+            "scenarios": [s.to_dict() for s in scenarios],
+        }
+        simulation_payload = {
+            "simulation_parameters": {
+                "iterations": opts.iterations, "horizon_years": opts.horizon_years,
+                "discount_rate": opts.discount_rate, "random_seed": opts.random_seed,
+                "total_scenarios": len(scenarios),
+            },
+            "results": [r.to_dict() for r in results],
+        }
+        cases_by_id = {}
+        for case in cases:
+            cases_by_id[case.id] = {
+                "company": case.company, "industry": case.industry,
+                "geography": case.geography,
+                "transformation": {
+                    "status": case.status, "description": case.description,
+                    "start_year": case.start_year,
+                },
+                "financials": {
+                    "actual_revenue_uplift_pct": case.actual_revenue_uplift_pct,
+                    "actual_cost_reduction_pct": case.actual_cost_reduction_pct,
+                    "writeoff_usd": case.writeoff_usd,
+                },
+                "sources": case.sources,
+                "tacit_notes": case.tacit_notes,
+            }
+        ctx = ReportContext(
+            report=report,
+            scenarios_payload=scenarios_payload,
+            simulation_payload=simulation_payload,
+            cases_by_id=cases_by_id,
+        )
+        generate_pdf(ctx, run_dir / "report.pdf")
+    except Exception as exc:  # noqa: BLE001 - PDF failure must not break the run
+        import logging
+        logging.getLogger(__name__).warning(
+            "PDF generation failed (run artefacts still saved): %r", exc)
 
     return report
