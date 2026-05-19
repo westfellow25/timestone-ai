@@ -1,0 +1,20 @@
+{
+  "company_name": "Kazakhstan Temir Zholy (KTZ)",
+  "metrics": {
+    "revenue": 500000000,
+    "operating_costs": 450000000,
+    "employee_count": 10000,
+    "market_share": 0.85,
+    "customer_count": 50000,
+    "avg_transaction_value": 10000,
+    "growth_rate": 0.05,
+    "industry": "Transportation & Logistics"
+  },
+  "metadata": {
+    "country": "Kazakhstan",
+    "founded": 2002,
+    "type": "National Railway Operator"
+  },
+  "created_at": "2026-02-22T10:34:52.980793",
+  "version": "1.0.0"
+}

@@ -54,3 +54,8 @@ htmlcov/
 
 # OS
 Thumbs.db
+
+# Architecture refactor
+results/runs/
+src/__pycache__/
+src/timestone/**/__pycache__/

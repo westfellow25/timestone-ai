@@ -1,0 +1,20 @@
+{
+  "company_name": "TechFlow SaaS",
+  "metrics": {
+    "revenue": 500500000.0,
+    "operating_costs": 374003205.75343376,
+    "employee_count": 1054,
+    "market_share": 0.136145358092242,
+    "customer_count": 48909,
+    "avg_transaction_value": 10233.084424319764,
+    "growth_rate": 0.06173036244764396,
+    "industry": "saas"
+  },
+  "metadata": {
+    "industry": "saas",
+    "scale": "medium",
+    "template_used": true
+  },
+  "created_at": "2026-02-23T07:06:53.185307",
+  "version": "1.0.0"
+}

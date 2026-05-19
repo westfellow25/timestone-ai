@@ -90,24 +90,23 @@ cp .env.example .env
 ## Quick start
 
 ```bash
-# 1. Build a digital twin of KTZ (or any company)
-python -m src.models.digital_twin
+# Install (editable mode)
+pip install -e .
 
-# 2. Generate transformation scenarios (rule-based, no API key needed)
-python -m src.simulation.scenario_generator
+# List available digital twins
+python -m timestone list-companies
 
-# 2b. Or use Claude for creative scenarios (requires ANTHROPIC_API_KEY)
-python -m src.simulation.claude_scenarios
+# Run a full assessment (scenarios + Monte Carlo + report)
+python -m timestone assess "Kazakhstan Temir Zholy (KTZ)"
 
-# 3. Run Monte Carlo simulations
-python -m src.simulation.monte_carlo
+# Browse past runs
+python -m timestone list-runs
 
-# 4. Sensitivity analysis on a specific scenario
-python -m src.simulation.sensitivity
-
-# 5. Launch the interactive dashboard
-streamlit run src/api/dashboard.py
+# Launch the interactive dashboard
+streamlit run src/timestone/interfaces/web/dashboard.py
 ```
+
+See `docs/architecture.md` for the project's layered architecture.
 
 ---
 
