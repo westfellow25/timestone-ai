@@ -6,599 +6,2098 @@
       "id": "hertz-accenture-2016",
       "company": "Hertz",
       "industry": "transportation_rental",
-      "industry_tags": ["transportation", "consumer_services", "rental"],
+      "industry_tags": [
+        "transportation",
+        "consumer_services",
+        "rental"
+      ],
       "geography": "USA",
-      "company_size": {"revenue_usd": 9000000000, "employees": 38000, "revenue_bucket": "large"},
+      "company_size": {
+        "revenue_usd": 9000000000,
+        "employees": 38000,
+        "revenue_bucket": "large"
+      },
       "transformation": {
-        "type": "digital_transformation", "subtype": "customer_platform_replatform",
+        "type": "digital_transformation",
+        "subtype": "customer_platform_replatform",
         "description": "Replace customer-facing booking website and mobile app with modern platform built by Accenture",
-        "start_year": 2016, "planned_duration_months": 18, "actual_duration_months": 36,
-        "status": "failed", "vendor": "Accenture"
+        "start_year": 2016,
+        "planned_duration_months": 18,
+        "actual_duration_months": 36,
+        "status": "failed",
+        "vendor": "Accenture"
       },
       "financials": {
-        "promised_investment_usd": 32000000, "actual_investment_usd": 32000000, "writeoff_usd": 32000000,
-        "promised_revenue_uplift_pct": 0.05, "actual_revenue_uplift_pct": 0.0,
-        "promised_cost_reduction_pct": null, "actual_cost_reduction_pct": null
+        "promised_investment_usd": 32000000,
+        "actual_investment_usd": 32000000,
+        "writeoff_usd": 32000000,
+        "promised_revenue_uplift_pct": 0.05,
+        "actual_revenue_uplift_pct": 0.0,
+        "promised_cost_reduction_pct": null,
+        "actual_cost_reduction_pct": null
       },
-      "failure_modes": ["vendor_underperformance", "scope_creep", "leadership_change", "missed_deadlines"],
+      "failure_modes": [
+        "vendor_underperformance",
+        "scope_creep",
+        "leadership_change",
+        "missed_deadlines"
+      ],
       "success_factors": [],
-      "sources": [{"type": "lawsuit", "title": "Hertz v Accenture complaint", "year": 2019}],
+      "sources": [
+        {
+          "type": "lawsuit",
+          "title": "Hertz v Accenture complaint",
+          "year": 2019
+        }
+      ],
       "tacit_notes": "Project never delivered. Vendor risk on customer-facing replatform under fixed-scope contract."
     },
     {
       "id": "lidl-sap-2018",
       "company": "Lidl",
       "industry": "retail_grocery",
-      "industry_tags": ["retail", "supply_chain", "consumer_services"],
+      "industry_tags": [
+        "retail",
+        "supply_chain",
+        "consumer_services"
+      ],
       "geography": "EU",
-      "company_size": {"revenue_usd": 100000000000, "employees": 310000, "revenue_bucket": "mega"},
+      "company_size": {
+        "revenue_usd": 100000000000,
+        "employees": 310000,
+        "revenue_bucket": "mega"
+      },
       "transformation": {
-        "type": "operational_efficiency", "subtype": "ERP_implementation",
+        "type": "operational_efficiency",
+        "subtype": "ERP_implementation",
         "description": "Replace legacy inventory with SAP S/4HANA eLWIS",
-        "start_year": 2011, "planned_duration_months": 60, "actual_duration_months": 84,
-        "status": "failed", "vendor": "SAP"
+        "start_year": 2011,
+        "planned_duration_months": 60,
+        "actual_duration_months": 84,
+        "status": "failed",
+        "vendor": "SAP"
       },
       "financials": {
-        "promised_investment_usd": 200000000, "actual_investment_usd": 500000000, "writeoff_usd": 500000000,
-        "promised_revenue_uplift_pct": null, "actual_revenue_uplift_pct": null,
-        "promised_cost_reduction_pct": 0.08, "actual_cost_reduction_pct": -0.02
+        "promised_investment_usd": 200000000,
+        "actual_investment_usd": 500000000,
+        "writeoff_usd": 500000000,
+        "promised_revenue_uplift_pct": null,
+        "actual_revenue_uplift_pct": null,
+        "promised_cost_reduction_pct": 0.08,
+        "actual_cost_reduction_pct": -0.02
       },
-      "failure_modes": ["process_misfit", "scope_creep", "data_migration", "customization_overload"],
+      "failure_modes": [
+        "process_misfit",
+        "scope_creep",
+        "data_migration",
+        "customization_overload"
+      ],
       "success_factors": [],
-      "sources": [{"type": "press", "title": "Heise.de: Lidl scraps eLWIS", "year": 2018}],
+      "sources": [
+        {
+          "type": "press",
+          "title": "Heise.de: Lidl scraps eLWIS",
+          "year": 2018
+        }
+      ],
       "tacit_notes": "Tried to keep unique inventory-by-purchase-price model in SAP standard ERP. Customization spiral."
     },
     {
       "id": "revlon-sap-2018",
       "company": "Revlon",
       "industry": "consumer_goods_beauty",
-      "industry_tags": ["consumer_goods", "manufacturing", "retail"],
+      "industry_tags": [
+        "consumer_goods",
+        "manufacturing",
+        "retail"
+      ],
       "geography": "USA",
-      "company_size": {"revenue_usd": 2600000000, "employees": 6700, "revenue_bucket": "mid"},
+      "company_size": {
+        "revenue_usd": 2600000000,
+        "employees": 6700,
+        "revenue_bucket": "mid"
+      },
       "transformation": {
-        "type": "operational_efficiency", "subtype": "ERP_implementation",
+        "type": "operational_efficiency",
+        "subtype": "ERP_implementation",
         "description": "SAP ERP rollout following Elizabeth Arden acquisition",
-        "start_year": 2017, "planned_duration_months": 18, "actual_duration_months": 30,
-        "status": "failed", "vendor": "SAP"
+        "start_year": 2017,
+        "planned_duration_months": 18,
+        "actual_duration_months": 30,
+        "status": "failed",
+        "vendor": "SAP"
       },
       "financials": {
-        "promised_investment_usd": 100000000, "actual_investment_usd": 64000000, "writeoff_usd": 64000000,
-        "promised_revenue_uplift_pct": 0.0, "actual_revenue_uplift_pct": -0.064,
-        "promised_cost_reduction_pct": 0.05, "actual_cost_reduction_pct": null
+        "promised_investment_usd": 100000000,
+        "actual_investment_usd": 64000000,
+        "writeoff_usd": 64000000,
+        "promised_revenue_uplift_pct": 0.0,
+        "actual_revenue_uplift_pct": -0.064,
+        "promised_cost_reduction_pct": 0.05,
+        "actual_cost_reduction_pct": null
       },
-      "failure_modes": ["data_migration", "merger_integration_overlap", "shop_floor_disruption"],
+      "failure_modes": [
+        "data_migration",
+        "merger_integration_overlap",
+        "shop_floor_disruption"
+      ],
       "success_factors": [],
-      "sources": [{"type": "10K", "title": "Revlon 2018 annual report material weakness", "year": 2019}],
+      "sources": [
+        {
+          "type": "10K",
+          "title": "Revlon 2018 annual report material weakness",
+          "year": 2019
+        }
+      ],
       "tacit_notes": "SEC investigation triggered. Mid-size firm took on big-firm ERP scope during M&A."
     },
     {
       "id": "ge-predix-2015",
       "company": "General Electric",
       "industry": "industrial_manufacturing",
-      "industry_tags": ["manufacturing", "energy", "industrial_iot"],
+      "industry_tags": [
+        "manufacturing",
+        "energy",
+        "industrial_iot"
+      ],
       "geography": "USA",
-      "company_size": {"revenue_usd": 117000000000, "employees": 300000, "revenue_bucket": "mega"},
+      "company_size": {
+        "revenue_usd": 117000000000,
+        "employees": 300000,
+        "revenue_bucket": "mega"
+      },
       "transformation": {
-        "type": "product_innovation", "subtype": "IoT_platform",
+        "type": "product_innovation",
+        "subtype": "IoT_platform",
         "description": "Build Predix industrial IoT platform",
-        "start_year": 2015, "planned_duration_months": 36, "actual_duration_months": 60,
-        "status": "failed", "vendor": "in-house"
+        "start_year": 2015,
+        "planned_duration_months": 36,
+        "actual_duration_months": 60,
+        "status": "failed",
+        "vendor": "in-house"
       },
       "financials": {
-        "promised_investment_usd": 4000000000, "actual_investment_usd": 7000000000, "writeoff_usd": 5000000000,
-        "promised_revenue_uplift_pct": 0.10, "actual_revenue_uplift_pct": 0.01,
-        "promised_cost_reduction_pct": 0.03, "actual_cost_reduction_pct": 0.0
+        "promised_investment_usd": 4000000000,
+        "actual_investment_usd": 7000000000,
+        "writeoff_usd": 5000000000,
+        "promised_revenue_uplift_pct": 0.1,
+        "actual_revenue_uplift_pct": 0.01,
+        "promised_cost_reduction_pct": 0.03,
+        "actual_cost_reduction_pct": 0.0
       },
-      "failure_modes": ["scope_too_ambitious", "platform_vs_product_confusion", "leadership_change", "market_timing"],
-      "success_factors": ["asset_optimization_subset_worked"],
-      "sources": [{"type": "press", "title": "Forbes: How GE's Digital strategy failed", "year": 2019}],
+      "failure_modes": [
+        "scope_too_ambitious",
+        "platform_vs_product_confusion",
+        "leadership_change",
+        "market_timing"
+      ],
+      "success_factors": [
+        "asset_optimization_subset_worked"
+      ],
+      "sources": [
+        {
+          "type": "press",
+          "title": "Forbes: How GE's Digital strategy failed",
+          "year": 2019
+        }
+      ],
       "tacit_notes": "Trying to build a platform play without consumer-tech DNA. Sold to Wabtec for fraction of investment."
     },
     {
       "id": "boeing-737max-2017",
       "company": "Boeing",
       "industry": "aerospace",
-      "industry_tags": ["manufacturing", "aerospace", "transportation"],
+      "industry_tags": [
+        "manufacturing",
+        "aerospace",
+        "transportation"
+      ],
       "geography": "USA",
-      "company_size": {"revenue_usd": 93000000000, "employees": 153000, "revenue_bucket": "mega"},
+      "company_size": {
+        "revenue_usd": 93000000000,
+        "employees": 153000,
+        "revenue_bucket": "mega"
+      },
       "transformation": {
-        "type": "product_innovation", "subtype": "product_redesign_under_pressure",
+        "type": "product_innovation",
+        "subtype": "product_redesign_under_pressure",
         "description": "737 MAX redesign with MCAS software",
-        "start_year": 2011, "planned_duration_months": 60, "actual_duration_months": 84,
-        "status": "failed", "vendor": "in-house"
+        "start_year": 2011,
+        "planned_duration_months": 60,
+        "actual_duration_months": 84,
+        "status": "failed",
+        "vendor": "in-house"
       },
       "financials": {
-        "promised_investment_usd": 2500000000, "actual_investment_usd": 23000000000, "writeoff_usd": 20000000000,
-        "promised_revenue_uplift_pct": 0.08, "actual_revenue_uplift_pct": -0.15,
-        "promised_cost_reduction_pct": 0.05, "actual_cost_reduction_pct": -0.20
+        "promised_investment_usd": 2500000000,
+        "actual_investment_usd": 23000000000,
+        "writeoff_usd": 20000000000,
+        "promised_revenue_uplift_pct": 0.08,
+        "actual_revenue_uplift_pct": -0.15,
+        "promised_cost_reduction_pct": 0.05,
+        "actual_cost_reduction_pct": -0.2
       },
-      "failure_modes": ["safety_culture_erosion", "competitive_pressure_overrides_engineering"],
+      "failure_modes": [
+        "safety_culture_erosion",
+        "competitive_pressure_overrides_engineering"
+      ],
       "success_factors": [],
-      "sources": [{"type": "congressional", "title": "House Committee Report on 737 MAX", "year": 2020}],
+      "sources": [
+        {
+          "type": "congressional",
+          "title": "House Committee Report on 737 MAX",
+          "year": 2020
+        }
+      ],
       "tacit_notes": "346 dead. Demonstrates that 'do it faster and cheaper' has a hard floor."
     },
     {
       "id": "maersk-digital-2018",
       "company": "Maersk",
       "industry": "shipping_logistics",
-      "industry_tags": ["transportation", "logistics", "supply_chain"],
+      "industry_tags": [
+        "transportation",
+        "logistics",
+        "supply_chain"
+      ],
       "geography": "Denmark",
-      "company_size": {"revenue_usd": 39000000000, "employees": 80000, "revenue_bucket": "large"},
+      "company_size": {
+        "revenue_usd": 39000000000,
+        "employees": 80000,
+        "revenue_bucket": "large"
+      },
       "transformation": {
-        "type": "digital_transformation", "subtype": "platform_integration",
+        "type": "digital_transformation",
+        "subtype": "platform_integration",
         "description": "Maersk Spot platform - instant container booking",
-        "start_year": 2018, "planned_duration_months": 24, "actual_duration_months": 30,
-        "status": "success", "vendor": "in-house"
+        "start_year": 2018,
+        "planned_duration_months": 24,
+        "actual_duration_months": 30,
+        "status": "success",
+        "vendor": "in-house"
       },
       "financials": {
-        "promised_investment_usd": 300000000, "actual_investment_usd": 420000000, "writeoff_usd": 0,
-        "promised_revenue_uplift_pct": 0.04, "actual_revenue_uplift_pct": 0.035,
-        "promised_cost_reduction_pct": 0.03, "actual_cost_reduction_pct": 0.025
+        "promised_investment_usd": 300000000,
+        "actual_investment_usd": 420000000,
+        "writeoff_usd": 0,
+        "promised_revenue_uplift_pct": 0.04,
+        "actual_revenue_uplift_pct": 0.035,
+        "promised_cost_reduction_pct": 0.03,
+        "actual_cost_reduction_pct": 0.025
       },
       "failure_modes": [],
-      "success_factors": ["clear_value_prop", "incremental_rollout", "data_infrastructure_first"],
-      "sources": [{"type": "annual_report", "title": "Maersk 2020 annual report", "year": 2020}],
+      "success_factors": [
+        "clear_value_prop",
+        "incremental_rollout",
+        "data_infrastructure_first"
+      ],
+      "sources": [
+        {
+          "type": "annual_report",
+          "title": "Maersk 2020 annual report",
+          "year": 2020
+        }
+      ],
       "tacit_notes": "Reached target by year 3. 40% cost overrun but real success."
     },
     {
       "id": "walmart-flipkart-2018",
       "company": "Walmart",
       "industry": "retail",
-      "industry_tags": ["retail", "ecommerce", "market_expansion"],
+      "industry_tags": [
+        "retail",
+        "ecommerce",
+        "market_expansion"
+      ],
       "geography": "USA-India",
-      "company_size": {"revenue_usd": 514000000000, "employees": 2200000, "revenue_bucket": "mega"},
+      "company_size": {
+        "revenue_usd": 514000000000,
+        "employees": 2200000,
+        "revenue_bucket": "mega"
+      },
       "transformation": {
-        "type": "market_expansion", "subtype": "MA_integration",
+        "type": "market_expansion",
+        "subtype": "MA_integration",
         "description": "Acquire and integrate Flipkart",
-        "start_year": 2018, "planned_duration_months": 36, "actual_duration_months": 60,
-        "status": "partial", "vendor": "acquisition"
+        "start_year": 2018,
+        "planned_duration_months": 36,
+        "actual_duration_months": 60,
+        "status": "partial",
+        "vendor": "acquisition"
       },
       "financials": {
-        "promised_investment_usd": 16000000000, "actual_investment_usd": 22000000000, "writeoff_usd": 0,
-        "promised_revenue_uplift_pct": 0.03, "actual_revenue_uplift_pct": 0.018,
-        "promised_cost_reduction_pct": null, "actual_cost_reduction_pct": null
+        "promised_investment_usd": 16000000000,
+        "actual_investment_usd": 22000000000,
+        "writeoff_usd": 0,
+        "promised_revenue_uplift_pct": 0.03,
+        "actual_revenue_uplift_pct": 0.018,
+        "promised_cost_reduction_pct": null,
+        "actual_cost_reduction_pct": null
       },
-      "failure_modes": ["regulatory_changes", "ongoing_losses"],
-      "success_factors": ["market_position_established"],
-      "sources": [{"type": "press", "title": "Reuters: Flipkart losses widened", "year": 2023}],
+      "failure_modes": [
+        "regulatory_changes",
+        "ongoing_losses"
+      ],
+      "success_factors": [
+        "market_position_established"
+      ],
+      "sources": [
+        {
+          "type": "press",
+          "title": "Reuters: Flipkart losses widened",
+          "year": 2023
+        }
+      ],
       "tacit_notes": "Strategic foothold gained. Indian FDI rules changed mid-flight."
     },
     {
       "id": "dominos-pizza-tracker-2008",
       "company": "Domino's Pizza",
       "industry": "food_service",
-      "industry_tags": ["consumer_services", "retail", "food"],
+      "industry_tags": [
+        "consumer_services",
+        "retail",
+        "food"
+      ],
       "geography": "USA",
-      "company_size": {"revenue_usd": 1400000000, "employees": 11000, "revenue_bucket": "mid"},
+      "company_size": {
+        "revenue_usd": 1400000000,
+        "employees": 11000,
+        "revenue_bucket": "mid"
+      },
       "transformation": {
-        "type": "customer_experience", "subtype": "digital_ordering",
+        "type": "customer_experience",
+        "subtype": "digital_ordering",
         "description": "Pizza Tracker, online ordering, mobile app",
-        "start_year": 2008, "planned_duration_months": 24, "actual_duration_months": 36,
-        "status": "success", "vendor": "in-house"
+        "start_year": 2008,
+        "planned_duration_months": 24,
+        "actual_duration_months": 36,
+        "status": "success",
+        "vendor": "in-house"
       },
       "financials": {
-        "promised_investment_usd": 100000000, "actual_investment_usd": 150000000, "writeoff_usd": 0,
-        "promised_revenue_uplift_pct": 0.10, "actual_revenue_uplift_pct": 0.25,
-        "promised_cost_reduction_pct": 0.02, "actual_cost_reduction_pct": 0.04
+        "promised_investment_usd": 100000000,
+        "actual_investment_usd": 150000000,
+        "writeoff_usd": 0,
+        "promised_revenue_uplift_pct": 0.1,
+        "actual_revenue_uplift_pct": 0.25,
+        "promised_cost_reduction_pct": 0.02,
+        "actual_cost_reduction_pct": 0.04
       },
       "failure_modes": [],
-      "success_factors": ["ceo_commitment", "product_quality_fixed_first", "digital_as_core"],
-      "sources": [{"type": "HBR", "title": "Dominos digital turnaround case study", "year": 2018}],
+      "success_factors": [
+        "ceo_commitment",
+        "product_quality_fixed_first",
+        "digital_as_core"
+      ],
+      "sources": [
+        {
+          "type": "HBR",
+          "title": "Dominos digital turnaround case study",
+          "year": 2018
+        }
+      ],
       "tacit_notes": "Stock $3 to $400+. Fixed product first (pizza recipe), then digital."
     },
     {
       "id": "target-canada-2013",
       "company": "Target",
       "industry": "retail",
-      "industry_tags": ["retail", "supply_chain", "market_expansion"],
+      "industry_tags": [
+        "retail",
+        "supply_chain",
+        "market_expansion"
+      ],
       "geography": "Canada",
-      "company_size": {"revenue_usd": 73000000000, "employees": 350000, "revenue_bucket": "mega"},
+      "company_size": {
+        "revenue_usd": 73000000000,
+        "employees": 350000,
+        "revenue_bucket": "mega"
+      },
       "transformation": {
-        "type": "market_expansion", "subtype": "geographic_expansion",
+        "type": "market_expansion",
+        "subtype": "geographic_expansion",
         "description": "Launch 124 stores in Canada in 18 months",
-        "start_year": 2011, "planned_duration_months": 18, "actual_duration_months": 24,
-        "status": "failed", "vendor": "SAP+in-house"
+        "start_year": 2011,
+        "planned_duration_months": 18,
+        "actual_duration_months": 24,
+        "status": "failed",
+        "vendor": "SAP+in-house"
       },
       "financials": {
-        "promised_investment_usd": 4000000000, "actual_investment_usd": 7000000000, "writeoff_usd": 5400000000,
-        "promised_revenue_uplift_pct": 0.04, "actual_revenue_uplift_pct": -0.02,
-        "promised_cost_reduction_pct": null, "actual_cost_reduction_pct": null
+        "promised_investment_usd": 4000000000,
+        "actual_investment_usd": 7000000000,
+        "writeoff_usd": 5400000000,
+        "promised_revenue_uplift_pct": 0.04,
+        "actual_revenue_uplift_pct": -0.02,
+        "promised_cost_reduction_pct": null,
+        "actual_cost_reduction_pct": null
       },
-      "failure_modes": ["timeline_too_aggressive", "supply_chain_breakdown", "data_quality", "empty_shelves"],
+      "failure_modes": [
+        "timeline_too_aggressive",
+        "supply_chain_breakdown",
+        "data_quality",
+        "empty_shelves"
+      ],
       "success_factors": [],
-      "sources": [{"type": "press", "title": "Canadian Business: Target Canada autopsy", "year": 2016}],
+      "sources": [
+        {
+          "type": "press",
+          "title": "Canadian Business: Target Canada autopsy",
+          "year": 2016
+        }
+      ],
       "tacit_notes": "Item-level data wrong from day one. Pulled out of Canada in 2015."
     },
     {
       "id": "starbucks-mobile-2015",
       "company": "Starbucks",
       "industry": "food_service",
-      "industry_tags": ["consumer_services", "retail", "loyalty"],
+      "industry_tags": [
+        "consumer_services",
+        "retail",
+        "loyalty"
+      ],
       "geography": "USA",
-      "company_size": {"revenue_usd": 19000000000, "employees": 238000, "revenue_bucket": "large"},
+      "company_size": {
+        "revenue_usd": 19000000000,
+        "employees": 238000,
+        "revenue_bucket": "large"
+      },
       "transformation": {
-        "type": "customer_experience", "subtype": "mobile_loyalty",
+        "type": "customer_experience",
+        "subtype": "mobile_loyalty",
         "description": "Mobile Order & Pay with rewards",
-        "start_year": 2015, "planned_duration_months": 18, "actual_duration_months": 24,
-        "status": "success", "vendor": "in-house"
+        "start_year": 2015,
+        "planned_duration_months": 18,
+        "actual_duration_months": 24,
+        "status": "success",
+        "vendor": "in-house"
       },
       "financials": {
-        "promised_investment_usd": 250000000, "actual_investment_usd": 300000000, "writeoff_usd": 0,
-        "promised_revenue_uplift_pct": 0.06, "actual_revenue_uplift_pct": 0.08,
-        "promised_cost_reduction_pct": 0.01, "actual_cost_reduction_pct": 0.015
+        "promised_investment_usd": 250000000,
+        "actual_investment_usd": 300000000,
+        "writeoff_usd": 0,
+        "promised_revenue_uplift_pct": 0.06,
+        "actual_revenue_uplift_pct": 0.08,
+        "promised_cost_reduction_pct": 0.01,
+        "actual_cost_reduction_pct": 0.015
       },
-      "failure_modes": ["initial_in_store_congestion"],
-      "success_factors": ["existing_loyalty_base", "incremental_rollout", "barista_training_in_lockstep"],
-      "sources": [{"type": "annual_report", "title": "Starbucks 10-K 2017", "year": 2017}],
+      "failure_modes": [
+        "initial_in_store_congestion"
+      ],
+      "success_factors": [
+        "existing_loyalty_base",
+        "incremental_rollout",
+        "barista_training_in_lockstep"
+      ],
+      "sources": [
+        {
+          "type": "annual_report",
+          "title": "Starbucks 10-K 2017",
+          "year": 2017
+        }
+      ],
       "tacit_notes": "20% of US transactions via Mobile Order within 2 years."
     },
     {
       "id": "ing-agile-2015",
       "company": "ING Bank",
       "industry": "financial_services",
-      "industry_tags": ["banking", "financial_services"],
+      "industry_tags": [
+        "banking",
+        "financial_services"
+      ],
       "geography": "Netherlands",
-      "company_size": {"revenue_usd": 18000000000, "employees": 53000, "revenue_bucket": "large"},
+      "company_size": {
+        "revenue_usd": 18000000000,
+        "employees": 53000,
+        "revenue_bucket": "large"
+      },
       "transformation": {
-        "type": "operational_efficiency", "subtype": "agile_organization",
+        "type": "operational_efficiency",
+        "subtype": "agile_organization",
         "description": "Convert HQ to Spotify-style squads/tribes/chapters/guilds",
-        "start_year": 2015, "planned_duration_months": 18, "actual_duration_months": 24,
-        "status": "success", "vendor": "in-house+McKinsey"
+        "start_year": 2015,
+        "planned_duration_months": 18,
+        "actual_duration_months": 24,
+        "status": "success",
+        "vendor": "in-house+McKinsey"
       },
       "financials": {
-        "promised_investment_usd": 200000000, "actual_investment_usd": 250000000, "writeoff_usd": 0,
-        "promised_revenue_uplift_pct": 0.0, "actual_revenue_uplift_pct": 0.0,
-        "promised_cost_reduction_pct": 0.08, "actual_cost_reduction_pct": 0.06
+        "promised_investment_usd": 200000000,
+        "actual_investment_usd": 250000000,
+        "writeoff_usd": 0,
+        "promised_revenue_uplift_pct": 0.0,
+        "actual_revenue_uplift_pct": 0.0,
+        "promised_cost_reduction_pct": 0.08,
+        "actual_cost_reduction_pct": 0.06
       },
-      "failure_modes": ["initial_morale_drop"],
-      "success_factors": ["ceo_visible_commitment", "everyone_reapplied_for_role", "fast_decisions_at_top"],
-      "sources": [{"type": "McKinsey", "title": "ING agile transformation case", "year": 2017}],
+      "failure_modes": [
+        "initial_morale_drop"
+      ],
+      "success_factors": [
+        "ceo_visible_commitment",
+        "everyone_reapplied_for_role",
+        "fast_decisions_at_top"
+      ],
+      "sources": [
+        {
+          "type": "McKinsey",
+          "title": "ING agile transformation case",
+          "year": 2017
+        }
+      ],
       "tacit_notes": "Everyone reapplied for their job. 30% of leadership left."
     },
     {
       "id": "nokia-symbian-2010",
       "company": "Nokia",
       "industry": "consumer_electronics",
-      "industry_tags": ["technology", "manufacturing"],
+      "industry_tags": [
+        "technology",
+        "manufacturing"
+      ],
       "geography": "Finland",
-      "company_size": {"revenue_usd": 56000000000, "employees": 132000, "revenue_bucket": "mega"},
+      "company_size": {
+        "revenue_usd": 56000000000,
+        "employees": 132000,
+        "revenue_bucket": "mega"
+      },
       "transformation": {
-        "type": "product_innovation", "subtype": "platform_pivot",
+        "type": "product_innovation",
+        "subtype": "platform_pivot",
         "description": "Pivot to Windows Phone via Microsoft alliance",
-        "start_year": 2010, "planned_duration_months": 24, "actual_duration_months": 36,
-        "status": "failed", "vendor": "Microsoft alliance"
+        "start_year": 2010,
+        "planned_duration_months": 24,
+        "actual_duration_months": 36,
+        "status": "failed",
+        "vendor": "Microsoft alliance"
       },
       "financials": {
-        "promised_investment_usd": 1000000000, "actual_investment_usd": 1500000000, "writeoff_usd": 1500000000,
-        "promised_revenue_uplift_pct": 0.05, "actual_revenue_uplift_pct": -0.40,
-        "promised_cost_reduction_pct": null, "actual_cost_reduction_pct": null
+        "promised_investment_usd": 1000000000,
+        "actual_investment_usd": 1500000000,
+        "writeoff_usd": 1500000000,
+        "promised_revenue_uplift_pct": 0.05,
+        "actual_revenue_uplift_pct": -0.4,
+        "promised_cost_reduction_pct": null,
+        "actual_cost_reduction_pct": null
       },
-      "failure_modes": ["wrong_partner_choice", "burning_platform_loyalty_loss", "ecosystem_underestimation"],
+      "failure_modes": [
+        "wrong_partner_choice",
+        "burning_platform_loyalty_loss",
+        "ecosystem_underestimation"
+      ],
       "success_factors": [],
-      "sources": [{"type": "HBR", "title": "Nokia and the burning platform memo", "year": 2013}],
+      "sources": [
+        {
+          "type": "HBR",
+          "title": "Nokia and the burning platform memo",
+          "year": 2013
+        }
+      ],
       "tacit_notes": "Sold to Microsoft for $7B in 2014."
     },
     {
       "id": "maersk-tradelens-2018",
       "company": "Maersk + IBM",
       "industry": "shipping_logistics",
-      "industry_tags": ["transportation", "logistics", "supply_chain", "blockchain"],
+      "industry_tags": [
+        "transportation",
+        "logistics",
+        "supply_chain",
+        "blockchain"
+      ],
       "geography": "Global",
-      "company_size": {"revenue_usd": 39000000000, "employees": 80000, "revenue_bucket": "large"},
+      "company_size": {
+        "revenue_usd": 39000000000,
+        "employees": 80000,
+        "revenue_bucket": "large"
+      },
       "transformation": {
-        "type": "digital_transformation", "subtype": "blockchain_consortium",
+        "type": "digital_transformation",
+        "subtype": "blockchain_consortium",
         "description": "TradeLens - blockchain-based global shipping platform",
-        "start_year": 2018, "planned_duration_months": 36, "actual_duration_months": 48,
-        "status": "failed", "vendor": "IBM"
+        "start_year": 2018,
+        "planned_duration_months": 36,
+        "actual_duration_months": 48,
+        "status": "failed",
+        "vendor": "IBM"
       },
       "financials": {
-        "promised_investment_usd": 200000000, "actual_investment_usd": 350000000, "writeoff_usd": 350000000,
-        "promised_revenue_uplift_pct": 0.02, "actual_revenue_uplift_pct": 0.0,
-        "promised_cost_reduction_pct": 0.05, "actual_cost_reduction_pct": 0.0
+        "promised_investment_usd": 200000000,
+        "actual_investment_usd": 350000000,
+        "writeoff_usd": 350000000,
+        "promised_revenue_uplift_pct": 0.02,
+        "actual_revenue_uplift_pct": 0.0,
+        "promised_cost_reduction_pct": 0.05,
+        "actual_cost_reduction_pct": 0.0
       },
-      "failure_modes": ["consortium_governance", "competitor_refusal", "no_critical_mass"],
+      "failure_modes": [
+        "consortium_governance",
+        "competitor_refusal",
+        "no_critical_mass"
+      ],
       "success_factors": [],
-      "sources": [{"type": "press", "title": "Maersk discontinues TradeLens", "year": 2022}],
+      "sources": [
+        {
+          "type": "press",
+          "title": "Maersk discontinues TradeLens",
+          "year": 2022
+        }
+      ],
       "tacit_notes": "Competitors refused to join Maersk-controlled platform. Killed 2022. Lesson: industry-wide platforms cannot be owned by one major player."
     },
     {
       "id": "tesco-fresh-easy-2007",
       "company": "Tesco",
       "industry": "retail_grocery",
-      "industry_tags": ["retail", "market_expansion"],
+      "industry_tags": [
+        "retail",
+        "market_expansion"
+      ],
       "geography": "USA",
-      "company_size": {"revenue_usd": 90000000000, "employees": 320000, "revenue_bucket": "mega"},
+      "company_size": {
+        "revenue_usd": 90000000000,
+        "employees": 320000,
+        "revenue_bucket": "mega"
+      },
       "transformation": {
-        "type": "market_expansion", "subtype": "new_concept_new_market",
+        "type": "market_expansion",
+        "subtype": "new_concept_new_market",
         "description": "Fresh & Easy convenience grocery chain in California",
-        "start_year": 2007, "planned_duration_months": 36, "actual_duration_months": 72,
-        "status": "failed", "vendor": "in-house"
+        "start_year": 2007,
+        "planned_duration_months": 36,
+        "actual_duration_months": 72,
+        "status": "failed",
+        "vendor": "in-house"
       },
       "financials": {
-        "promised_investment_usd": 500000000, "actual_investment_usd": 2000000000, "writeoff_usd": 2000000000,
-        "promised_revenue_uplift_pct": 0.03, "actual_revenue_uplift_pct": -0.01,
-        "promised_cost_reduction_pct": null, "actual_cost_reduction_pct": null
+        "promised_investment_usd": 500000000,
+        "actual_investment_usd": 2000000000,
+        "writeoff_usd": 2000000000,
+        "promised_revenue_uplift_pct": 0.03,
+        "actual_revenue_uplift_pct": -0.01,
+        "promised_cost_reduction_pct": null,
+        "actual_cost_reduction_pct": null
       },
-      "failure_modes": ["consumer_misread", "self_checkout_resistance", "scale_too_fast", "financial_crisis_timing"],
+      "failure_modes": [
+        "consumer_misread",
+        "self_checkout_resistance",
+        "scale_too_fast",
+        "financial_crisis_timing"
+      ],
       "success_factors": [],
-      "sources": [{"type": "HBR", "title": "Why Tesco failed in America", "year": 2013}],
+      "sources": [
+        {
+          "type": "HBR",
+          "title": "Why Tesco failed in America",
+          "year": 2013
+        }
+      ],
       "tacit_notes": "Brits assumed US consumers wanted UK convenience format. Wrong."
     },
     {
       "id": "ab-inbev-bees-2019",
       "company": "AB InBev",
       "industry": "consumer_goods_beverage",
-      "industry_tags": ["consumer_goods", "B2B", "supply_chain"],
+      "industry_tags": [
+        "consumer_goods",
+        "B2B",
+        "supply_chain"
+      ],
       "geography": "Global",
-      "company_size": {"revenue_usd": 52000000000, "employees": 169000, "revenue_bucket": "large"},
+      "company_size": {
+        "revenue_usd": 52000000000,
+        "employees": 169000,
+        "revenue_bucket": "large"
+      },
       "transformation": {
-        "type": "digital_transformation", "subtype": "B2B_ecommerce",
+        "type": "digital_transformation",
+        "subtype": "B2B_ecommerce",
         "description": "BEES B2B platform for small retailers to order beer",
-        "start_year": 2019, "planned_duration_months": 24, "actual_duration_months": 36,
-        "status": "success", "vendor": "in-house"
+        "start_year": 2019,
+        "planned_duration_months": 24,
+        "actual_duration_months": 36,
+        "status": "success",
+        "vendor": "in-house"
       },
       "financials": {
-        "promised_investment_usd": 500000000, "actual_investment_usd": 700000000, "writeoff_usd": 0,
-        "promised_revenue_uplift_pct": 0.04, "actual_revenue_uplift_pct": 0.06,
-        "promised_cost_reduction_pct": 0.03, "actual_cost_reduction_pct": 0.04
+        "promised_investment_usd": 500000000,
+        "actual_investment_usd": 700000000,
+        "writeoff_usd": 0,
+        "promised_revenue_uplift_pct": 0.04,
+        "actual_revenue_uplift_pct": 0.06,
+        "promised_cost_reduction_pct": 0.03,
+        "actual_cost_reduction_pct": 0.04
       },
       "failure_modes": [],
-      "success_factors": ["existing_distribution_relationships", "mobile_first", "incremental_country_rollout"],
-      "sources": [{"type": "press", "title": "ABI BEES gross merchandise value $30B+", "year": 2023}],
+      "success_factors": [
+        "existing_distribution_relationships",
+        "mobile_first",
+        "incremental_country_rollout"
+      ],
+      "sources": [
+        {
+          "type": "press",
+          "title": "ABI BEES gross merchandise value $30B+",
+          "year": 2023
+        }
+      ],
       "tacit_notes": "Digital touch on existing distribution = winner. No fresh stack from scratch."
     },
     {
       "id": "siemens-mindsphere-2016",
       "company": "Siemens",
       "industry": "industrial_manufacturing",
-      "industry_tags": ["manufacturing", "industrial_iot", "energy"],
+      "industry_tags": [
+        "manufacturing",
+        "industrial_iot",
+        "energy"
+      ],
       "geography": "Germany",
-      "company_size": {"revenue_usd": 90000000000, "employees": 385000, "revenue_bucket": "mega"},
+      "company_size": {
+        "revenue_usd": 90000000000,
+        "employees": 385000,
+        "revenue_bucket": "mega"
+      },
       "transformation": {
-        "type": "product_innovation", "subtype": "IoT_platform",
+        "type": "product_innovation",
+        "subtype": "IoT_platform",
         "description": "MindSphere industrial IoT cloud platform (Siemens answer to Predix)",
-        "start_year": 2016, "planned_duration_months": 36, "actual_duration_months": 72,
-        "status": "failed", "vendor": "in-house+AWS"
+        "start_year": 2016,
+        "planned_duration_months": 36,
+        "actual_duration_months": 72,
+        "status": "failed",
+        "vendor": "in-house+AWS"
       },
       "financials": {
-        "promised_investment_usd": 1500000000, "actual_investment_usd": 3500000000, "writeoff_usd": 2000000000,
-        "promised_revenue_uplift_pct": 0.05, "actual_revenue_uplift_pct": 0.005,
-        "promised_cost_reduction_pct": null, "actual_cost_reduction_pct": null
+        "promised_investment_usd": 1500000000,
+        "actual_investment_usd": 3500000000,
+        "writeoff_usd": 2000000000,
+        "promised_revenue_uplift_pct": 0.05,
+        "actual_revenue_uplift_pct": 0.005,
+        "promised_cost_reduction_pct": null,
+        "actual_cost_reduction_pct": null
       },
-      "failure_modes": ["same_as_predix_platform_play", "no_clear_customer", "internal_political_conflict"],
+      "failure_modes": [
+        "same_as_predix_platform_play",
+        "no_clear_customer",
+        "internal_political_conflict"
+      ],
       "success_factors": [],
-      "sources": [{"type": "press", "title": "Reuters: Siemens spins off Digital Industries Software", "year": 2022}],
+      "sources": [
+        {
+          "type": "press",
+          "title": "Reuters: Siemens spins off Digital Industries Software",
+          "year": 2022
+        }
+      ],
       "tacit_notes": "Industrial giant tried same mistake as GE. Same outcome."
     },
     {
       "id": "sberbank-digital-2017",
       "company": "Sberbank",
       "industry": "financial_services",
-      "industry_tags": ["banking", "financial_services", "ecosystem"],
+      "industry_tags": [
+        "banking",
+        "financial_services",
+        "ecosystem"
+      ],
       "geography": "Russia",
-      "company_size": {"revenue_usd": 50000000000, "employees": 285000, "revenue_bucket": "large"},
+      "company_size": {
+        "revenue_usd": 50000000000,
+        "employees": 285000,
+        "revenue_bucket": "large"
+      },
       "transformation": {
-        "type": "digital_transformation", "subtype": "ecosystem_play",
+        "type": "digital_transformation",
+        "subtype": "ecosystem_play",
         "description": "Build SberEcosystem - food delivery, taxi, healthcare, telecom",
-        "start_year": 2017, "planned_duration_months": 60, "actual_duration_months": 60,
-        "status": "partial", "vendor": "in-house+M&A"
+        "start_year": 2017,
+        "planned_duration_months": 60,
+        "actual_duration_months": 60,
+        "status": "partial",
+        "vendor": "in-house+M&A"
       },
       "financials": {
-        "promised_investment_usd": 5000000000, "actual_investment_usd": 8000000000, "writeoff_usd": 2000000000,
-        "promised_revenue_uplift_pct": 0.10, "actual_revenue_uplift_pct": 0.04,
-        "promised_cost_reduction_pct": null, "actual_cost_reduction_pct": null
+        "promised_investment_usd": 5000000000,
+        "actual_investment_usd": 8000000000,
+        "writeoff_usd": 2000000000,
+        "promised_revenue_uplift_pct": 0.1,
+        "actual_revenue_uplift_pct": 0.04,
+        "promised_cost_reduction_pct": null,
+        "actual_cost_reduction_pct": null
       },
-      "failure_modes": ["non_banking_units_unprofitable", "sanctions_2022_disruption", "rakuten_model_misapplied"],
-      "success_factors": ["core_banking_digital_strong"],
-      "sources": [{"type": "press", "title": "Vedomosti: Sber non-banking losses", "year": 2022}],
+      "failure_modes": [
+        "non_banking_units_unprofitable",
+        "sanctions_2022_disruption",
+        "rakuten_model_misapplied"
+      ],
+      "success_factors": [
+        "core_banking_digital_strong"
+      ],
+      "sources": [
+        {
+          "type": "press",
+          "title": "Vedomosti: Sber non-banking losses",
+          "year": 2022
+        }
+      ],
       "tacit_notes": "Core SberOnline = world-class banking app. Non-banking ecosystem bled cash. Sanctions accelerated wind-down."
     },
     {
       "id": "tinkoff-digital-2010",
       "company": "Tinkoff Bank",
       "industry": "financial_services",
-      "industry_tags": ["banking", "financial_services", "digital_native"],
+      "industry_tags": [
+        "banking",
+        "financial_services",
+        "digital_native"
+      ],
       "geography": "Russia",
-      "company_size": {"revenue_usd": 4000000000, "employees": 38000, "revenue_bucket": "mid"},
+      "company_size": {
+        "revenue_usd": 4000000000,
+        "employees": 38000,
+        "revenue_bucket": "mid"
+      },
       "transformation": {
-        "type": "digital_transformation", "subtype": "digital_native_bank",
+        "type": "digital_transformation",
+        "subtype": "digital_native_bank",
         "description": "Build branchless digital-only bank from scratch",
-        "start_year": 2010, "planned_duration_months": 60, "actual_duration_months": 60,
-        "status": "success", "vendor": "in-house"
+        "start_year": 2010,
+        "planned_duration_months": 60,
+        "actual_duration_months": 60,
+        "status": "success",
+        "vendor": "in-house"
       },
       "financials": {
-        "promised_investment_usd": 200000000, "actual_investment_usd": 300000000, "writeoff_usd": 0,
-        "promised_revenue_uplift_pct": 0.20, "actual_revenue_uplift_pct": 0.45,
-        "promised_cost_reduction_pct": 0.30, "actual_cost_reduction_pct": 0.40
+        "promised_investment_usd": 200000000,
+        "actual_investment_usd": 300000000,
+        "writeoff_usd": 0,
+        "promised_revenue_uplift_pct": 0.2,
+        "actual_revenue_uplift_pct": 0.45,
+        "promised_cost_reduction_pct": 0.3,
+        "actual_cost_reduction_pct": 0.4
       },
       "failure_modes": [],
-      "success_factors": ["greenfield_no_legacy", "smartphone_first", "courier_delivery_for_cards"],
-      "sources": [{"type": "IPO_prospectus", "title": "TCS Group 2013 IPO", "year": 2013}],
+      "success_factors": [
+        "greenfield_no_legacy",
+        "smartphone_first",
+        "courier_delivery_for_cards"
+      ],
+      "sources": [
+        {
+          "type": "IPO_prospectus",
+          "title": "TCS Group 2013 IPO",
+          "year": 2013
+        }
+      ],
       "tacit_notes": "Greenfield + smartphone timing. Cost-to-income ratio half of incumbents. Rare overperform case."
     },
     {
       "id": "kazakhstan-egov-2012",
       "company": "Kazakhstan eGov",
       "industry": "government",
-      "industry_tags": ["government", "digital_services"],
+      "industry_tags": [
+        "government",
+        "digital_services"
+      ],
       "geography": "Kazakhstan",
-      "company_size": {"revenue_usd": 1000000000, "employees": 5000, "revenue_bucket": "mid"},
+      "company_size": {
+        "revenue_usd": 1000000000,
+        "employees": 5000,
+        "revenue_bucket": "mid"
+      },
       "transformation": {
-        "type": "digital_transformation", "subtype": "government_services_portal",
+        "type": "digital_transformation",
+        "subtype": "government_services_portal",
         "description": "eGov.kz - digital government services portal",
-        "start_year": 2012, "planned_duration_months": 60, "actual_duration_months": 84,
-        "status": "success", "vendor": "in-house+vendors"
+        "start_year": 2012,
+        "planned_duration_months": 60,
+        "actual_duration_months": 84,
+        "status": "success",
+        "vendor": "in-house+vendors"
       },
       "financials": {
-        "promised_investment_usd": 200000000, "actual_investment_usd": 350000000, "writeoff_usd": 0,
-        "promised_revenue_uplift_pct": null, "actual_revenue_uplift_pct": null,
-        "promised_cost_reduction_pct": 0.20, "actual_cost_reduction_pct": 0.15
+        "promised_investment_usd": 200000000,
+        "actual_investment_usd": 350000000,
+        "writeoff_usd": 0,
+        "promised_revenue_uplift_pct": null,
+        "actual_revenue_uplift_pct": null,
+        "promised_cost_reduction_pct": 0.2,
+        "actual_cost_reduction_pct": 0.15
       },
-      "failure_modes": ["adoption_slow_in_regions"],
-      "success_factors": ["political_will_top_down", "biometric_id_foundation"],
-      "sources": [{"type": "World_Bank", "title": "World Bank Kazakhstan eGov review", "year": 2019}],
+      "failure_modes": [
+        "adoption_slow_in_regions"
+      ],
+      "success_factors": [
+        "political_will_top_down",
+        "biometric_id_foundation"
+      ],
+      "sources": [
+        {
+          "type": "World_Bank",
+          "title": "World Bank Kazakhstan eGov review",
+          "year": 2019
+        }
+      ],
       "tacit_notes": "Strong top-down mandate enabled fast rollout. 80%+ of services now digital."
     },
     {
       "id": "yandex-taxi-expansion-2015",
       "company": "Yandex",
       "industry": "consumer_services",
-      "industry_tags": ["technology", "consumer_services", "market_expansion"],
+      "industry_tags": [
+        "technology",
+        "consumer_services",
+        "market_expansion"
+      ],
       "geography": "Russia-CIS",
-      "company_size": {"revenue_usd": 8000000000, "employees": 18000, "revenue_bucket": "mid"},
+      "company_size": {
+        "revenue_usd": 8000000000,
+        "employees": 18000,
+        "revenue_bucket": "mid"
+      },
       "transformation": {
-        "type": "market_expansion", "subtype": "geographic_expansion",
+        "type": "market_expansion",
+        "subtype": "geographic_expansion",
         "description": "Yandex Taxi expansion to CIS, Eastern Europe, Africa",
-        "start_year": 2015, "planned_duration_months": 36, "actual_duration_months": 48,
-        "status": "partial", "vendor": "in-house"
+        "start_year": 2015,
+        "planned_duration_months": 36,
+        "actual_duration_months": 48,
+        "status": "partial",
+        "vendor": "in-house"
       },
       "financials": {
-        "promised_investment_usd": 1000000000, "actual_investment_usd": 1500000000, "writeoff_usd": 300000000,
-        "promised_revenue_uplift_pct": 0.15, "actual_revenue_uplift_pct": 0.08,
-        "promised_cost_reduction_pct": null, "actual_cost_reduction_pct": null
+        "promised_investment_usd": 1000000000,
+        "actual_investment_usd": 1500000000,
+        "writeoff_usd": 300000000,
+        "promised_revenue_uplift_pct": 0.15,
+        "actual_revenue_uplift_pct": 0.08,
+        "promised_cost_reduction_pct": null,
+        "actual_cost_reduction_pct": null
       },
-      "failure_modes": ["uber_merger_in_russia_only", "europe_regulatory", "sanctions"],
-      "success_factors": ["dominant_in_home_market", "merged_with_uber_russia"],
-      "sources": [{"type": "press", "title": "Yandex Taxi quarterly reports", "year": 2020}],
+      "failure_modes": [
+        "uber_merger_in_russia_only",
+        "europe_regulatory",
+        "sanctions"
+      ],
+      "success_factors": [
+        "dominant_in_home_market",
+        "merged_with_uber_russia"
+      ],
+      "sources": [
+        {
+          "type": "press",
+          "title": "Yandex Taxi quarterly reports",
+          "year": 2020
+        }
+      ],
       "tacit_notes": "Won in Russia/CIS but stalled in Europe. Acquisition of Uber Russia was the strategic win."
     },
     {
       "id": "carlsberg-business-standards-2018",
       "company": "Carlsberg",
       "industry": "consumer_goods_beverage",
-      "industry_tags": ["consumer_goods", "manufacturing"],
+      "industry_tags": [
+        "consumer_goods",
+        "manufacturing"
+      ],
       "geography": "Denmark",
-      "company_size": {"revenue_usd": 10000000000, "employees": 41000, "revenue_bucket": "large"},
+      "company_size": {
+        "revenue_usd": 10000000000,
+        "employees": 41000,
+        "revenue_bucket": "large"
+      },
       "transformation": {
-        "type": "operational_efficiency", "subtype": "shared_services_consolidation",
+        "type": "operational_efficiency",
+        "subtype": "shared_services_consolidation",
         "description": "Business Standards - consolidate finance/HR/IT across markets",
-        "start_year": 2018, "planned_duration_months": 36, "actual_duration_months": 48,
-        "status": "success", "vendor": "Capgemini"
+        "start_year": 2018,
+        "planned_duration_months": 36,
+        "actual_duration_months": 48,
+        "status": "success",
+        "vendor": "Capgemini"
       },
       "financials": {
-        "promised_investment_usd": 300000000, "actual_investment_usd": 400000000, "writeoff_usd": 0,
-        "promised_revenue_uplift_pct": null, "actual_revenue_uplift_pct": null,
-        "promised_cost_reduction_pct": 0.04, "actual_cost_reduction_pct": 0.035
+        "promised_investment_usd": 300000000,
+        "actual_investment_usd": 400000000,
+        "writeoff_usd": 0,
+        "promised_revenue_uplift_pct": null,
+        "actual_revenue_uplift_pct": null,
+        "promised_cost_reduction_pct": 0.04,
+        "actual_cost_reduction_pct": 0.035
       },
-      "failure_modes": ["local_market_resistance"],
-      "success_factors": ["clear_target_operating_model", "phased_market_rollout"],
-      "sources": [{"type": "annual_report", "title": "Carlsberg annual report 2022", "year": 2022}],
+      "failure_modes": [
+        "local_market_resistance"
+      ],
+      "success_factors": [
+        "clear_target_operating_model",
+        "phased_market_rollout"
+      ],
+      "sources": [
+        {
+          "type": "annual_report",
+          "title": "Carlsberg annual report 2022",
+          "year": 2022
+        }
+      ],
       "tacit_notes": "Slow and unglamorous but delivered. Boring operational transformations have higher success rate than tech-led ones."
     },
     {
       "id": "jpmorgan-tech-spend-2016",
       "company": "JPMorgan Chase",
       "industry": "financial_services",
-      "industry_tags": ["banking", "financial_services"],
+      "industry_tags": [
+        "banking",
+        "financial_services"
+      ],
       "geography": "USA",
-      "company_size": {"revenue_usd": 100000000000, "employees": 256000, "revenue_bucket": "mega"},
+      "company_size": {
+        "revenue_usd": 100000000000,
+        "employees": 256000,
+        "revenue_bucket": "mega"
+      },
       "transformation": {
-        "type": "digital_transformation", "subtype": "tech_modernization",
+        "type": "digital_transformation",
+        "subtype": "tech_modernization",
         "description": "Cloud + AI transformation across consumer and corporate banking",
-        "start_year": 2016, "planned_duration_months": 60, "actual_duration_months": 84,
-        "status": "success", "vendor": "in-house+AWS+GCP"
+        "start_year": 2016,
+        "planned_duration_months": 60,
+        "actual_duration_months": 84,
+        "status": "success",
+        "vendor": "in-house+AWS+GCP"
       },
       "financials": {
-        "promised_investment_usd": 10000000000, "actual_investment_usd": 15000000000, "writeoff_usd": 0,
-        "promised_revenue_uplift_pct": 0.05, "actual_revenue_uplift_pct": 0.04,
-        "promised_cost_reduction_pct": 0.05, "actual_cost_reduction_pct": 0.03
+        "promised_investment_usd": 10000000000,
+        "actual_investment_usd": 15000000000,
+        "writeoff_usd": 0,
+        "promised_revenue_uplift_pct": 0.05,
+        "actual_revenue_uplift_pct": 0.04,
+        "promised_cost_reduction_pct": 0.05,
+        "actual_cost_reduction_pct": 0.03
       },
-      "failure_modes": ["talent_war_costs"],
-      "success_factors": ["sustained_executive_attention", "biggest_tech_budget_in_banking"],
-      "sources": [{"type": "annual_report", "title": "JPM annual reports 2016-2023", "year": 2023}],
+      "failure_modes": [
+        "talent_war_costs"
+      ],
+      "success_factors": [
+        "sustained_executive_attention",
+        "biggest_tech_budget_in_banking"
+      ],
+      "sources": [
+        {
+          "type": "annual_report",
+          "title": "JPM annual reports 2016-2023",
+          "year": 2023
+        }
+      ],
       "tacit_notes": "Outspends entire fintech industry on tech. Scale wins."
     },
     {
       "id": "kraft-heinz-3g-2015",
       "company": "Kraft Heinz",
       "industry": "consumer_goods_food",
-      "industry_tags": ["consumer_goods", "manufacturing"],
+      "industry_tags": [
+        "consumer_goods",
+        "manufacturing"
+      ],
       "geography": "USA",
-      "company_size": {"revenue_usd": 26000000000, "employees": 38000, "revenue_bucket": "large"},
+      "company_size": {
+        "revenue_usd": 26000000000,
+        "employees": 38000,
+        "revenue_bucket": "large"
+      },
       "transformation": {
-        "type": "operational_efficiency", "subtype": "zero_based_budgeting",
+        "type": "operational_efficiency",
+        "subtype": "zero_based_budgeting",
         "description": "3G Capital zero-based budgeting + brutal cost cuts",
-        "start_year": 2015, "planned_duration_months": 36, "actual_duration_months": 36,
-        "status": "failed", "vendor": "3G Capital"
+        "start_year": 2015,
+        "planned_duration_months": 36,
+        "actual_duration_months": 36,
+        "status": "failed",
+        "vendor": "3G Capital"
       },
       "financials": {
-        "promised_investment_usd": 200000000, "actual_investment_usd": 200000000, "writeoff_usd": 15000000000,
-        "promised_revenue_uplift_pct": 0.03, "actual_revenue_uplift_pct": -0.05,
-        "promised_cost_reduction_pct": 0.10, "actual_cost_reduction_pct": 0.08
+        "promised_investment_usd": 200000000,
+        "actual_investment_usd": 200000000,
+        "writeoff_usd": 15000000000,
+        "promised_revenue_uplift_pct": 0.03,
+        "actual_revenue_uplift_pct": -0.05,
+        "promised_cost_reduction_pct": 0.1,
+        "actual_cost_reduction_pct": 0.08
       },
-      "failure_modes": ["brand_erosion_from_underinvestment", "consumer_preference_shift", "wrote_down_15B_brand_value"],
-      "success_factors": ["short_term_margin_expansion"],
-      "sources": [{"type": "press", "title": "WSJ: Kraft Heinz $15B writedown", "year": 2019}],
+      "failure_modes": [
+        "brand_erosion_from_underinvestment",
+        "consumer_preference_shift",
+        "wrote_down_15B_brand_value"
+      ],
+      "success_factors": [
+        "short_term_margin_expansion"
+      ],
+      "sources": [
+        {
+          "type": "press",
+          "title": "WSJ: Kraft Heinz $15B writedown",
+          "year": 2019
+        }
+      ],
       "tacit_notes": "Cost-cutting alone destroyed long-term brand value. Margin up short-term, business down long-term."
     },
     {
       "id": "walmart-india-cash-carry-2013",
       "company": "Walmart",
       "industry": "retail",
-      "industry_tags": ["retail", "market_expansion"],
+      "industry_tags": [
+        "retail",
+        "market_expansion"
+      ],
       "geography": "India",
-      "company_size": {"revenue_usd": 470000000000, "employees": 2200000, "revenue_bucket": "mega"},
+      "company_size": {
+        "revenue_usd": 470000000000,
+        "employees": 2200000,
+        "revenue_bucket": "mega"
+      },
       "transformation": {
-        "type": "market_expansion", "subtype": "joint_venture_exit",
+        "type": "market_expansion",
+        "subtype": "joint_venture_exit",
         "description": "Bharti-Walmart JV cash-and-carry wholesale chain",
-        "start_year": 2007, "planned_duration_months": 60, "actual_duration_months": 84,
-        "status": "failed", "vendor": "Bharti JV"
+        "start_year": 2007,
+        "planned_duration_months": 60,
+        "actual_duration_months": 84,
+        "status": "failed",
+        "vendor": "Bharti JV"
       },
       "financials": {
-        "promised_investment_usd": 500000000, "actual_investment_usd": 800000000, "writeoff_usd": 600000000,
-        "promised_revenue_uplift_pct": 0.02, "actual_revenue_uplift_pct": 0.0,
-        "promised_cost_reduction_pct": null, "actual_cost_reduction_pct": null
+        "promised_investment_usd": 500000000,
+        "actual_investment_usd": 800000000,
+        "writeoff_usd": 600000000,
+        "promised_revenue_uplift_pct": 0.02,
+        "actual_revenue_uplift_pct": 0.0,
+        "promised_cost_reduction_pct": null,
+        "actual_cost_reduction_pct": null
       },
-      "failure_modes": ["FDI_regulation_changes", "JV_corruption_investigation", "wrong_format_for_market"],
+      "failure_modes": [
+        "FDI_regulation_changes",
+        "JV_corruption_investigation",
+        "wrong_format_for_market"
+      ],
       "success_factors": [],
-      "sources": [{"type": "press", "title": "Reuters: Walmart exits Bharti JV", "year": 2013}],
+      "sources": [
+        {
+          "type": "press",
+          "title": "Reuters: Walmart exits Bharti JV",
+          "year": 2013
+        }
+      ],
       "tacit_notes": "Regulatory shifts + JV control issues. Eventually entered India via Flipkart acquisition instead."
     },
     {
       "id": "amazon-fire-phone-2014",
       "company": "Amazon",
       "industry": "consumer_electronics",
-      "industry_tags": ["technology", "consumer_electronics"],
+      "industry_tags": [
+        "technology",
+        "consumer_electronics"
+      ],
       "geography": "USA",
-      "company_size": {"revenue_usd": 89000000000, "employees": 154000, "revenue_bucket": "large"},
+      "company_size": {
+        "revenue_usd": 89000000000,
+        "employees": 154000,
+        "revenue_bucket": "large"
+      },
       "transformation": {
-        "type": "product_innovation", "subtype": "new_product_category",
+        "type": "product_innovation",
+        "subtype": "new_product_category",
         "description": "Fire Phone - smartphone with 3D dynamic perspective",
-        "start_year": 2014, "planned_duration_months": 24, "actual_duration_months": 12,
-        "status": "failed", "vendor": "in-house"
+        "start_year": 2014,
+        "planned_duration_months": 24,
+        "actual_duration_months": 12,
+        "status": "failed",
+        "vendor": "in-house"
       },
       "financials": {
-        "promised_investment_usd": 200000000, "actual_investment_usd": 300000000, "writeoff_usd": 170000000,
-        "promised_revenue_uplift_pct": 0.02, "actual_revenue_uplift_pct": 0.0,
-        "promised_cost_reduction_pct": null, "actual_cost_reduction_pct": null
+        "promised_investment_usd": 200000000,
+        "actual_investment_usd": 300000000,
+        "writeoff_usd": 170000000,
+        "promised_revenue_uplift_pct": 0.02,
+        "actual_revenue_uplift_pct": 0.0,
+        "promised_cost_reduction_pct": null,
+        "actual_cost_reduction_pct": null
       },
-      "failure_modes": ["wrong_market_entry_timing", "premium_pricing_no_value", "ceo_pet_project_no_pushback"],
+      "failure_modes": [
+        "wrong_market_entry_timing",
+        "premium_pricing_no_value",
+        "ceo_pet_project_no_pushback"
+      ],
       "success_factors": [],
-      "sources": [{"type": "press", "title": "Fortune: Amazon Fire Phone postmortem", "year": 2015}],
+      "sources": [
+        {
+          "type": "press",
+          "title": "Fortune: Amazon Fire Phone postmortem",
+          "year": 2015
+        }
+      ],
       "tacit_notes": "Bezos pet project. Inventory writedown ~$170M. Demonstrates founder-led companies need internal devil's advocates."
     },
     {
       "id": "ford-rivian-investment-2019",
       "company": "Ford",
       "industry": "automotive",
-      "industry_tags": ["manufacturing", "automotive", "transportation"],
+      "industry_tags": [
+        "manufacturing",
+        "automotive",
+        "transportation"
+      ],
       "geography": "USA",
-      "company_size": {"revenue_usd": 160000000000, "employees": 190000, "revenue_bucket": "mega"},
+      "company_size": {
+        "revenue_usd": 160000000000,
+        "employees": 190000,
+        "revenue_bucket": "mega"
+      },
       "transformation": {
-        "type": "product_innovation", "subtype": "ev_partnership",
+        "type": "product_innovation",
+        "subtype": "ev_partnership",
         "description": "Invest in Rivian + joint EV truck program",
-        "start_year": 2019, "planned_duration_months": 36, "actual_duration_months": 36,
-        "status": "failed", "vendor": "Rivian"
+        "start_year": 2019,
+        "planned_duration_months": 36,
+        "actual_duration_months": 36,
+        "status": "failed",
+        "vendor": "Rivian"
       },
       "financials": {
-        "promised_investment_usd": 500000000, "actual_investment_usd": 500000000, "writeoff_usd": 3000000000,
-        "promised_revenue_uplift_pct": 0.05, "actual_revenue_uplift_pct": 0.0,
-        "promised_cost_reduction_pct": null, "actual_cost_reduction_pct": null
+        "promised_investment_usd": 500000000,
+        "actual_investment_usd": 500000000,
+        "writeoff_usd": 3000000000,
+        "promised_revenue_uplift_pct": 0.05,
+        "actual_revenue_uplift_pct": 0.0,
+        "promised_cost_reduction_pct": null,
+        "actual_cost_reduction_pct": null
       },
-      "failure_modes": ["JV_program_cancelled", "rivian_stock_collapse"],
+      "failure_modes": [
+        "JV_program_cancelled",
+        "rivian_stock_collapse"
+      ],
       "success_factors": [],
-      "sources": [{"type": "press", "title": "Ford-Rivian JV ended", "year": 2021}],
+      "sources": [
+        {
+          "type": "press",
+          "title": "Ford-Rivian JV ended",
+          "year": 2021
+        }
+      ],
       "tacit_notes": "Wrote down Rivian stake by $3B over 2022-2023. Joint program cancelled. Cautionary tale on strategic minority investments."
+    },
+    {
+      "id": "att-time-warner-2018",
+      "company": "AT&T",
+      "industry": "telecom",
+      "industry_tags": [
+        "telecom",
+        "media",
+        "M&A"
+      ],
+      "geography": "USA",
+      "company_size": {
+        "revenue_usd": 170000000000,
+        "employees": 270000,
+        "revenue_bucket": "mega"
+      },
+      "transformation": {
+        "type": "market_expansion",
+        "subtype": "media_M_and_A",
+        "description": "Acquire Time Warner for $85B to become media+telecom giant",
+        "start_year": 2018,
+        "planned_duration_months": 36,
+        "actual_duration_months": 36,
+        "status": "failed",
+        "vendor": "M&A"
+      },
+      "financials": {
+        "promised_investment_usd": 85000000000,
+        "actual_investment_usd": 108000000000,
+        "writeoff_usd": 47000000000,
+        "promised_revenue_uplift_pct": 0.15,
+        "actual_revenue_uplift_pct": 0.02,
+        "promised_cost_reduction_pct": 0.04,
+        "actual_cost_reduction_pct": 0.01
+      },
+      "failure_modes": [
+        "culture_clash_telecom_vs_media",
+        "streaming_pivot_too_late",
+        "debt_burden",
+        "no_clear_synergy"
+      ],
+      "success_factors": [],
+      "sources": [
+        {
+          "type": "press",
+          "title": "Reuters: AT&T spins off WarnerMedia at huge loss",
+          "year": 2022
+        }
+      ],
+      "tacit_notes": "Classic vertical-integration-in-media disaster. Spun off WarnerMedia 4 years later. $47B effective writedown. Lesson: cultural fit > strategic logic in M&A."
+    },
+    {
+      "id": "reliance-jio-launch-2016",
+      "company": "Reliance Jio",
+      "industry": "telecom",
+      "industry_tags": [
+        "telecom",
+        "market_entry",
+        "digital_native"
+      ],
+      "geography": "India",
+      "company_size": {
+        "revenue_usd": 25000000000,
+        "employees": 45000,
+        "revenue_bucket": "large"
+      },
+      "transformation": {
+        "type": "market_expansion",
+        "subtype": "greenfield_telecom_launch",
+        "description": "Launch 4G-only network nationwide with free voice and ultra-cheap data",
+        "start_year": 2016,
+        "planned_duration_months": 24,
+        "actual_duration_months": 24,
+        "status": "success",
+        "vendor": "in-house+Samsung"
+      },
+      "financials": {
+        "promised_investment_usd": 25000000000,
+        "actual_investment_usd": 35000000000,
+        "writeoff_usd": 0,
+        "promised_revenue_uplift_pct": 0.5,
+        "actual_revenue_uplift_pct": 0.8,
+        "promised_cost_reduction_pct": 0.3,
+        "actual_cost_reduction_pct": 0.5
+      },
+      "failure_modes": [],
+      "success_factors": [
+        "pricing_war_capacity",
+        "all_IP_network_no_legacy",
+        "scale_at_launch",
+        "owner_deep_pockets"
+      ],
+      "sources": [
+        {
+          "type": "press",
+          "title": "FT: How Reliance Jio rewrote Indian telecom",
+          "year": 2020
+        }
+      ],
+      "tacit_notes": "350M subscribers in 4 years. Killed weak competitors, forced Airtel/Vodafone-Idea consolidation. Greenfield + price war strategy."
+    },
+    {
+      "id": "vodafone-mpesa-2007",
+      "company": "Vodafone/Safaricom",
+      "industry": "telecom",
+      "industry_tags": [
+        "telecom",
+        "fintech",
+        "emerging_markets"
+      ],
+      "geography": "Kenya",
+      "company_size": {
+        "revenue_usd": 2000000000,
+        "employees": 4500,
+        "revenue_bucket": "mid"
+      },
+      "transformation": {
+        "type": "product_innovation",
+        "subtype": "fintech_pivot",
+        "description": "M-Pesa mobile money platform launched in Kenya",
+        "start_year": 2007,
+        "planned_duration_months": 24,
+        "actual_duration_months": 36,
+        "status": "success",
+        "vendor": "in-house"
+      },
+      "financials": {
+        "promised_investment_usd": 50000000,
+        "actual_investment_usd": 80000000,
+        "writeoff_usd": 0,
+        "promised_revenue_uplift_pct": 0.05,
+        "actual_revenue_uplift_pct": 0.25,
+        "promised_cost_reduction_pct": null,
+        "actual_cost_reduction_pct": null
+      },
+      "failure_modes": [],
+      "success_factors": [
+        "unbanked_population_need",
+        "regulator_partnership",
+        "agent_network_leverage"
+      ],
+      "sources": [
+        {
+          "type": "HBR",
+          "title": "M-Pesa case study",
+          "year": 2014
+        }
+      ],
+      "tacit_notes": "Now 30M+ users, 50%+ of Kenya's GDP flows through it. Demonstrates that emerging markets can leapfrog Western fintech."
+    },
+    {
+      "id": "mts-digital-2017",
+      "company": "MTS",
+      "industry": "telecom",
+      "industry_tags": [
+        "telecom",
+        "ecosystem",
+        "fintech"
+      ],
+      "geography": "Russia",
+      "company_size": {
+        "revenue_usd": 8000000000,
+        "employees": 65000,
+        "revenue_bucket": "large"
+      },
+      "transformation": {
+        "type": "digital_transformation",
+        "subtype": "ecosystem_play",
+        "description": "MTS ecosystem - bank, cloud, OTT, IoT around telecom core",
+        "start_year": 2017,
+        "planned_duration_months": 60,
+        "actual_duration_months": 60,
+        "status": "partial",
+        "vendor": "in-house+M&A"
+      },
+      "financials": {
+        "promised_investment_usd": 2000000000,
+        "actual_investment_usd": 2500000000,
+        "writeoff_usd": 200000000,
+        "promised_revenue_uplift_pct": 0.1,
+        "actual_revenue_uplift_pct": 0.04,
+        "promised_cost_reduction_pct": null,
+        "actual_cost_reduction_pct": null
+      },
+      "failure_modes": [
+        "sanctions_2022",
+        "ecosystem_unprofitable_unit_drag"
+      ],
+      "success_factors": [
+        "mts_bank_profitable",
+        "subscriber_loyalty_uplift"
+      ],
+      "sources": [
+        {
+          "type": "annual_report",
+          "title": "MTS IR materials 2022",
+          "year": 2022
+        }
+      ],
+      "tacit_notes": "Same playbook as Sber. MTS Bank worked, other units bled cash. Sanctions hurt."
+    },
+    {
+      "id": "nhs-npfit-2002",
+      "company": "UK NHS",
+      "industry": "healthcare",
+      "industry_tags": [
+        "healthcare",
+        "government",
+        "IT_modernization"
+      ],
+      "geography": "UK",
+      "company_size": {
+        "revenue_usd": 150000000000,
+        "employees": 1400000,
+        "revenue_bucket": "mega"
+      },
+      "transformation": {
+        "type": "digital_transformation",
+        "subtype": "national_health_IT",
+        "description": "National Programme for IT - unify NHS England patient records",
+        "start_year": 2002,
+        "planned_duration_months": 120,
+        "actual_duration_months": 132,
+        "status": "failed",
+        "vendor": "Accenture, CSC, BT, Fujitsu"
+      },
+      "financials": {
+        "promised_investment_usd": 8000000000,
+        "actual_investment_usd": 16000000000,
+        "writeoff_usd": 12700000000,
+        "promised_revenue_uplift_pct": null,
+        "actual_revenue_uplift_pct": null,
+        "promised_cost_reduction_pct": 0.05,
+        "actual_cost_reduction_pct": -0.02
+      },
+      "failure_modes": [
+        "top_down_imposition",
+        "scope_too_large",
+        "vendor_misalignment",
+        "clinical_resistance"
+      ],
+      "success_factors": [
+        "picture_archiving_subset_worked"
+      ],
+      "sources": [
+        {
+          "type": "government_audit",
+          "title": "UK National Audit Office NPfIT review",
+          "year": 2013
+        }
+      ],
+      "tacit_notes": "Largest civilian IT failure in history. Cancelled 2011. Lesson: do not impose national systems top-down on professionals who weren't consulted."
+    },
+    {
+      "id": "healthcare-gov-2013",
+      "company": "US HHS CMS",
+      "industry": "healthcare",
+      "industry_tags": [
+        "healthcare",
+        "government",
+        "consumer_portal"
+      ],
+      "geography": "USA",
+      "company_size": {
+        "revenue_usd": 1000000000,
+        "employees": 6000,
+        "revenue_bucket": "mid"
+      },
+      "transformation": {
+        "type": "digital_transformation",
+        "subtype": "consumer_health_portal",
+        "description": "HealthCare.gov - ACA insurance marketplace launch",
+        "start_year": 2013,
+        "planned_duration_months": 36,
+        "actual_duration_months": 42,
+        "status": "partial",
+        "vendor": "CGI Federal, multiple"
+      },
+      "financials": {
+        "promised_investment_usd": 400000000,
+        "actual_investment_usd": 2000000000,
+        "writeoff_usd": 0,
+        "promised_revenue_uplift_pct": null,
+        "actual_revenue_uplift_pct": null,
+        "promised_cost_reduction_pct": null,
+        "actual_cost_reduction_pct": null
+      },
+      "failure_modes": [
+        "launch_day_collapse",
+        "no_load_testing",
+        "vendor_fragmentation"
+      ],
+      "success_factors": [
+        "tech_surge_recovery_team",
+        "eventual_enrollment_targets_met"
+      ],
+      "sources": [
+        {
+          "type": "GAO_report",
+          "title": "GAO healthcare.gov investigation",
+          "year": 2014
+        }
+      ],
+      "tacit_notes": "First weeks were catastrophic - site barely worked. Recovered by Q2 2014 after emergency surge team. Lesson: government IT can recover from launch disasters with the right people."
+    },
+    {
+      "id": "cvs-aetna-merger-2018",
+      "company": "CVS Health",
+      "industry": "healthcare",
+      "industry_tags": [
+        "healthcare",
+        "retail",
+        "M&A",
+        "insurance"
+      ],
+      "geography": "USA",
+      "company_size": {
+        "revenue_usd": 195000000000,
+        "employees": 295000,
+        "revenue_bucket": "mega"
+      },
+      "transformation": {
+        "type": "market_expansion",
+        "subtype": "vertical_integration",
+        "description": "Acquire Aetna for $70B - vertical integration of pharmacy+insurance",
+        "start_year": 2018,
+        "planned_duration_months": 48,
+        "actual_duration_months": 60,
+        "status": "partial",
+        "vendor": "M&A"
+      },
+      "financials": {
+        "promised_investment_usd": 70000000000,
+        "actual_investment_usd": 78000000000,
+        "writeoff_usd": 0,
+        "promised_revenue_uplift_pct": 0.08,
+        "actual_revenue_uplift_pct": 0.05,
+        "promised_cost_reduction_pct": 0.03,
+        "actual_cost_reduction_pct": 0.015
+      },
+      "failure_modes": [
+        "medicare_advantage_loss_2024",
+        "integration_slower_than_planned"
+      ],
+      "success_factors": [
+        "minute_clinic_growth",
+        "specialty_pharmacy_gains"
+      ],
+      "sources": [
+        {
+          "type": "annual_report",
+          "title": "CVS Health 10-K 2023",
+          "year": 2023
+        }
+      ],
+      "tacit_notes": "Synergies materializing slowly. Health-Hub clinic concept rolled back in 2024."
+    },
+    {
+      "id": "bp-beyond-petroleum-2000",
+      "company": "BP",
+      "industry": "oil_and_gas",
+      "industry_tags": [
+        "energy",
+        "oil_and_gas",
+        "rebrand"
+      ],
+      "geography": "UK",
+      "company_size": {
+        "revenue_usd": 180000000000,
+        "employees": 100000,
+        "revenue_bucket": "mega"
+      },
+      "transformation": {
+        "type": "product_innovation",
+        "subtype": "strategic_rebrand_diversification",
+        "description": "Beyond Petroleum rebrand + renewables push",
+        "start_year": 2000,
+        "planned_duration_months": 60,
+        "actual_duration_months": 120,
+        "status": "failed",
+        "vendor": "in-house"
+      },
+      "financials": {
+        "promised_investment_usd": 8000000000,
+        "actual_investment_usd": 12000000000,
+        "writeoff_usd": 8000000000,
+        "promised_revenue_uplift_pct": 0.05,
+        "actual_revenue_uplift_pct": -0.1,
+        "promised_cost_reduction_pct": null,
+        "actual_cost_reduction_pct": null
+      },
+      "failure_modes": [
+        "deepwater_horizon_disaster",
+        "greenwashing_credibility_loss",
+        "renewables_too_early"
+      ],
+      "success_factors": [],
+      "sources": [
+        {
+          "type": "HBR",
+          "title": "BP's failed Beyond Petroleum rebrand",
+          "year": 2015
+        }
+      ],
+      "tacit_notes": "Deepwater Horizon 2010 killed the narrative. Sold most renewables assets by 2013. Returned to 'BP' branding."
+    },
+    {
+      "id": "saudi-aramco-digital-2018",
+      "company": "Saudi Aramco",
+      "industry": "oil_and_gas",
+      "industry_tags": [
+        "energy",
+        "oil_and_gas",
+        "industrial_iot"
+      ],
+      "geography": "Saudi Arabia",
+      "company_size": {
+        "revenue_usd": 350000000000,
+        "employees": 76000,
+        "revenue_bucket": "mega"
+      },
+      "transformation": {
+        "type": "operational_efficiency",
+        "subtype": "industrial_IoT",
+        "description": "4IR initiative - AI, IoT, drones across operations",
+        "start_year": 2018,
+        "planned_duration_months": 60,
+        "actual_duration_months": 60,
+        "status": "success",
+        "vendor": "in-house+SAP+IBM"
+      },
+      "financials": {
+        "promised_investment_usd": 5000000000,
+        "actual_investment_usd": 6000000000,
+        "writeoff_usd": 0,
+        "promised_revenue_uplift_pct": 0.02,
+        "actual_revenue_uplift_pct": 0.015,
+        "promised_cost_reduction_pct": 0.06,
+        "actual_cost_reduction_pct": 0.05
+      },
+      "failure_modes": [],
+      "success_factors": [
+        "unified_top_down_mandate",
+        "in_house_tech_capacity",
+        "ipo_pressure_for_results"
+      ],
+      "sources": [
+        {
+          "type": "annual_report",
+          "title": "Aramco annual reports 2019-2023",
+          "year": 2023
+        }
+      ],
+      "tacit_notes": "Reduced lifting costs by ~5%. State-owned with strong mandate makes execution easier than at peers."
+    },
+    {
+      "id": "kazatomprom-ipo-2018",
+      "company": "Kazatomprom",
+      "industry": "mining",
+      "industry_tags": [
+        "mining",
+        "uranium",
+        "M&A",
+        "IPO"
+      ],
+      "geography": "Kazakhstan",
+      "company_size": {
+        "revenue_usd": 4000000000,
+        "employees": 22000,
+        "revenue_bucket": "mid"
+      },
+      "transformation": {
+        "type": "operational_efficiency",
+        "subtype": "IPO_governance_modernization",
+        "description": "London IPO + governance modernization + cost discipline",
+        "start_year": 2018,
+        "planned_duration_months": 36,
+        "actual_duration_months": 48,
+        "status": "success",
+        "vendor": "in-house+EY"
+      },
+      "financials": {
+        "promised_investment_usd": 200000000,
+        "actual_investment_usd": 250000000,
+        "writeoff_usd": 0,
+        "promised_revenue_uplift_pct": 0.03,
+        "actual_revenue_uplift_pct": 0.05,
+        "promised_cost_reduction_pct": 0.08,
+        "actual_cost_reduction_pct": 0.06
+      },
+      "failure_modes": [],
+      "success_factors": [
+        "uranium_price_recovery",
+        "value_strategy_replaced_volume",
+        "transparency_premium"
+      ],
+      "sources": [
+        {
+          "type": "IPO_prospectus",
+          "title": "Kazatomprom 2018 LSE listing",
+          "year": 2018
+        }
+      ],
+      "tacit_notes": "Quasi-sovereign successfully professionalized post-IPO. World's largest uranium producer."
+    },
+    {
+      "id": "rio-tinto-autonomous-2008",
+      "company": "Rio Tinto",
+      "industry": "mining",
+      "industry_tags": [
+        "mining",
+        "automation",
+        "industrial_iot"
+      ],
+      "geography": "Australia",
+      "company_size": {
+        "revenue_usd": 60000000000,
+        "employees": 50000,
+        "revenue_bucket": "large"
+      },
+      "transformation": {
+        "type": "process_automation",
+        "subtype": "autonomous_operations",
+        "description": "Mine of the Future - autonomous trucks, trains, drills across Pilbara",
+        "start_year": 2008,
+        "planned_duration_months": 96,
+        "actual_duration_months": 144,
+        "status": "success",
+        "vendor": "Komatsu+in-house"
+      },
+      "financials": {
+        "promised_investment_usd": 500000000,
+        "actual_investment_usd": 1500000000,
+        "writeoff_usd": 0,
+        "promised_revenue_uplift_pct": 0.0,
+        "actual_revenue_uplift_pct": 0.0,
+        "promised_cost_reduction_pct": 0.15,
+        "actual_cost_reduction_pct": 0.13
+      },
+      "failure_modes": [
+        "initial_workforce_resistance",
+        "longer_than_planned"
+      ],
+      "success_factors": [
+        "safety_uplift_independent_of_cost",
+        "labor_cost_arbitrage",
+        "single_remote_operations_center"
+      ],
+      "sources": [
+        {
+          "type": "press",
+          "title": "Reuters: Rio Tinto Pilbara autonomy",
+          "year": 2019
+        }
+      ],
+      "tacit_notes": "World's largest autonomous mining operation. Operated remotely from Perth. Cost down 13%, safety incidents down 50%."
+    },
+    {
+      "id": "katerra-construction-2015",
+      "company": "Katerra",
+      "industry": "construction",
+      "industry_tags": [
+        "construction",
+        "supply_chain",
+        "manufacturing"
+      ],
+      "geography": "USA",
+      "company_size": {
+        "revenue_usd": 1500000000,
+        "employees": 8000,
+        "revenue_bucket": "mid"
+      },
+      "transformation": {
+        "type": "product_innovation",
+        "subtype": "vertical_integration_construction",
+        "description": "Build vertically integrated construction tech company - design+factory+build",
+        "start_year": 2015,
+        "planned_duration_months": 60,
+        "actual_duration_months": 72,
+        "status": "failed",
+        "vendor": "in-house"
+      },
+      "financials": {
+        "promised_investment_usd": 2000000000,
+        "actual_investment_usd": 3000000000,
+        "writeoff_usd": 3000000000,
+        "promised_revenue_uplift_pct": 0.3,
+        "actual_revenue_uplift_pct": 0.05,
+        "promised_cost_reduction_pct": 0.3,
+        "actual_cost_reduction_pct": -0.1
+      },
+      "failure_modes": [
+        "overscale_too_fast",
+        "factory_quality_issues",
+        "softbank_pressure",
+        "industry_too_fragmented"
+      ],
+      "success_factors": [],
+      "sources": [
+        {
+          "type": "press",
+          "title": "Bloomberg: Katerra bankruptcy",
+          "year": 2021
+        }
+      ],
+      "tacit_notes": "SoftBank-funded $2B+. Bankrupt 2021. Lesson: 'Tesla-fy construction' was harder than promised - too many local building codes and labor regimes."
+    },
+    {
+      "id": "marriott-bonvoy-2018",
+      "company": "Marriott International",
+      "industry": "hospitality",
+      "industry_tags": [
+        "hospitality",
+        "loyalty",
+        "M&A_integration"
+      ],
+      "geography": "USA",
+      "company_size": {
+        "revenue_usd": 21000000000,
+        "employees": 174000,
+        "revenue_bucket": "large"
+      },
+      "transformation": {
+        "type": "customer_experience",
+        "subtype": "loyalty_consolidation",
+        "description": "Merge Starwood SPG + Marriott Rewards + Ritz-Carlton into Bonvoy",
+        "start_year": 2018,
+        "planned_duration_months": 24,
+        "actual_duration_months": 36,
+        "status": "partial",
+        "vendor": "in-house"
+      },
+      "financials": {
+        "promised_investment_usd": 400000000,
+        "actual_investment_usd": 600000000,
+        "writeoff_usd": 0,
+        "promised_revenue_uplift_pct": 0.05,
+        "actual_revenue_uplift_pct": 0.03,
+        "promised_cost_reduction_pct": null,
+        "actual_cost_reduction_pct": null
+      },
+      "failure_modes": [
+        "data_breach_500M_users",
+        "elite_member_backlash",
+        "tech_integration_issues"
+      ],
+      "success_factors": [
+        "consolidated_loyalty_base",
+        "eventually_unified_app"
+      ],
+      "sources": [
+        {
+          "type": "press",
+          "title": "NYT: Marriott Starwood data breach",
+          "year": 2018
+        }
+      ],
+      "tacit_notes": "Bonvoy data breach was inherited from Starwood. Integration was technically successful but cost trust."
+    },
+    {
+      "id": "john-deere-precision-2017",
+      "company": "John Deere",
+      "industry": "agriculture",
+      "industry_tags": [
+        "agriculture",
+        "industrial_iot",
+        "manufacturing"
+      ],
+      "geography": "USA",
+      "company_size": {
+        "revenue_usd": 30000000000,
+        "employees": 75000,
+        "revenue_bucket": "large"
+      },
+      "transformation": {
+        "type": "product_innovation",
+        "subtype": "precision_agriculture_platform",
+        "description": "See & Spray, autonomous tractors, JD Operations Center subscription model",
+        "start_year": 2017,
+        "planned_duration_months": 60,
+        "actual_duration_months": 72,
+        "status": "success",
+        "vendor": "Blue River acquisition+in-house"
+      },
+      "financials": {
+        "promised_investment_usd": 1000000000,
+        "actual_investment_usd": 1500000000,
+        "writeoff_usd": 0,
+        "promised_revenue_uplift_pct": 0.1,
+        "actual_revenue_uplift_pct": 0.12,
+        "promised_cost_reduction_pct": 0.0,
+        "actual_cost_reduction_pct": 0.0
+      },
+      "failure_modes": [
+        "right_to_repair_lawsuits"
+      ],
+      "success_factors": [
+        "bought_AI_capability_blue_river",
+        "razor_blade_subscription_model",
+        "data_network_effects"
+      ],
+      "sources": [
+        {
+          "type": "annual_report",
+          "title": "Deere 10-K 2023",
+          "year": 2023
+        }
+      ],
+      "tacit_notes": "Repositioned as software company that sells tractors. Subscription revenue model gaining traction. Right-to-repair pressure is the main headwind."
+    },
+    {
+      "id": "pfizer-mrna-pivot-2020",
+      "company": "Pfizer",
+      "industry": "pharma",
+      "industry_tags": [
+        "pharma",
+        "healthcare",
+        "biotech"
+      ],
+      "geography": "USA",
+      "company_size": {
+        "revenue_usd": 41000000000,
+        "employees": 79000,
+        "revenue_bucket": "large"
+      },
+      "transformation": {
+        "type": "product_innovation",
+        "subtype": "platform_partnership_mrna",
+        "description": "Partner with BioNTech to develop mRNA COVID vaccine in 9 months",
+        "start_year": 2020,
+        "planned_duration_months": 12,
+        "actual_duration_months": 9,
+        "status": "success",
+        "vendor": "BioNTech partnership"
+      },
+      "financials": {
+        "promised_investment_usd": 2000000000,
+        "actual_investment_usd": 2500000000,
+        "writeoff_usd": 0,
+        "promised_revenue_uplift_pct": 0.3,
+        "actual_revenue_uplift_pct": 0.95,
+        "promised_cost_reduction_pct": null,
+        "actual_cost_reduction_pct": null
+      },
+      "failure_modes": [
+        "post_2022_revenue_collapse_as_demand_normalized"
+      ],
+      "success_factors": [
+        "regulatory_emergency_pathways",
+        "biontech_platform_ready",
+        "operation_warp_speed_funding"
+      ],
+      "sources": [
+        {
+          "type": "annual_report",
+          "title": "Pfizer 10-K 2021",
+          "year": 2021
+        }
+      ],
+      "tacit_notes": "Generated $37B in 2021 alone. Outlier success - cannot be repeated without pandemic conditions."
+    },
+    {
+      "id": "magnit-retail-digital-2018",
+      "company": "Magnit",
+      "industry": "retail_grocery",
+      "industry_tags": [
+        "retail",
+        "supply_chain",
+        "ecommerce"
+      ],
+      "geography": "Russia",
+      "company_size": {
+        "revenue_usd": 18000000000,
+        "employees": 360000,
+        "revenue_bucket": "large"
+      },
+      "transformation": {
+        "type": "digital_transformation",
+        "subtype": "omnichannel_supply_chain",
+        "description": "Online ordering, dark stores, supply chain modernization",
+        "start_year": 2018,
+        "planned_duration_months": 48,
+        "actual_duration_months": 60,
+        "status": "partial",
+        "vendor": "in-house+VTB Capital"
+      },
+      "financials": {
+        "promised_investment_usd": 1000000000,
+        "actual_investment_usd": 1400000000,
+        "writeoff_usd": 100000000,
+        "promised_revenue_uplift_pct": 0.08,
+        "actual_revenue_uplift_pct": 0.04,
+        "promised_cost_reduction_pct": 0.03,
+        "actual_cost_reduction_pct": 0.02
+      },
+      "failure_modes": [
+        "leadership_change_2018",
+        "X5_competition_intense",
+        "logistics_legacy_drag"
+      ],
+      "success_factors": [
+        "online_share_grew_to_5pct"
+      ],
+      "sources": [
+        {
+          "type": "annual_report",
+          "title": "Magnit IR materials 2022",
+          "year": 2022
+        }
+      ],
+      "tacit_notes": "CEO change in 2018 reset strategy. Closing gap with X5 but slowly."
     }
   ]
 }
