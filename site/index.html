@@ -2835,6 +2835,308 @@ streamlit run src/timestone/interfaces/web/dashboard.py</code></pre>
 
   
 
+
+    // ============================================================
+    // BANKING VERTICAL · KASPI (v0.5 preview)
+    // ============================================================
+    const BANK_CASES = [
+      { id:"tinkoff-digital-2010", name:"Tinkoff Bank digital-native", country:"Russia", year:2010, segment:"retail_banking", status:"success",
+        investment_m:300, promised_uplift:0.20, actual_uplift:0.45, actual_cost_cut:0.40,
+        summary:"Greenfield digital-only bank — +45% rev / 40% cost cut", peer_for:["mobile_first","digital_native"] },
+      { id:"sovcombank-halva-2014", name:"Sovcombank Halva BNPL card", country:"Russia", year:2014, segment:"payments", status:"success",
+        investment_m:80, promised_uplift:0.10, actual_uplift:0.30, actual_cost_cut:0.0,
+        summary:"BNPL installment card — 10M+ users, IPO success", peer_for:["bnpl","payments","merchant_funded"] },
+      { id:"halyk-homebank-2017", name:"Halyk Homebank super-app", country:"Kazakhstan", year:2017, segment:"retail_banking", status:"success",
+        investment_m:220, promised_uplift:0.05, actual_uplift:0.12, actual_cost_cut:0.15,
+        summary:"Mobile super-app push + payments — closed gap with Kaspi", peer_for:["mobile_first","super_app","ecosystem"] },
+      { id:"jpmorgan-tech-spend-2016", name:"JPMorgan cloud + AI transform", country:"USA", year:2016, segment:"operations", status:"success",
+        investment_m:15000, promised_uplift:0.05, actual_uplift:0.04, actual_cost_cut:0.03,
+        summary:"$15B over 8 years — biggest banking tech budget on Earth", peer_for:["cloud","ai_underwriting","tech_modernization"] },
+      { id:"ing-agile-2015", name:"ING Agile organization", country:"Netherlands", year:2015, segment:"operations", status:"success",
+        investment_m:250, promised_uplift:0.0, actual_uplift:0.0, actual_cost_cut:0.06,
+        summary:"Spotify-model squads/tribes — 30% leadership left, 6% cost cut", peer_for:["operating_model","agile","cost_reduction"] },
+      { id:"vtb-digital-2018", name:"VTB digital catch-up", country:"Russia", year:2018, segment:"retail_banking", status:"partial",
+        investment_m:2200, promised_uplift:0.06, actual_uplift:0.02, actual_cost_cut:0.02,
+        summary:"Always 2 years behind Sber/Tinkoff. Sanctions hit 2022", peer_for:["mobile_first","core_modernization"] },
+      { id:"sberbank-digital-2017", name:"Sberbank ecosystem play", country:"Russia", year:2017, segment:"strategic", status:"partial",
+        investment_m:8000, promised_uplift:0.10, actual_uplift:0.04, actual_cost_cut:0.0,
+        summary:"Core banking strong. Non-banking units bled $2B. Sanctions wind-down", peer_for:["ecosystem","marketplace","super_app"] },
+      { id:"nubank-greenfield-2013", name:"Nubank digital bank launch", country:"Brazil", year:2013, segment:"retail_banking", status:"success",
+        investment_m:400, promised_uplift:0.50, actual_uplift:0.80, actual_cost_cut:0.50,
+        summary:"Greenfield neobank — 80M+ users, $40B IPO", peer_for:["digital_native","emerging_market","mobile_first"] },
+      { id:"revolut-expansion-2015", name:"Revolut neobank expansion", country:"UK", year:2015, segment:"retail_banking", status:"success",
+        investment_m:700, promised_uplift:0.40, actual_uplift:0.60, actual_cost_cut:0.30,
+        summary:"Multi-currency neobank — 40M users, $33B valuation", peer_for:["digital_native","cross_border","market_expansion"] },
+      { id:"klarna-bnpl-2016", name:"Klarna BNPL Europe scale", country:"Sweden", year:2016, segment:"payments", status:"partial",
+        investment_m:1200, promised_uplift:0.30, actual_uplift:0.20, actual_cost_cut:0.0,
+        summary:"BNPL leader at peak. Post-2022 loss spiral", peer_for:["bnpl","payments","merchant_funded"] },
+      { id:"bbva-digital-2014", name:"BBVA digital transformation", country:"Spain", year:2014, segment:"retail_banking", status:"success",
+        investment_m:2500, promised_uplift:0.06, actual_uplift:0.05, actual_cost_cut:0.04,
+        summary:"Big-bank-goes-mobile playbook — 60% mobile share by 2020", peer_for:["mobile_first","core_modernization","cloud"] },
+      { id:"citi-banamex-2018", name:"Citi Banamex digital push", country:"Mexico", year:2018, segment:"retail_banking", status:"partial",
+        investment_m:600, promised_uplift:0.08, actual_uplift:0.03, actual_cost_cut:0.02,
+        summary:"Eventually sold Banamex 2024 — couldn't catch fintech wave", peer_for:["mobile_first","emerging_market"] },
+      { id:"webank-china-2015", name:"WeBank (Tencent) digital launch", country:"China", year:2015, segment:"retail_banking", status:"success",
+        investment_m:500, promised_uplift:0.40, actual_uplift:0.55, actual_cost_cut:0.40,
+        summary:"Tencent-backed digital bank — 300M+ users via WeChat", peer_for:["digital_native","embedded_finance","super_app"] },
+      { id:"n26-expansion-2015", name:"N26 European neobank", country:"Germany", year:2015, segment:"retail_banking", status:"partial",
+        investment_m:900, promised_uplift:0.35, actual_uplift:0.15, actual_cost_cut:0.0,
+        summary:"Strong DE launch. UK exit, US exit, profitability struggle", peer_for:["digital_native","market_expansion"] },
+    ];
+
+    // Kaspi-specific transformation initiatives (28)
+    const KASPI_SCENARIOS = [
+      // === PAYMENTS (5) ===
+      { id:"kp1", name:"Cross-border P2P remittance corridor — KZ ↔ Uzbekistan / Kyrgyzstan",
+        desc:"Real-time low-fee transfers between Kaspi and Uzbek / Kyrgyz mobile wallets. Captures $4B/y migrant remittance flow.",
+        segment:"freight", objective:"revenue_growth", risk:"balanced", impl:"jv",
+        invest_min:6, invest_max:14, time_min:9, time_max:15, rev_uplift:0.025, cost_reduction:0.0, scope:0.10,
+        peers:["vodafone-mpesa-2007","tinkoff-digital-2010","sovcombank-halva-2014"] },
+      { id:"kp2", name:"Merchant QR upsell — pump dynamic offer engine",
+        desc:"At checkout in 700K merchant locations, push contextual offers (BNPL, insurance, Magnum delivery). Take-rate +30 bps.",
+        segment:"freight", objective:"revenue_growth", risk:"balanced", impl:"in_house",
+        invest_min:4, invest_max:9, time_min:6, time_max:12, rev_uplift:0.018, cost_reduction:0.0, scope:0.18,
+        peers:["dominos-pizza-tracker-2008","ab-inbev-bees-2019","tinkoff-digital-2010"] },
+      { id:"kp3", name:"B2B payments + accounts for SME merchants",
+        desc:"Replace cash + bank app workflow for our 700K merchants with single Kaspi business account, automatic VAT, payroll.",
+        segment:"strategic", objective:"revenue_growth", risk:"balanced", impl:"in_house",
+        invest_min:10, invest_max:22, time_min:14, time_max:22, rev_uplift:0.03, cost_reduction:0.0, scope:0.12,
+        peers:["sovcombank-halva-2014","tinkoff-digital-2010","ab-inbev-bees-2019"] },
+      { id:"kp4", name:"International card acceptance (Visa / Mastercard outbound)",
+        desc:"Enable Kaspi cards for international online + offline use, captured fee on FX conversion. Drives middle-class travel spend.",
+        segment:"freight", objective:"revenue_growth", risk:"conservative", impl:"vendor",
+        invest_min:5, invest_max:11, time_min:8, time_max:13, rev_uplift:0.015, cost_reduction:0.0, scope:0.08,
+        peers:["bbva-digital-2014","tinkoff-digital-2010","revolut-expansion-2015"] },
+      { id:"kp5", name:"P2P transfer monetization — premium tier",
+        desc:"Free tier remains, premium tier unlocks instant transfers, recurring, multi-currency. Hard sell to mass-market but justifies infra.",
+        segment:"freight", objective:"revenue_growth", risk:"aggressive", impl:"in_house",
+        invest_min:2, invest_max:5, time_min:5, time_max:9, rev_uplift:0.012, cost_reduction:0.0, scope:0.40,
+        peers:["revolut-expansion-2015","n26-expansion-2015","klarna-bnpl-2016"] },
+
+      // === FINTECH / CREDIT (6) ===
+      { id:"kp6", name:"ML underwriting v2 — first-time borrower segment",
+        desc:"Open up consumer credit to 4M previously rejected applicants using alt-data (payment history, marketplace behavior).",
+        segment:"freight", objective:"revenue_growth", risk:"aggressive", impl:"in_house",
+        invest_min:8, invest_max:18, time_min:12, time_max:18, rev_uplift:0.04, cost_reduction:0.0, scope:0.20,
+        peers:["tinkoff-digital-2010","nubank-greenfield-2013","sovcombank-halva-2014"] },
+      { id:"kp7", name:"BNPL expansion — large-ticket categories ($1K+)",
+        desc:"Move Kaspi Red into automotive, home renovation, electronics >$1K. Merchant-funded model holds.",
+        segment:"freight", objective:"revenue_growth", risk:"balanced", impl:"in_house",
+        invest_min:6, invest_max:12, time_min:9, time_max:15, rev_uplift:0.025, cost_reduction:0.0, scope:0.15,
+        peers:["sovcombank-halva-2014","klarna-bnpl-2016","nubank-greenfield-2013"] },
+      { id:"kp8", name:"SME credit underwriting — 5K+ merchant accounts",
+        desc:"Working capital loans to Kaspi merchants based on transaction history. Cross-sell from payments.",
+        segment:"strategic", objective:"revenue_growth", risk:"balanced", impl:"in_house",
+        invest_min:5, invest_max:11, time_min:9, time_max:14, rev_uplift:0.02, cost_reduction:0.0, scope:0.10,
+        peers:["sovcombank-halva-2014","tinkoff-digital-2010","ab-inbev-bees-2019"] },
+      { id:"kp9", name:"AI-driven default prediction — collections optimization",
+        desc:"ML model predicts default 60 days early. Customer outreach + restructuring before write-off.",
+        segment:"operations", objective:"cost_reduction", risk:"balanced", impl:"in_house",
+        invest_min:3, invest_max:7, time_min:8, time_max:12, rev_uplift:0.0, cost_reduction:0.035, scope:0.30,
+        peers:["jpmorgan-tech-spend-2016","tinkoff-digital-2010","ing-agile-2015"] },
+      { id:"kp10", name:"Embedded finance API — 3rd party apps offer Kaspi credit",
+        desc:"Let restaurants / classified marketplaces offer Kaspi-funded BNPL at their checkout via API.",
+        segment:"strategic", objective:"revenue_growth", risk:"aggressive", impl:"in_house",
+        invest_min:7, invest_max:15, time_min:12, time_max:20, rev_uplift:0.025, cost_reduction:0.0, scope:0.08,
+        peers:["webank-china-2015","ab-inbev-bees-2019","sovcombank-halva-2014"] },
+      { id:"kp11", name:"Mortgage product launch — Kaspi Home Loans",
+        desc:"New asset class. Long duration, large balances. Diversifies away from short-term consumer credit.",
+        segment:"strategic", objective:"revenue_growth", risk:"aggressive", impl:"in_house",
+        invest_min:15, invest_max:30, time_min:18, time_max:30, rev_uplift:0.05, cost_reduction:0.0, scope:0.18,
+        peers:["bbva-digital-2014","halyk-homebank-2017","tinkoff-digital-2010"] },
+
+      // === MARKETPLACE & SUPER-APP (5) ===
+      { id:"kp12", name:"Super-app personalization — Kaspi Feed AI v2",
+        desc:"ML-driven feed ranking: offers, products, news. Increase session frequency from 27 to 35 / month.",
+        segment:"passenger", objective:"revenue_growth", risk:"balanced", impl:"in_house",
+        invest_min:4, invest_max:9, time_min:6, time_max:12, rev_uplift:0.03, cost_reduction:0.0, scope:0.40,
+        peers:["dominos-pizza-tracker-2008","starbucks-mobile-2015","nubank-greenfield-2013"] },
+      { id:"kp13", name:"Voice-first checkout for marketplace",
+        desc:"Speak product description, Kaspi parses + adds to cart. Targets older customers + drivers.",
+        segment:"passenger", objective:"service_quality", risk:"aggressive", impl:"in_house",
+        invest_min:3, invest_max:7, time_min:8, time_max:14, rev_uplift:0.008, cost_reduction:0.0, scope:0.10,
+        peers:["amazon-fire-phone-2014","starbucks-mobile-2015","tinkoff-digital-2010"] },
+      { id:"kp14", name:"Travel vertical scale-up — Kaspi Travel v3",
+        desc:"From OTA to full travel platform with packages, insurance bundle, dynamic loyalty. Target 12% revenue share.",
+        segment:"strategic", objective:"revenue_growth", risk:"balanced", impl:"in_house",
+        invest_min:8, invest_max:18, time_min:12, time_max:20, rev_uplift:0.025, cost_reduction:0.0, scope:0.12,
+        peers:["brightline-booking-2018","ab-inbev-bees-2019","trenitalia-booking-2016"] },
+      { id:"kp15", name:"Quick-commerce grocery vertical — Magnum scale-out",
+        desc:"Expand JV with Magnum from same-day to instant grocery in top-5 cities. Unit economics still negative; need 18 months.",
+        segment:"strategic", objective:"revenue_growth", risk:"aggressive", impl:"jv",
+        invest_min:20, invest_max:45, time_min:18, time_max:30, rev_uplift:0.04, cost_reduction:0.0, scope:0.10,
+        peers:["walmart-flipkart-2018","x5-pyaterochka-digital-2017","ab-inbev-bees-2019"] },
+      { id:"kp16", name:"Marketplace seller services — financing + logistics",
+        desc:"Help 3rd-party sellers fund inventory, ship faster. Take-rate from 4% to 6%.",
+        segment:"strategic", objective:"revenue_growth", risk:"balanced", impl:"in_house",
+        invest_min:7, invest_max:14, time_min:12, time_max:18, rev_uplift:0.022, cost_reduction:0.0, scope:0.08,
+        peers:["ab-inbev-bees-2019","webank-china-2015","sovcombank-halva-2014"] },
+
+      // === STRATEGIC / MARKET EXPANSION (5) ===
+      { id:"kp17", name:"Turkey scale-up — Hepsiburada integration",
+        desc:"Push Kaspi super-app stack into Turkey via Hepsiburada acquired stake. Currency volatility is the main risk.",
+        segment:"strategic", objective:"revenue_growth", risk:"aggressive", impl:"ma",
+        invest_min:50, invest_max:120, time_min:24, time_max:42, rev_uplift:0.06, cost_reduction:0.0, scope:0.18,
+        peers:["walmart-flipkart-2018","revolut-expansion-2015","n26-expansion-2015"] },
+      { id:"kp18", name:"Uzbekistan market entry — payments-first",
+        desc:"Start with payments only, build to super-app over 5 years. 36M population, banking penetration 50%.",
+        segment:"strategic", objective:"revenue_growth", risk:"aggressive", impl:"jv",
+        invest_min:15, invest_max:35, time_min:18, time_max:36, rev_uplift:0.035, cost_reduction:0.0, scope:0.12,
+        peers:["vodafone-mpesa-2007","nubank-greenfield-2013","webank-china-2015"] },
+      { id:"kp19", name:"GCC entry via UAE — partnership-led",
+        desc:"Partnership with regional bank in UAE / Saudi. Target Kazakhstani / Russian expats first, then mass market.",
+        segment:"strategic", objective:"revenue_growth", risk:"aggressive", impl:"jv",
+        invest_min:18, invest_max:40, time_min:24, time_max:42, rev_uplift:0.022, cost_reduction:0.0, scope:0.06,
+        peers:["revolut-expansion-2015","walmart-india-cash-carry-2013","n26-expansion-2015"] },
+      { id:"kp20", name:"M&A — acquire #2 fintech competitor (Forte / Jusan)",
+        desc:"Consolidate KZ digital banking market. Forte Bank or Jusan are top targets. Regulatory clearance is the main hurdle.",
+        segment:"strategic", objective:"revenue_growth", risk:"aggressive", impl:"ma",
+        invest_min:200, invest_max:480, time_min:18, time_max:30, rev_uplift:0.035, cost_reduction:0.025, scope:0.20,
+        peers:["cvs-aetna-merger-2018","jpmorgan-tech-spend-2016","sberbank-digital-2017"] },
+      { id:"kp21", name:"Government services bundle — eGov.kz integration",
+        desc:"All citizen government services (taxes, certificates, fines) inside Kaspi. Strengthens 'essential app' moat.",
+        segment:"strategic", objective:"service_quality", risk:"balanced", impl:"jv",
+        invest_min:6, invest_max:14, time_min:12, time_max:18, rev_uplift:0.008, cost_reduction:0.0, scope:0.30,
+        peers:["kazakhstan-egov-2012","jpmorgan-tech-spend-2016","ab-inbev-bees-2019"] },
+
+      // === OPERATIONS (4) ===
+      { id:"kp22", name:"Core banking modernization — replace legacy mainframe",
+        desc:"Move from custom-built core to modern cloud-native banking platform. Foundation for future products.",
+        segment:"tech", objective:"resilience", risk:"balanced", impl:"vendor",
+        invest_min:50, invest_max:120, time_min:30, time_max:48, rev_uplift:0.005, cost_reduction:0.025, scope:0.55,
+        peers:["jpmorgan-tech-spend-2016","bbva-digital-2014","vtb-digital-2018"] },
+      { id:"kp23", name:"AML / fraud ML platform consolidation",
+        desc:"Replace 4 fragmented systems with unified ML platform. Reduce false-positive rate by 60%.",
+        segment:"operations", objective:"cost_reduction", risk:"balanced", impl:"in_house",
+        invest_min:5, invest_max:12, time_min:9, time_max:15, rev_uplift:0.0, cost_reduction:0.03, scope:0.20,
+        peers:["jpmorgan-tech-spend-2016","tinkoff-digital-2010","ing-agile-2015"] },
+      { id:"kp24", name:"Customer support — AI tier-1 deflection",
+        desc:"GPT-grade in-app assistant handles 60% of tier-1 inquiries. Cuts support headcount cost.",
+        segment:"operations", objective:"cost_reduction", risk:"balanced", impl:"in_house",
+        invest_min:3, invest_max:7, time_min:6, time_max:12, rev_uplift:0.005, cost_reduction:0.025, scope:0.25,
+        peers:["dominos-pizza-tracker-2008","tinkoff-digital-2010","halyk-homebank-2017"] },
+      { id:"kp25", name:"Agile-at-scale operating model (ING playbook)",
+        desc:"Squads / tribes / chapters across product + tech. Cuts time-to-market for new features by 40%.",
+        segment:"operations", objective:"cost_reduction", risk:"aggressive", impl:"in_house",
+        invest_min:8, invest_max:16, time_min:18, time_max:30, rev_uplift:0.0, cost_reduction:0.04, scope:0.45,
+        peers:["ing-agile-2015","jpmorgan-tech-spend-2016","tinkoff-digital-2010"] },
+
+      // === PASSENGER / CONSUMER FEATURES (3) ===
+      { id:"kp26", name:"Wealth management vertical launch — Kaspi Invest",
+        desc:"New product line. Brokerage + ETFs + retirement. Cross-sell from existing high-balance retail customers.",
+        segment:"passenger", objective:"revenue_growth", risk:"balanced", impl:"in_house",
+        invest_min:6, invest_max:14, time_min:12, time_max:20, rev_uplift:0.018, cost_reduction:0.0, scope:0.15,
+        peers:["tinkoff-digital-2010","revolut-expansion-2015","nubank-greenfield-2013"] },
+      { id:"kp27", name:"Insurance vertical — embedded protection products",
+        desc:"Travel, gadget, home insurance built into checkout. Margin 30%+. Test starts with travel.",
+        segment:"passenger", objective:"revenue_growth", risk:"balanced", impl:"jv",
+        invest_min:4, invest_max:9, time_min:9, time_max:14, rev_uplift:0.015, cost_reduction:0.0, scope:0.12,
+        peers:["sovcombank-halva-2014","klarna-bnpl-2016","tinkoff-digital-2010"] },
+      { id:"kp28", name:"Loyalty programme overhaul — tiered + cross-vertical",
+        desc:"Unified points across payments, marketplace, travel. Top-tier customers (1M+) get exclusive perks.",
+        segment:"passenger", objective:"revenue_growth", risk:"balanced", impl:"in_house",
+        invest_min:3, invest_max:7, time_min:6, time_max:10, rev_uplift:0.012, cost_reduction:0.0, scope:0.50,
+        peers:["starbucks-mobile-2015","tinkoff-digital-2010","halyk-homebank-2017"] },
+    ];
+
+    // Company registry — KTZ data already in scope as constants above
+    const COMPANIES = {
+      ktz: {
+        label: "Kazakhstan Temir Zholy (KTZ)",
+        revenue: 5_500_000_000, op_costs: 4_800_000_000,
+        scenarios: KTZ_SCENARIOS, peers: RAIL_CASES,
+        twin_en: "$5.5B revenue · 130,000 employees · 5 segments · 4 prior transformations on record",
+        twin_ru: "$5.5B выручка · 130,000 сотрудников · 5 сегментов · 4 прошлые трансформации в записях",
+        flag_en: "⚠ 2020 digital booking pilot FAILED — similar scenarios flagged",
+        flag_ru: "⚠ Digital booking pilot 2020 — ПРОВАЛ, схожие сценарии flagged",
+        avatar: "▮▮", lib_count: 18,
+      },
+      kaspi: {
+        label: "Kaspi.kz",
+        revenue: 4_500_000_000, op_costs: 2_400_000_000,
+        scenarios: KASPI_SCENARIOS, peers: BANK_CASES,
+        twin_en: "$4.5B revenue · 14,000 employees · 4 segments · 5 prior transformations on record",
+        twin_ru: "$4.5B выручка · 14,000 сотрудников · 4 сегмента · 5 прошлых трансформаций",
+        flag_en: "✓ Track record: 5 successful transformations including super-app pivot",
+        flag_ru: "✓ Трек: 5 успешных трансформаций включая super-app pivot",
+        avatar: "₸", lib_count: 14,
+      },
+    };
+    let ACTIVE_CO = "ktz";
+
+    function switchCompany(coId) {
+      if (!COMPANIES[coId]) return;
+      ACTIVE_CO = coId;
+      const co = COMPANIES[coId];
+      // Update active globals for the demo engine
+      window.__activeScenarios = co.scenarios;
+      window.__activePeers = co.peers;
+      // Update twin context bar
+      const RU = I18N.cur === "ru";
+      const bar = document.querySelector(".twin-bar");
+      if (bar) {
+        bar.querySelector(".avatar").textContent = co.avatar;
+        bar.querySelector(".name").textContent = co.label;
+        bar.querySelector(".meta").innerHTML = "<span>" + (RU ? co.twin_ru : co.twin_en).split(" · ").join("</span><span>") + "</span>";
+        const badge = bar.querySelector(".badge");
+        badge.textContent = RU ? co.flag_ru : co.flag_en;
+        badge.classList.remove("badge-warn");
+        if ((RU ? co.flag_ru : co.flag_en).startsWith("⚠")) badge.classList.add("badge-warn");
+      }
+      // Re-populate scenario dropdowns
+      const tsScen = document.getElementById("ts-scen");
+      const egScen = document.getElementById("eg-scen");
+      [tsScen, egScen].forEach(sel => {
+        if (!sel) return;
+        sel.innerHTML = "";
+        co.scenarios.forEach((s, i) => {
+          const o = document.createElement("option");
+          o.value = i; o.textContent = "#" + s.id + " · " + s.name;
+          sel.appendChild(o);
+        });
+      });
+      // Update filter match count
+      updateMatchCount();
+    }
+
+    // Override the existing simulate() inputs so they pick up active company
+    // (BASELINE_REVENUE / BASELINE_OP_COSTS are defined as const earlier — instead we
+    // wrap reads through getters)
+    Object.defineProperty(window, 'BASELINE_REVENUE_ACTIVE', {
+      get: () => COMPANIES[ACTIVE_CO].revenue,
+    });
+    Object.defineProperty(window, 'BASELINE_OP_COSTS_ACTIVE', {
+      get: () => COMPANIES[ACTIVE_CO].op_costs,
+    });
+
+    // Re-wire filter logic to use active company's scenarios
+    const _origUpdateMatchCount = updateMatchCount;
+    updateMatchCount = function() {
+      const co = COMPANIES[ACTIVE_CO];
+      const n = co.scenarios.filter(filterMatch).length;
+      const elt = document.getElementById("match-count");
+      if (elt) elt.textContent = n;
+    };
+
+    // Unlock Kaspi button + wire clicks
+    document.querySelectorAll(".company-pick button").forEach(b => {
+      const co = b.dataset.co;
+      if (co === "kaspi") {
+        b.classList.remove("locked");
+        b.disabled = false;
+      }
+      b.addEventListener("click", () => {
+        if (b.disabled) return;
+        document.querySelectorAll(".company-pick button").forEach(x => x.classList.remove("active"));
+        b.classList.add("active");
+        switchCompany(co);
+      });
+    });
+
+    // Active state initial
+    window.__activeScenarios = KTZ_SCENARIOS;
+    window.__activePeers = RAIL_CASES;
+
     // ============================================================
     // TIME-SERIES SIMULATOR · v0.4
     // 60 months × 100 parallel timelines with event injection
