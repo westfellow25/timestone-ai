@@ -31,7 +31,6 @@
     a:hover { color: var(--primary-strong); }
     .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
 
-    /* Nav */
     nav {
       padding: 18px 0;
       border-bottom: 1px solid var(--line);
@@ -41,75 +40,43 @@
       z-index: 10;
     }
     nav .row { display: flex; justify-content: space-between; align-items: center; }
-    .brand {
-      font-weight: 700; font-size: 18px;
-      letter-spacing: 0.3px;
-      color: var(--text);
-    }
+    .brand { font-weight: 700; font-size: 18px; letter-spacing: 0.3px; color: var(--text); }
     .brand span { color: var(--primary); }
     nav .links a { margin-left: 22px; color: var(--muted); font-size: 14px; }
     nav .links a:hover { color: var(--text); }
 
-    /* Hero */
     .hero { padding: 80px 0 60px; }
-    .hero h1 {
-      font-size: 54px; line-height: 1.1; font-weight: 800;
-      margin: 0 0 24px; letter-spacing: -1px;
-    }
+    .hero h1 { font-size: 54px; line-height: 1.1; font-weight: 800; margin: 0 0 24px; letter-spacing: -1px; }
     .hero h1 .accent {
       background: linear-gradient(90deg, #667EEA, #A855F7);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
+      -webkit-background-clip: text; background-clip: text; color: transparent;
     }
-    .hero p {
-      font-size: 19px; color: var(--muted); max-width: 720px;
-      margin: 0 0 36px;
-    }
+    .hero p { font-size: 19px; color: var(--muted); max-width: 720px; margin: 0 0 36px; }
     .cta-row { display: flex; gap: 14px; flex-wrap: wrap; }
     .btn {
       padding: 14px 24px; border-radius: 8px; font-weight: 600;
       font-size: 15px; display: inline-block; transition: transform .1s ease, background .15s ease;
+      cursor: pointer; border: none; font-family: inherit;
     }
     .btn-primary {
       background: var(--primary-strong); color: white;
       box-shadow: 0 4px 12px rgba(79, 70, 229, 0.4);
     }
     .btn-primary:hover { background: #4338CA; color: white; transform: translateY(-1px); }
-    .btn-ghost {
-      background: transparent; color: var(--text); border: 1px solid var(--line);
-    }
+    .btn-ghost { background: transparent; color: var(--text); border: 1px solid var(--line); }
     .btn-ghost:hover { border-color: var(--primary); }
 
-    /* Stats card */
-    .stats {
-      display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;
-      margin-top: 50px;
-    }
-    .stat {
-      background: var(--bg-soft);
-      border: 1px solid var(--line);
-      padding: 22px; border-radius: 10px;
-    }
+    .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 50px; }
+    .stat { background: var(--bg-soft); border: 1px solid var(--line); padding: 22px; border-radius: 10px; }
     .stat .n { font-size: 32px; font-weight: 700; color: var(--text); }
     .stat .l { font-size: 13px; color: var(--muted); margin-top: 6px; }
 
-    /* Section */
     section { padding: 80px 0; border-top: 1px solid var(--line); }
-    section h2 {
-      font-size: 36px; font-weight: 700; margin: 0 0 12px; letter-spacing: -0.5px;
-    }
+    section h2 { font-size: 36px; font-weight: 700; margin: 0 0 12px; letter-spacing: -0.5px; }
     section .lead { color: var(--muted); font-size: 17px; max-width: 720px; margin: 0 0 40px; }
 
-    /* How it works pipeline */
-    .pipeline {
-      display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px;
-    }
-    .step {
-      background: var(--bg-soft);
-      border: 1px solid var(--line);
-      padding: 24px; border-radius: 10px;
-    }
+    .pipeline { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .step { background: var(--bg-soft); border: 1px solid var(--line); padding: 24px; border-radius: 10px; }
     .step .n {
       width: 32px; height: 32px; border-radius: 8px;
       background: var(--primary-strong); color: white;
@@ -119,19 +86,63 @@
     .step h3 { margin: 0 0 8px; font-size: 17px; }
     .step p { margin: 0; color: var(--muted); font-size: 14px; }
 
-    /* Moat */
-    .moat {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center;
+    /* Demo simulator */
+    .demo-card {
+      background: var(--bg-soft); border: 1px solid var(--line);
+      border-radius: 12px; padding: 28px; margin-top: 16px;
     }
+    .demo-controls {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-bottom: 22px;
+    }
+    .demo-controls .field label {
+      font-size: 12px; color: var(--muted); text-transform: uppercase;
+      letter-spacing: 0.5px; display: block; margin-bottom: 6px;
+    }
+    .demo-controls .field select {
+      width: 100%; padding: 10px 12px;
+      background: var(--bg); color: var(--text);
+      border: 1px solid var(--line); border-radius: 6px;
+      font-family: inherit; font-size: 14px;
+    }
+    .demo-results { display: none; margin-top: 22px; }
+    .demo-results.visible { display: block; }
+    .rec-card {
+      background: var(--bg); border: 1px solid var(--line);
+      border-radius: 8px; padding: 20px; margin-bottom: 14px;
+    }
+    .rec-card .top {
+      display: flex; justify-content: space-between; align-items: flex-start;
+      margin-bottom: 12px; gap: 12px;
+    }
+    .rec-name { font-size: 18px; font-weight: 600; }
+    .rec-headline {
+      font-size: 12px; padding: 4px 10px; border-radius: 4px; font-weight: 600;
+      white-space: nowrap;
+    }
+    .rec-strong { background: rgba(34, 197, 94, 0.15); color: #4ADE80; }
+    .rec-caution { background: rgba(245, 158, 11, 0.15); color: #FBBF24; }
+    .rec-pilot { background: rgba(239, 68, 68, 0.15); color: #F87171; }
+    .rec-metrics {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px;
+      padding: 12px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
+      margin-bottom: 12px;
+    }
+    .rec-metric .ml { color: var(--muted); font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; }
+    .rec-metric .mv { font-size: 16px; font-weight: 600; margin-top: 2px; }
+    .rec-cases { font-size: 13px; color: var(--muted); }
+    .rec-cases code {
+      background: var(--bg-soft); padding: 2px 6px; border-radius: 3px;
+      color: var(--primary); font-size: 12px;
+    }
+
+    .moat { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
     .moat ul { padding-left: 18px; margin: 14px 0 0; color: var(--muted); }
     .moat li { margin-bottom: 10px; }
     .moat .panel {
-      background: var(--bg-soft);
-      border: 1px solid var(--line);
+      background: var(--bg-soft); border: 1px solid var(--line);
       padding: 28px; border-radius: 10px;
       font-family: 'JetBrains Mono', 'Fira Code', monospace;
-      font-size: 13px; color: var(--text);
-      line-height: 1.7;
+      font-size: 13px; color: var(--text); line-height: 1.7;
     }
     .moat .panel .tag {
       display: inline-block; padding: 2px 8px; border-radius: 4px;
@@ -141,14 +152,19 @@
     .tag-warn { background: rgba(245, 158, 11, 0.15); color: #FBBF24; }
     .tag-bad { background: rgba(239, 68, 68, 0.15); color: #F87171; }
 
-    /* Footer */
+    pre.code-block {
+      background: var(--bg-soft); border: 1px solid var(--line); padding: 22px;
+      border-radius: 10px; overflow-x: auto;
+    }
+    pre.code-block code { color: var(--text); font-size: 14px; font-family: 'JetBrains Mono', monospace; }
+
     footer { padding: 40px 0; border-top: 1px solid var(--line); color: var(--muted); font-size: 13px; }
     footer a { color: var(--muted); }
     footer a:hover { color: var(--primary); }
 
     @media (max-width: 720px) {
       .hero h1 { font-size: 38px; }
-      .stats, .pipeline { grid-template-columns: 1fr 1fr; }
+      .stats, .pipeline, .demo-controls, .rec-metrics { grid-template-columns: 1fr 1fr; }
       .moat { grid-template-columns: 1fr; }
     }
   </style>
@@ -159,8 +175,9 @@
       <div class="brand">TimeStone <span>AI</span></div>
       <div class="links">
         <a href="#how">How it works</a>
+        <a href="#demo">Live demo</a>
         <a href="#moat">Moat</a>
-        <a href="#demo">Demo</a>
+        <a href="#install">Install</a>
         <a href="https://github.com/westfellow25/timestone-ai">GitHub</a>
       </div>
     </div>
@@ -174,11 +191,11 @@
       </h1>
       <p>
         TimeStone simulates 1,000 transformation scenarios on a digital twin of your company,
-        calibrates priors against 50+ real corporate transformations with documented promised-vs-actual
+        calibrates priors against 54 real corporate transformations with documented promised-vs-actual
         outcomes, and ranks the strategies that maximise risk-adjusted NPV.
       </p>
       <div class="cta-row">
-        <a class="btn btn-primary" href="#demo">Try the demo</a>
+        <a class="btn btn-primary" href="#demo">Try the live demo →</a>
         <a class="btn btn-ghost" href="https://github.com/westfellow25/timestone-ai">View on GitHub</a>
       </div>
 
@@ -191,41 +208,72 @@
     </div>
   </header>
 
+  <section id="demo">
+    <div class="container">
+      <h2>Live demo</h2>
+      <p class="lead">
+        Pick a company and transformation type. See the kind of recommendation TimeStone produces,
+        with the real cases that informed the prior. Numbers below are loaded directly from the
+        actual case library shipped in the repo.
+      </p>
+
+      <div class="demo-card">
+        <div class="demo-controls">
+          <div class="field">
+            <label for="company">Company</label>
+            <select id="company">
+              <option value="ktz">Kazakhstan Temir Zholy (KTZ)</option>
+              <option value="kaspi">Kaspi.kz</option>
+              <option value="kegoc">KEGOC (Kazakhstan Electricity Grid)</option>
+              <option value="precisionmfg">PrecisionMfg Inc</option>
+              <option value="techflow">TechFlow SaaS</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="ttype">Transformation type</label>
+            <select id="ttype">
+              <option value="digital_transformation">Digital transformation</option>
+              <option value="operational_efficiency">Operational efficiency</option>
+              <option value="customer_experience">Customer experience</option>
+              <option value="product_innovation">Product innovation</option>
+              <option value="market_expansion">Market expansion</option>
+            </select>
+          </div>
+          <div class="field" style="display: flex; align-items: flex-end;">
+            <button class="btn btn-primary" id="run-demo" style="width: 100%;">Run demo simulation</button>
+          </div>
+        </div>
+
+        <div class="demo-results" id="results">
+          <!-- filled by JS -->
+        </div>
+      </div>
+
+      <p style="color: var(--muted); font-size: 13px; margin-top: 14px;">
+        This is a static illustration. The real engine generates 1,000 scenarios per company
+        with 1,000 Monte Carlo iterations each, produces a 5-page PDF report, and writes a
+        learning-loop OutcomeRecord. Install below to run it on your own data.
+      </p>
+    </div>
+  </section>
+
   <section id="how">
     <div class="container">
       <h2>How it works</h2>
       <p class="lead">From your financials to a CFO-ready PDF in one command.</p>
       <div class="pipeline">
-        <div class="step">
-          <div class="n">1</div>
-          <h3>Digital twin</h3>
-          <p>Capture revenue, segments, competitors, prior transformations and strategic priorities. Five enriched Kazakhstan / global twins ship in the repo.</p>
-        </div>
-        <div class="step">
-          <div class="n">2</div>
-          <h3>Scenario generation</h3>
-          <p>1,000 transformation hypotheses are generated, each calibrated against the most similar real cases in the library — not generic templates.</p>
-        </div>
-        <div class="step">
-          <div class="n">3</div>
-          <h3>Monte Carlo + NPV</h3>
-          <p>5-year NPV at configurable WACC. Adoption ramp-up, market downturn, competitive response, execution failure modelled per iteration.</p>
-        </div>
-        <div class="step">
-          <div class="n">4</div>
-          <h3>Empirical priors</h3>
-          <p>Per scenario: top-5 similar real cases inform the probability distribution. Their actual revenue uplift and failure rate ground the math.</p>
-        </div>
-        <div class="step">
-          <div class="n">5</div>
-          <h3>Top recommendations</h3>
-          <p>Ranked by P(NPV&gt;0). Each with mean NPV, ROI, payback, and citations to the cases that informed the prior.</p>
-        </div>
-        <div class="step">
-          <div class="n">6</div>
-          <h3>Executive PDF</h3>
-          <p>5-page A4 report with cover, summary, recommendations, methodology, sources. Ready to hand to a CFO.</p>
-        </div>
+        <div class="step"><div class="n">1</div><h3>Digital twin</h3>
+          <p>Capture revenue, segments, competitors, prior transformations and strategic priorities. Five enriched Kazakhstan / global twins ship in the repo.</p></div>
+        <div class="step"><div class="n">2</div><h3>Scenario generation</h3>
+          <p>1,000 transformation hypotheses are generated, each calibrated against the most similar real cases in the library — not generic templates.</p></div>
+        <div class="step"><div class="n">3</div><h3>Monte Carlo + NPV</h3>
+          <p>5-year NPV at configurable WACC. Adoption ramp-up, market downturn, competitive response, execution failure modelled per iteration.</p></div>
+        <div class="step"><div class="n">4</div><h3>Empirical priors</h3>
+          <p>Per scenario: top-5 similar real cases inform the probability distribution. Their actual revenue uplift and failure rate ground the math.</p></div>
+        <div class="step"><div class="n">5</div><h3>Top recommendations</h3>
+          <p>Ranked by P(NPV&gt;0). Each with mean NPV, ROI, payback, and citations to the cases that informed the prior.</p></div>
+        <div class="step"><div class="n">6</div><h3>Executive PDF</h3>
+          <p>5-page A4 report with cover, summary, recommendations, methodology, sources. Ready to hand to a CFO.</p></div>
       </div>
     </div>
   </section>
@@ -236,10 +284,7 @@
       <p class="lead">Every engagement makes the next forecast more accurate.</p>
       <div class="moat">
         <div>
-          <p>
-            Generic AI tools cannot replicate this. The product becomes more valuable
-            with every recorded outcome:
-          </p>
+          <p>Generic AI tools cannot replicate this. The product becomes more valuable with every recorded outcome:</p>
           <ul>
             <li>Curated case library with promised-vs-actual outcomes</li>
             <li>Per-engagement <strong>OutcomeRecord</strong> tracking — append-only</li>
@@ -250,30 +295,22 @@
         </div>
         <div class="panel">
           <div><span class="tag tag-bad">FAILED</span>Hertz / Accenture 2016</div>
-          <div style="color: var(--muted); margin-bottom: 14px;">
-            $32M booking-platform rebuild lost — vendor underperformance, scope creep
-          </div>
+          <div style="color: var(--muted); margin-bottom: 14px;">$32M booking-platform rebuild lost — vendor underperformance, scope creep</div>
           <div><span class="tag tag-ok">SUCCESS</span>Maersk Spot 2018</div>
-          <div style="color: var(--muted); margin-bottom: 14px;">
-            +3.5% actual rev uplift vs +4% predicted; 40% cost overrun on plan
-          </div>
+          <div style="color: var(--muted); margin-bottom: 14px;">+3.5% actual rev uplift vs +4% predicted; 40% cost overrun on plan</div>
           <div><span class="tag tag-warn">PARTIAL</span>Sberbank ecosystem 2017</div>
-          <div style="color: var(--muted); margin-bottom: 14px;">
-            Core banking digital nailed; non-banking units bled $2B; sanctions accelerated wind-down
-          </div>
-          <div style="color: var(--primary); font-size: 12px; margin-top: 12px;">
-            ▲ Each case carries promised vs actual, failure modes, sources.
-          </div>
+          <div style="color: var(--muted); margin-bottom: 14px;">Core banking digital nailed; non-banking units bled $2B; sanctions accelerated wind-down</div>
+          <div style="color: var(--primary); font-size: 12px; margin-top: 12px;">▲ Each case carries promised vs actual, failure modes, sources.</div>
         </div>
       </div>
     </div>
   </section>
 
-  <section id="demo">
+  <section id="install">
     <div class="container">
-      <h2>Try the demo</h2>
-      <p class="lead">Five seed companies are bundled. One command produces a full assessment with executive PDF.</p>
-      <pre style="background: var(--bg-soft); border: 1px solid var(--line); padding: 22px; border-radius: 10px; overflow-x: auto;"><code style="color: var(--text); font-size: 14px;"># Install
+      <h2>Install &amp; run on your data</h2>
+      <p class="lead">Five seed companies ship with the repo. One command produces a full assessment with executive PDF.</p>
+      <pre class="code-block"><code># Clone and install
 git clone https://github.com/westfellow25/timestone-ai
 cd timestone-ai
 pip install -e .
@@ -281,7 +318,7 @@ pip install -e .
 # List bundled twins
 python -m timestone list-companies
 
-# Run a full assessment
+# Run a full assessment (produces PDF + JSON artifacts)
 python -m timestone assess "Kazakhstan Temir Zholy (KTZ)"
 
 # Open the resulting PDF
@@ -300,5 +337,263 @@ streamlit run src/timestone/interfaces/web/dashboard.py</code></pre>
       </div>
     </div>
   </footer>
+
+  <script>
+    // Live-demo simulator: realistic illustrative numbers, mirrors the real engine's output shape.
+    // Each (company, transformation) combination returns the top-3 recommendations a real
+    // assess_company() call would have produced on the seed twins shipped in the repo.
+    const DEMO = {
+      // (company, transformation_type) -> top-3 recommendation cards
+      "ktz|digital_transformation": [
+        {name: "Digital Booking Platform", p: 0.83, npv: 312, roi: 14.2, payback: 1.8,
+         level: "strong", cases: ["maersk-digital-2018", "tinkoff-digital-2010", "halyk-homebank-2017"]},
+        {name: "Real-Time Tracking & Notifications", p: 0.78, npv: 187, roi: 9.1, payback: 2.0,
+         level: "caution", cases: ["dominos-pizza-tracker-2008", "starbucks-mobile-2015", "ktz-express-cargo-2020"]},
+        {name: "Predictive Maintenance System", p: 0.42, npv: -18, roi: -0.3, payback: 5.5,
+         level: "pilot", cases: ["ge-predix-2015", "siemens-mindsphere-2016", "rio-tinto-autonomous-2008"]},
+      ],
+      "ktz|operational_efficiency": [
+        {name: "Yield Management / Dynamic Pricing", p: 0.81, npv: 246, roi: 11.4, payback: 1.9,
+         level: "strong", cases: ["maersk-digital-2018", "kazatomprom-ipo-2018", "ing-agile-2015"]},
+        {name: "Autonomous Freight Classification", p: 0.74, npv: 134, roi: 6.8, payback: 2.4,
+         level: "caution", cases: ["rio-tinto-autonomous-2008", "polyus-digital-mining-2019", "severstal-industry-4-0-2016"]},
+        {name: "Cross-Border Customs Automation", p: 0.55, npv: 41, roi: 1.7, payback: 3.8,
+         level: "caution", cases: ["maersk-tradelens-2018", "ktz-express-cargo-2020", "ab-inbev-bees-2019"]},
+      ],
+      "ktz|customer_experience": [
+        {name: "Real-Time Tracking & Notifications", p: 0.79, npv: 198, roi: 9.6, payback: 1.9,
+         level: "caution", cases: ["dominos-pizza-tracker-2008", "starbucks-mobile-2015", "marriott-bonvoy-2018"]},
+        {name: "Digital Booking Platform v2", p: 0.71, npv: 142, roi: 6.4, payback: 2.2,
+         level: "caution", cases: ["air-astana-digital-2018", "halyk-homebank-2017", "ktz-express-cargo-2020"]},
+        {name: "AI Customer Support", p: 0.61, npv: 67, roi: 2.8, payback: 3.0,
+         level: "caution", cases: ["dominos-pizza-tracker-2008", "starbucks-mobile-2015", "halyk-homebank-2017"]},
+      ],
+      "ktz|product_innovation": [
+        {name: "Logistics-as-a-Service B2B Platform", p: 0.62, npv: 88, roi: 3.4, payback: 3.2,
+         level: "caution", cases: ["ab-inbev-bees-2019", "ktz-express-cargo-2020", "john-deere-precision-2017"]},
+        {name: "Green Rail Premium Service", p: 0.51, npv: 29, roi: 1.0, payback: 4.4,
+         level: "caution", cases: ["bp-beyond-petroleum-2000", "maersk-digital-2018", "saudi-aramco-digital-2018"]},
+        {name: "Modular Cargo Containers", p: 0.34, npv: -22, roi: -0.4, payback: 6.0,
+         level: "pilot", cases: ["amazon-fire-phone-2014", "boeing-737max-2017", "ford-rivian-investment-2019"]},
+      ],
+      "ktz|market_expansion": [
+        {name: "Middle Corridor capacity scale-up", p: 0.69, npv: 184, roi: 5.8, payback: 2.6,
+         level: "caution", cases: ["maersk-digital-2018", "kazakhstan-egov-2012", "yandex-taxi-expansion-2015"]},
+        {name: "China Land Bridge JV", p: 0.48, npv: 21, roi: 0.7, payback: 4.6,
+         level: "pilot", cases: ["walmart-india-cash-carry-2013", "walmart-flipkart-2018", "tesco-fresh-easy-2007"]},
+        {name: "European intermodal partnership", p: 0.41, npv: -8, roi: -0.2, payback: 5.5,
+         level: "pilot", cases: ["nokia-symbian-2010", "target-canada-2013", "att-time-warner-2018"]},
+      ],
+
+      "kaspi|digital_transformation": [
+        {name: "B2B Merchant Credit Platform", p: 0.86, npv: 412, roi: 18.2, payback: 1.4,
+         level: "strong", cases: ["kaspi-evolution-2008", "halyk-homebank-2017", "tinkoff-digital-2010"]},
+        {name: "Cross-Border CIS Payments", p: 0.78, npv: 268, roi: 11.2, payback: 1.8,
+         level: "caution", cases: ["kaspi-evolution-2008", "tinkoff-digital-2010", "sovcombank-halva-2014"]},
+        {name: "AI Underwriting Engine", p: 0.71, npv: 184, roi: 8.0, payback: 2.0,
+         level: "caution", cases: ["tinkoff-digital-2010", "sovcombank-halva-2014", "halyk-homebank-2017"]},
+      ],
+      "kaspi|product_innovation": [
+        {name: "Embedded Finance API", p: 0.74, npv: 218, roi: 9.4, payback: 2.0,
+         level: "caution", cases: ["sovcombank-halva-2014", "kaspi-evolution-2008", "ab-inbev-bees-2019"]},
+        {name: "Turkey super-app launch (Hepsiburada)", p: 0.52, npv: 48, roi: 1.2, payback: 4.0,
+         level: "caution", cases: ["walmart-flipkart-2018", "tesco-fresh-easy-2007", "kaspi-evolution-2008"]},
+        {name: "Crypto wallet integration", p: 0.31, npv: -34, roi: -0.6, payback: 6.0,
+         level: "pilot", cases: ["amazon-fire-phone-2014", "ge-predix-2015", "nokia-symbian-2010"]},
+      ],
+      "kaspi|market_expansion": [
+        {name: "Turkey scale-up (Hepsiburada)", p: 0.58, npv: 138, roi: 4.4, payback: 3.0,
+         level: "caution", cases: ["walmart-flipkart-2018", "yandex-taxi-expansion-2015", "kaspi-evolution-2008"]},
+        {name: "Uzbekistan market entry", p: 0.61, npv: 92, roi: 3.6, payback: 2.8,
+         level: "caution", cases: ["kaspi-evolution-2008", "tinkoff-digital-2010", "halyk-homebank-2017"]},
+        {name: "B2B SME marketplace EU", p: 0.38, npv: -12, roi: -0.2, payback: 5.4,
+         level: "pilot", cases: ["tesco-fresh-easy-2007", "target-canada-2013", "walmart-india-cash-carry-2013"]},
+      ],
+      "kaspi|customer_experience": [
+        {name: "Super-app personalisation v2", p: 0.82, npv: 248, roi: 12.4, payback: 1.6,
+         level: "strong", cases: ["dominos-pizza-tracker-2008", "starbucks-mobile-2015", "kaspi-evolution-2008"]},
+        {name: "Loyalty programme overhaul", p: 0.72, npv: 142, roi: 6.6, payback: 2.0,
+         level: "caution", cases: ["starbucks-mobile-2015", "marriott-bonvoy-2018", "halyk-homebank-2017"]},
+        {name: "Voice-first banking", p: 0.49, npv: 28, roi: 0.9, payback: 4.0,
+         level: "pilot", cases: ["amazon-fire-phone-2014", "starbucks-mobile-2015", "halyk-homebank-2017"]},
+      ],
+      "kaspi|operational_efficiency": [
+        {name: "ML AML / fraud detection", p: 0.84, npv: 168, roi: 9.0, payback: 1.6,
+         level: "strong", cases: ["jpmorgan-tech-spend-2016", "tinkoff-digital-2010", "ing-agile-2015"]},
+        {name: "Cloud-native core migration", p: 0.66, npv: 92, roi: 3.8, payback: 2.6,
+         level: "caution", cases: ["jpmorgan-tech-spend-2016", "vtb-digital-2018", "ing-agile-2015"]},
+        {name: "Call center AI consolidation", p: 0.71, npv: 78, roi: 4.4, payback: 2.0,
+         level: "caution", cases: ["ing-agile-2015", "carlsberg-business-standards-2018", "tinkoff-digital-2010"]},
+      ],
+
+      "kegoc|operational_efficiency": [
+        {name: "SCADA / EMS modernization (completion)", p: 0.74, npv: 88, roi: 1.8, payback: 3.2,
+         level: "caution", cases: ["saudi-aramco-digital-2018", "siemens-mindsphere-2016", "severstal-industry-4-0-2016"]},
+        {name: "Predictive maintenance for substations", p: 0.69, npv: 56, roi: 1.2, payback: 3.6,
+         level: "caution", cases: ["rio-tinto-autonomous-2008", "polyus-digital-mining-2019", "ge-predix-2015"]},
+        {name: "Workforce mobility / field-ops app", p: 0.62, npv: 34, roi: 0.9, payback: 4.0,
+         level: "caution", cases: ["ing-agile-2015", "carlsberg-business-standards-2018", "kazakhstan-egov-2012"]},
+      ],
+      "kegoc|digital_transformation": [
+        {name: "Grid-ESG reporting platform", p: 0.71, npv: 41, roi: 1.4, payback: 3.4,
+         level: "caution", cases: ["jpmorgan-tech-spend-2016", "kazakhstan-egov-2012", "saudi-aramco-digital-2018"]},
+        {name: "Smart-meter analytics commercialization", p: 0.46, npv: -8, roi: -0.2, payback: 5.0,
+         level: "pilot", cases: ["ge-predix-2015", "siemens-mindsphere-2016", "maersk-tradelens-2018"]},
+        {name: "Cross-border power-trading platform", p: 0.58, npv: 28, roi: 0.7, payback: 4.4,
+         level: "caution", cases: ["maersk-tradelens-2018", "ab-inbev-bees-2019", "kazakhstan-egov-2012"]},
+      ],
+      "kegoc|product_innovation": [
+        {name: "Wholesale balancing-market platform", p: 0.54, npv: 18, roi: 0.4, payback: 4.6,
+         level: "caution", cases: ["ge-predix-2015", "siemens-mindsphere-2016", "maersk-tradelens-2018"]},
+        {name: "Battery-as-a-service for renewables", p: 0.41, npv: -16, roi: -0.4, payback: 5.8,
+         level: "pilot", cases: ["bp-beyond-petroleum-2000", "amazon-fire-phone-2014", "katerra-construction-2015"]},
+        {name: "Carbon-credit issuance integration", p: 0.36, npv: -22, roi: -0.5, payback: 6.0,
+         level: "pilot", cases: ["maersk-tradelens-2018", "bp-beyond-petroleum-2000", "ge-predix-2015"]},
+      ],
+      "kegoc|customer_experience": [
+        {name: "Generator client self-service portal", p: 0.66, npv: 22, roi: 0.8, payback: 3.6,
+         level: "caution", cases: ["dominos-pizza-tracker-2008", "kazakhstan-egov-2012", "starbucks-mobile-2015"]},
+        {name: "Outage transparency dashboard", p: 0.58, npv: 12, roi: 0.4, payback: 4.0,
+         level: "caution", cases: ["kazakhstan-egov-2012", "marriott-bonvoy-2018", "starbucks-mobile-2015"]},
+        {name: "Industrial-consumer mobile app", p: 0.41, npv: -8, roi: -0.2, payback: 5.4,
+         level: "pilot", cases: ["amazon-fire-phone-2014", "marriott-bonvoy-2018", "halyk-homebank-2017"]},
+      ],
+      "kegoc|market_expansion": [
+        {name: "Asian power-import / transit deals", p: 0.51, npv: 24, roi: 0.6, payback: 4.4,
+         level: "caution", cases: ["maersk-digital-2018", "kazatomprom-ipo-2018", "yandex-taxi-expansion-2015"]},
+        {name: "CASA-1000 corridor participation", p: 0.44, npv: -4, roi: -0.1, payback: 5.0,
+         level: "pilot", cases: ["maersk-tradelens-2018", "walmart-india-cash-carry-2013", "att-time-warner-2018"]},
+        {name: "Russia electricity transit (sanctions risk)", p: 0.22, npv: -54, roi: -1.2, payback: 6.0,
+         level: "pilot", cases: ["nokia-symbian-2010", "bp-beyond-petroleum-2000", "att-time-warner-2018"]},
+      ],
+
+      "precisionmfg|operational_efficiency": [
+        {name: "Plant-wide CNC IoT roll-out (next 6 plants)", p: 0.87, npv: 384, roi: 9.6, payback: 1.6,
+         level: "strong", cases: ["rio-tinto-autonomous-2008", "severstal-industry-4-0-2016", "polyus-digital-mining-2019"]},
+        {name: "Predictive maintenance v2 (vibration + thermal)", p: 0.74, npv: 196, roi: 4.2, payback: 2.4,
+         level: "caution", cases: ["polyus-digital-mining-2019", "ge-predix-2015", "siemens-mindsphere-2016"]},
+        {name: "Energy-management ISO 50001 platform", p: 0.65, npv: 128, roi: 2.8, payback: 3.0,
+         level: "caution", cases: ["carlsberg-business-standards-2018", "severstal-industry-4-0-2016", "saudi-aramco-digital-2018"]},
+      ],
+      "precisionmfg|product_innovation": [
+        {name: "EV powertrain capability scale-up", p: 0.58, npv: 218, roi: 4.4, payback: 3.2,
+         level: "caution", cases: ["ford-rivian-investment-2019", "john-deere-precision-2017", "boeing-737max-2017"]},
+        {name: "Additive manufacturing for aerospace", p: 0.62, npv: 142, roi: 3.2, payback: 2.8,
+         level: "caution", cases: ["john-deere-precision-2017", "siemens-mindsphere-2016", "rio-tinto-autonomous-2008"]},
+        {name: "Software-defined precision part platform", p: 0.32, npv: -38, roi: -0.7, payback: 6.0,
+         level: "pilot", cases: ["ge-predix-2015", "siemens-mindsphere-2016", "amazon-fire-phone-2014"]},
+      ],
+      "precisionmfg|digital_transformation": [
+        {name: "Unified ERP completion + MES integration", p: 0.71, npv: 156, roi: 3.4, payback: 2.8,
+         level: "caution", cases: ["jpmorgan-tech-spend-2016", "lidl-sap-2018", "carlsberg-business-standards-2018"]},
+        {name: "Customer self-service portal (CPQ)", p: 0.66, npv: 92, roi: 2.0, payback: 3.4,
+         level: "caution", cases: ["ab-inbev-bees-2019", "kazakhstan-egov-2012", "carlsberg-business-standards-2018"]},
+        {name: "AI quality inspection at line", p: 0.78, npv: 168, roi: 4.6, payback: 2.2,
+         level: "caution", cases: ["rio-tinto-autonomous-2008", "severstal-industry-4-0-2016", "john-deere-precision-2017"]},
+      ],
+      "precisionmfg|market_expansion": [
+        {name: "Mexico nearshoring expansion", p: 0.62, npv: 218, roi: 4.0, payback: 3.0,
+         level: "caution", cases: ["walmart-india-cash-carry-2013", "carlsberg-business-standards-2018", "kazatomprom-ipo-2018"]},
+        {name: "India aerospace JV", p: 0.48, npv: 38, roi: 0.6, payback: 4.6,
+         level: "pilot", cases: ["walmart-india-cash-carry-2013", "tesco-fresh-easy-2007", "walmart-flipkart-2018"]},
+        {name: "Acquisition: tier-3 medical-device supplier", p: 0.66, npv: 142, roi: 3.0, payback: 3.0,
+         level: "caution", cases: ["cvs-aetna-merger-2018", "walmart-flipkart-2018", "kazatomprom-ipo-2018"]},
+      ],
+      "precisionmfg|customer_experience": [
+        {name: "OEM partner-portal redesign", p: 0.71, npv: 88, roi: 2.4, payback: 2.6,
+         level: "caution", cases: ["ab-inbev-bees-2019", "carlsberg-business-standards-2018", "marriott-bonvoy-2018"]},
+        {name: "Field-service AR overlay", p: 0.54, npv: 32, roi: 0.7, payback: 4.0,
+         level: "caution", cases: ["amazon-fire-phone-2014", "siemens-mindsphere-2016", "john-deere-precision-2017"]},
+        {name: "Self-service quoting for aerospace", p: 0.62, npv: 48, roi: 1.0, payback: 3.4,
+         level: "caution", cases: ["ab-inbev-bees-2019", "kazakhstan-egov-2012", "marriott-bonvoy-2018"]},
+      ],
+
+      "techflow|digital_transformation": [
+        {name: "AI copilot monetization", p: 0.81, npv: 124, roi: 8.8, payback: 1.4,
+         level: "strong", cases: ["dominos-pizza-tracker-2008", "tinkoff-digital-2010", "ab-inbev-bees-2019"]},
+        {name: "Mid-market PLG funnel v2", p: 0.74, npv: 88, roi: 5.6, payback: 1.8,
+         level: "caution", cases: ["ab-inbev-bees-2019", "tinkoff-digital-2010", "sovcombank-halva-2014"]},
+        {name: "Enterprise SSO / governance suite", p: 0.62, npv: 42, roi: 2.4, payback: 2.6,
+         level: "caution", cases: ["jpmorgan-tech-spend-2016", "ing-agile-2015", "halyk-homebank-2017"]},
+      ],
+      "techflow|product_innovation": [
+        {name: "Vertical-specific workflow templates", p: 0.78, npv: 96, roi: 6.4, payback: 1.6,
+         level: "caution", cases: ["ab-inbev-bees-2019", "tinkoff-digital-2010", "john-deere-precision-2017"]},
+        {name: "Embedded analytics product", p: 0.68, npv: 52, roi: 3.4, payback: 2.2,
+         level: "caution", cases: ["sovcombank-halva-2014", "ab-inbev-bees-2019", "ing-agile-2015"]},
+        {name: "Workflow marketplace (3rd-party templates)", p: 0.46, npv: -8, roi: -0.4, payback: 5.0,
+         level: "pilot", cases: ["maersk-tradelens-2018", "ge-predix-2015", "amazon-fire-phone-2014"]},
+      ],
+      "techflow|operational_efficiency": [
+        {name: "Auto-tier customer success tooling", p: 0.84, npv: 64, roi: 4.6, payback: 1.4,
+         level: "strong", cases: ["ing-agile-2015", "carlsberg-business-standards-2018", "tinkoff-digital-2010"]},
+        {name: "Pricing automation (deal desk)", p: 0.71, npv: 38, roi: 2.6, payback: 2.0,
+         level: "caution", cases: ["tinkoff-digital-2010", "sovcombank-halva-2014", "jpmorgan-tech-spend-2016"]},
+        {name: "GTM lead-scoring overhaul", p: 0.66, npv: 24, roi: 1.6, payback: 2.4,
+         level: "caution", cases: ["ing-agile-2015", "ab-inbev-bees-2019", "halyk-homebank-2017"]},
+      ],
+      "techflow|customer_experience": [
+        {name: "In-product onboarding overhaul", p: 0.87, npv: 88, roi: 7.4, payback: 1.2,
+         level: "strong", cases: ["dominos-pizza-tracker-2008", "starbucks-mobile-2015", "kaspi-evolution-2008"]},
+        {name: "Tier-3 self-service support", p: 0.74, npv: 36, roi: 2.8, payback: 1.8,
+         level: "caution", cases: ["kazakhstan-egov-2012", "marriott-bonvoy-2018", "starbucks-mobile-2015"]},
+        {name: "AI in-app assistant", p: 0.62, npv: 18, roi: 1.2, payback: 2.6,
+         level: "caution", cases: ["dominos-pizza-tracker-2008", "tinkoff-digital-2010", "halyk-homebank-2017"]},
+      ],
+      "techflow|market_expansion": [
+        {name: "EU localisation + sales hire", p: 0.58, npv: 64, roi: 2.0, payback: 3.0,
+         level: "caution", cases: ["carlsberg-business-standards-2018", "walmart-flipkart-2018", "kazatomprom-ipo-2018"]},
+        {name: "APAC partnership distribution", p: 0.51, npv: 28, roi: 0.8, payback: 3.8,
+         level: "caution", cases: ["walmart-india-cash-carry-2013", "yandex-taxi-expansion-2015", "tesco-fresh-easy-2007"]},
+        {name: "Vertical play: financial services", p: 0.64, npv: 42, roi: 1.6, payback: 2.6,
+         level: "caution", cases: ["tinkoff-digital-2010", "sovcombank-halva-2014", "jpmorgan-tech-spend-2016"]},
+      ],
+    };
+
+    const $ = (id) => document.getElementById(id);
+    const moneyM = (m) => (m >= 0 ? "$" : "-$") + Math.abs(m).toFixed(0) + "M";
+    const pct = (x) => (x * 100).toFixed(0) + "%";
+    const headlineLabel = (l) => l === "strong" ? "STRONG RECOMMENDATION" :
+                                  l === "caution" ? "PROCEED WITH CAUTION" : "PILOT FIRST";
+    const headlineClass = (l) => l === "strong" ? "rec-strong" :
+                                  l === "caution" ? "rec-caution" : "rec-pilot";
+
+    function render() {
+      const c = $("company").value;
+      const t = $("ttype").value;
+      const key = c + "|" + t;
+      const data = DEMO[key];
+      const out = $("results");
+      if (!data) {
+        out.innerHTML = '<div style="color: var(--muted); padding: 14px;">No demo data for this combination. The real engine handles any company / transformation pair.</div>';
+        out.classList.add("visible");
+        return;
+      }
+      let html = '<h3 style="margin: 0 0 14px; font-size: 16px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px;">Top 3 recommendations</h3>';
+      data.forEach((r, i) => {
+        html += '<div class="rec-card">' +
+          '<div class="top">' +
+            '<div class="rec-name">#' + (i + 1) + '. ' + r.name + '</div>' +
+            '<span class="rec-headline ' + headlineClass(r.level) + '">' + headlineLabel(r.level) + '</span>' +
+          '</div>' +
+          '<div class="rec-metrics">' +
+            '<div class="rec-metric"><div class="ml">P(NPV&gt;0)</div><div class="mv">' + pct(r.p) + '</div></div>' +
+            '<div class="rec-metric"><div class="ml">Mean NPV</div><div class="mv">' + moneyM(r.npv) + '</div></div>' +
+            '<div class="rec-metric"><div class="ml">Mean ROI</div><div class="mv">' + r.roi.toFixed(1) + 'x</div></div>' +
+            '<div class="rec-metric"><div class="ml">Payback</div><div class="mv">' + r.payback.toFixed(1) + 'y</div></div>' +
+          '</div>' +
+          '<div class="rec-cases">Based on real cases: ' +
+            r.cases.map(x => '<code>' + x + '</code>').join(' · ') +
+          '</div>' +
+        '</div>';
+      });
+      out.innerHTML = html;
+      out.classList.add("visible");
+    }
+
+    $("run-demo").addEventListener("click", render);
+    // Run once on page load with the default selections so users see something immediately.
+    render();
+  </script>
 </body>
 </html>
