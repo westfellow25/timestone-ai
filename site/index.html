@@ -341,7 +341,57 @@
       .stats, .pipeline, .meth-grid, .filter-grid, .stages, .retrieved, .lib-grid, .rec-metrics, .whatif-grid { grid-template-columns: 1fr; }
       nav .links a { padding: 6px 8px; font-size: 13px; }
     }
-  </style>
+  
+    /* Entity Graph section */
+    #entity-graph .eg-card { background: var(--bg-card); border: 1px solid var(--line); border-radius: 16px; padding: 32px; box-shadow: var(--shadow-lg); }
+    .eg-controls { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 16px; margin-bottom: 24px; }
+    .eg-field label { display: block; font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.7px; margin-bottom: 8px; font-weight: 600; }
+    .eg-field select { width: 100%; padding: 12px 14px; background: var(--bg); color: var(--text); border: 1px solid var(--line); border-radius: 8px; font-family: inherit; font-size: 14px; cursor: pointer; }
+    .eg-field select:focus { outline: none; border-color: var(--primary); }
+    .eg-layout { display: grid; grid-template-columns: 2fr 1fr; gap: 20px; }
+    .eg-graph-wrap { background: var(--bg-deep); border: 1px solid var(--line); border-radius: 12px; padding: 16px; position: relative; }
+    .eg-zone-labels { position: relative; height: 18px; margin-bottom: 4px; }
+    .eg-zlabel { position: absolute; transform: translateX(-50%); font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; font-weight: 600; }
+    #eg-svg { width: 100%; height: 480px; display: block; }
+    .eg-node { cursor: pointer; transition: r .15s, filter .15s; }
+    .eg-node:hover { filter: brightness(1.3); }
+    .eg-node.affected { animation: pulse-glow 1.4s ease-in-out infinite; }
+    @keyframes pulse-glow {
+      0%, 100% { filter: drop-shadow(0 0 4px var(--danger)) brightness(1.2); }
+      50% { filter: drop-shadow(0 0 14px var(--danger)) brightness(1.5); }
+    }
+    .eg-edge { stroke: var(--line); stroke-width: 0.6; opacity: 0.4; }
+    .eg-edge.lit { stroke: var(--danger); stroke-width: 1.4; opacity: 0.9; transition: all .3s; }
+    .eg-label { fill: var(--text-soft); font-size: 9.5px; font-family: 'Inter', sans-serif; pointer-events: none; }
+    .eg-legend { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 12px; font-size: 11px; color: var(--muted); }
+    .eg-legend span { display: inline-flex; align-items: center; gap: 6px; }
+    .eg-legend i { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
+    .eg-side { display: flex; flex-direction: column; gap: 0; }
+    .eg-panel { background: var(--bg); border: 1px solid var(--line); border-radius: 12px; padding: 18px; }
+    .eg-panel h4 { margin: 0 0 14px; font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text); }
+    .eg-slider { margin-bottom: 14px; }
+    .eg-slider:last-child { margin-bottom: 0; }
+    .eg-srow { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; font-size: 12px; color: var(--text-soft); }
+    .eg-sval { font-family: 'JetBrains Mono', monospace; color: var(--accent); font-weight: 700; }
+    .eg-slider input[type=range] { width: 100%; accent-color: var(--primary); }
+    .eg-population { background: var(--bg); border: 1px solid var(--line); border-radius: 12px; padding: 24px; margin-top: 24px; }
+    .eg-pop-head { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 16px; margin-bottom: 16px; }
+    .eg-pop-title { font-size: 16px; font-weight: 700; }
+    .eg-pop-sub { font-size: 12px; color: var(--muted); margin-top: 4px; }
+    .eg-pop-stats { display: flex; gap: 24px; }
+    .eg-pop-stats .ml { font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; }
+    .eg-pop-stats .mv { font-size: 18px; font-weight: 700; font-family: 'JetBrains Mono', monospace; margin-top: 2px; }
+    #eg-pop-canvas { width: 100%; height: 180px; display: block; background: var(--bg-deep); border-radius: 8px; margin-top: 8px; }
+    .eg-roadmap { margin-top: 18px; padding: 14px 18px; background: rgba(99,102,241,0.06); border-left: 3px solid var(--primary); border-radius: 4px; font-size: 13px; color: var(--text-soft); }
+    .eg-roadmap strong { color: var(--primary); }
+    @media (max-width: 900px) {
+      .eg-controls { grid-template-columns: 1fr; }
+      .eg-layout { grid-template-columns: 1fr; }
+      #eg-svg { height: 380px; }
+      .eg-pop-stats { gap: 12px; }
+      .eg-pop-stats .mv { font-size: 14px; }
+    }
+</style>
 </head>
 <body>
   <nav>
@@ -351,6 +401,7 @@
         <a href="#how" data-en="How it works" data-ru="Как работает">How it works</a>
         <a href="#methodology" data-en="Methodology" data-ru="Методология">Methodology</a>
         <a href="#demo" data-en="Live demo" data-ru="Демо">Live demo</a>
+        <a href="#entity-graph" data-en="Entity graph" data-ru="Граф сущностей">Entity graph</a>
         <a href="#library" data-en="Library" data-ru="Библиотека">Library</a>
         <a href="#moat" data-en="Moat" data-ru="Защита">Moat</a>
         <a href="https://github.com/westfellow25/timestone-ai">GitHub</a>
@@ -740,6 +791,133 @@ prior_mean_next = prior_mean + shift
     </div>
   </section>
 
+  
+  <!-- ===== ENTITY GRAPH · v0.3 preview ===== -->
+  <section id="entity-graph">
+    <div class="container">
+      <div class="head">
+        <div class="eyebrow">
+          <span style="display: inline-block; padding: 3px 10px; background: rgba(34,211,238,0.15); color: var(--accent); border-radius: 4px; font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 1px;">v0.3 preview</span>
+          <span style="margin-left: 10px;" data-en="The simulation engine, next" data-ru="Следующий шаг движка">The simulation engine, next</span>
+        </div>
+        <h2 data-en="Entity graph — KTZ as a living system" data-ru="Граф сущностей — KTZ как живая система">Entity graph — KTZ as a living system</h2>
+        <p class="lead" data-en="The next product step decomposes KTZ into ~50 atomic entities — depots, locomotive series, wagon types, top corporate accounts, regulators, competitors, cross-border interfaces. External factors (oil price, FX, sanctions, China demand) become injectable variables. A transformation initiative then propagates through the graph, and we evaluate it against a synthetic population of 100 alternate KTZ states. This is what we're shipping next quarter."
+           data-ru="Следующий шаг продукта — разложить KTZ на ~50 атомарных сущностей (депо, серии локомотивов, типы вагонов, ключевые корпоративные клиенты, регуляторы, конкуренты, трансграничные интерфейсы). Внешние факторы (цена нефти, FX, санкции, спрос Китая) становятся инжектируемыми переменными. Инициатива распространяется по графу, и мы оцениваем её против синтетической популяции из 100 альтернативных KTZ. Это то что мы делаем в следующем квартале.">
+          The next product step decomposes KTZ into ~50 atomic entities. External factors become injectable variables. A transformation propagates through the graph and we evaluate it against 100 synthetic alternate KTZ states.
+        </p>
+      </div>
+
+      <div class="eg-card">
+        <div class="eg-controls">
+          <div class="eg-field">
+            <label data-en="Inject scenario" data-ru="Инжектировать сценарий">Inject scenario</label>
+            <select id="eg-scen"></select>
+          </div>
+          <div class="eg-field">
+            <label data-en="Population size" data-ru="Размер популяции">Population size</label>
+            <select id="eg-popsize">
+              <option value="50">50 synthetic KTZ</option>
+              <option value="100" selected>100 synthetic KTZ</option>
+              <option value="250">250 synthetic KTZ</option>
+              <option value="500">500 synthetic KTZ</option>
+            </select>
+          </div>
+          <div class="eg-field" style="display: flex; align-items: end;">
+            <button class="btn btn-primary" id="eg-run" style="width: 100%; height: 44px;">
+              <span data-en="Propagate &amp; simulate" data-ru="Распространить и симулировать">Propagate &amp; simulate</span>
+              <span>▶</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="eg-layout">
+          <!-- Graph -->
+          <div class="eg-graph-wrap">
+            <div class="eg-zone-labels">
+              <span class="eg-zlabel" style="left: 6%" data-en="External factors" data-ru="Внешние факторы">External factors</span>
+              <span class="eg-zlabel" style="left: 22%" data-en="Depots" data-ru="Депо">Depots</span>
+              <span class="eg-zlabel" style="left: 42%" data-en="Fleet" data-ru="Парк">Fleet</span>
+              <span class="eg-zlabel" style="left: 62%" data-en="Customers" data-ru="Клиенты">Customers</span>
+              <span class="eg-zlabel" style="left: 84%" data-en="Stakeholders" data-ru="Стейкхолдеры">Stakeholders</span>
+            </div>
+            <svg id="eg-svg" viewBox="0 0 900 520" preserveAspectRatio="xMidYMid meet"></svg>
+            <div class="eg-legend">
+              <span><i style="background: #818CF8"></i> External</span>
+              <span><i style="background: #22D3EE"></i> Depot / Infra</span>
+              <span><i style="background: #34D399"></i> Fleet / Wagon</span>
+              <span><i style="background: #FBBF24"></i> Customer</span>
+              <span><i style="background: #F472B6"></i> Stakeholder</span>
+              <span><i style="background: #F87171"></i> Affected by scenario</span>
+            </div>
+          </div>
+
+          <!-- Right panel: external sliders + node detail -->
+          <div class="eg-side">
+            <div class="eg-panel">
+              <h4 data-en="External factor injection" data-ru="Инжекция внешних факторов">External factor injection</h4>
+              <div class="eg-slider">
+                <div class="eg-srow"><label data-en="Brent oil price" data-ru="Цена Brent">Brent oil price</label><span class="eg-sval" id="ef-oil-v">$80</span></div>
+                <input type="range" id="ef-oil" min="40" max="140" value="80" step="5"/>
+              </div>
+              <div class="eg-slider">
+                <div class="eg-srow"><label data-en="KZT / USD rate" data-ru="KZT / USD">KZT / USD rate</label><span class="eg-sval" id="ef-kzt-v">510</span></div>
+                <input type="range" id="ef-kzt" min="400" max="700" value="510" step="10"/>
+              </div>
+              <div class="eg-slider">
+                <div class="eg-srow"><label data-en="Sanctions intensity (RU transit)" data-ru="Интенсивность санкций (РФ-транзит)">Sanctions intensity</label><span class="eg-sval" id="ef-sanc-v">40%</span></div>
+                <input type="range" id="ef-sanc" min="0" max="100" value="40" step="5"/>
+              </div>
+              <div class="eg-slider">
+                <div class="eg-srow"><label data-en="China demand shock" data-ru="Спрос Китая">China demand shock</label><span class="eg-sval" id="ef-cn-v">0%</span></div>
+                <input type="range" id="ef-cn" min="-30" max="50" value="0" step="5"/>
+              </div>
+              <div class="eg-slider">
+                <div class="eg-srow"><label data-en="Winter severity" data-ru="Суровость зимы">Winter severity</label><span class="eg-sval" id="ef-w-v">Normal</span></div>
+                <input type="range" id="ef-w" min="0" max="2" value="1" step="1"/>
+              </div>
+              <div class="eg-slider">
+                <div class="eg-srow"><label data-en="Grain harvest yield" data-ru="Урожай зерна">Grain harvest yield</label><span class="eg-sval" id="ef-grain-v">0%</span></div>
+                <input type="range" id="ef-grain" min="-30" max="30" value="0" step="5"/>
+              </div>
+            </div>
+            <div class="eg-panel" id="eg-node-detail" style="margin-top: 14px;">
+              <h4 data-en="Node detail" data-ru="Детали узла">Node detail</h4>
+              <div style="color: var(--muted); font-size: 12px;" data-en="Hover or click any entity in the graph to see its properties, sensitivity to external factors, and which scenarios touch it."
+                   data-ru="Наведите или кликните на любую сущность чтобы увидеть свойства, чувствительность к внешним факторам и какие сценарии её затрагивают.">
+                Hover or click any entity in the graph to see its properties, sensitivity to external factors, and which scenarios touch it.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Population analysis -->
+        <div class="eg-population" id="eg-population" style="display: none;">
+          <div class="eg-pop-head">
+            <div>
+              <div class="eg-pop-title" data-en="Synthetic KTZ population analysis" data-ru="Анализ синтетической популяции KTZ">Synthetic KTZ population analysis</div>
+              <div class="eg-pop-sub" id="eg-pop-sub">100 alternate KTZ states sampled · scenario propagated through entity graph</div>
+            </div>
+            <div class="eg-pop-stats">
+              <div><div class="ml" data-en="Mean NPV" data-ru="Mean NPV">Mean NPV</div><div class="mv" id="eg-mean">-</div></div>
+              <div><div class="ml" data-en="P(NPV > 0)" data-ru="P(NPV > 0)">P(NPV > 0)</div><div class="mv" id="eg-p">-</div></div>
+              <div><div class="ml" data-en="Best case" data-ru="Best case">Best case</div><div class="mv" id="eg-best">-</div></div>
+              <div><div class="ml" data-en="Worst case" data-ru="Worst case">Worst case</div><div class="mv" id="eg-worst">-</div></div>
+            </div>
+          </div>
+          <canvas id="eg-pop-canvas" width="900" height="180"></canvas>
+        </div>
+
+        <div class="eg-roadmap">
+          <strong data-en="Q3 2026 roadmap" data-ru="Roadmap на Q3 2026">Q3 2026 roadmap</strong>
+          <span data-en="— full agent-based simulation with per-entity memory, behavioural logic, and dynamic edges. Built on OASIS / multi-agent frameworks adapted for industrial holdings."
+                data-ru="— полноценная агентная симуляция с памятью каждой сущности, behavioural logic и динамическими связями. Построено на OASIS / multi-agent frameworks, адаптированных под промышленные холдинги.">
+            — full agent-based simulation with per-entity memory, behavioural logic, and dynamic edges.
+          </span>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section id="library">
     <div class="container">
       <div class="head">
@@ -965,212 +1143,211 @@ streamlit run src/timestone/interfaces/web/dashboard.py</code></pre>
         desc: "IoT sensors + ML on first 50 mainline diesel locomotives at Astana depot. Mirrors Union Pacific predictive maintenance and BHP Mt. Newman playbooks.",
         segment: "freight", objective: "cost_reduction", risk: "balanced", impl: "vendor",
         invest_min: 12, invest_max: 22, time_min: 9, time_max: 15,
-        rev_uplift: 0.0, cost_reduction: 0.045, peers: ["bhp-mt-newman-2010","union-pacific-ptc-2008","cn-rail-edmonton-2017"] },
+        rev_uplift: 0.0, cost_reduction: 0.045, scope: 0.1, peers: ["bhp-mt-newman-2010","union-pacific-ptc-2008","cn-rail-edmonton-2017"] },
       { id: "f2", name: "Wheel-rail interface sensors — first 100 wagons of grain corridor (Astana–Aktobe–Atyrau)",
         desc: "Bluetooth sensors on bearings + brake pads; ML model for wear prediction. Pilot at peak grain harvest fleet.",
         segment: "freight", objective: "cost_reduction", risk: "conservative", impl: "vendor",
         invest_min: 3, invest_max: 6, time_min: 6, time_max: 9,
-        rev_uplift: 0.0, cost_reduction: 0.025, peers: ["union-pacific-ptc-2008","bhp-mt-newman-2010"] },
+        rev_uplift: 0.0, cost_reduction: 0.025, scope: 0.1, peers: ["union-pacific-ptc-2008","bhp-mt-newman-2010"] },
       { id: "f3", name: "Wagon GPS + ETA platform for corporate shippers (top-50 accounts)",
         desc: "Real-time location and arrival-time forecasting exposed via API to large grain, oil, metals shippers. Like DB Cargo myRailLog but tighter scope.",
         segment: "freight", objective: "service_quality", risk: "balanced", impl: "in_house",
         invest_min: 8, invest_max: 14, time_min: 10, time_max: 16,
-        rev_uplift: 0.015, cost_reduction: 0.01, peers: ["db-cargo-myraillog-2017","indian-rail-fois-2018","rzd-its-2018"] },
+        rev_uplift: 0.015, cost_reduction: 0.01, scope: 0.1, peers: ["db-cargo-myraillog-2017","indian-rail-fois-2018","rzd-its-2018"] },
       { id: "f4", name: "Real-time yield optimization — Middle Corridor container traffic",
         desc: "Dynamic pricing engine for Trans-Caspian container flows (China–EU). China Railway yield management playbook adapted for KTZ Khorgos terminal.",
         segment: "freight", objective: "revenue_growth", risk: "balanced", impl: "in_house",
         invest_min: 6, invest_max: 12, time_min: 9, time_max: 14,
-        rev_uplift: 0.04, cost_reduction: 0.0, peers: ["china-rail-yield-2015","ktz-express-cargo-2020","rzd-its-2018"] },
+        rev_uplift: 0.04, cost_reduction: 0.0, scope: 0.1, peers: ["china-rail-yield-2015","ktz-express-cargo-2020","rzd-its-2018"] },
       { id: "f5", name: "Empty wagon repositioning ML across Almaty/Karaganda/Astana hubs",
         desc: "Forecast demand and optimize empty wagon flows to reduce deadhead miles. Saves diesel and frees capacity in peak season.",
         segment: "freight", objective: "cost_reduction", risk: "balanced", impl: "in_house",
         invest_min: 4, invest_max: 9, time_min: 8, time_max: 13,
-        rev_uplift: 0.005, cost_reduction: 0.03, peers: ["china-rail-yield-2015","union-pacific-ptc-2008","csx-psr-2017"] },
+        rev_uplift: 0.005, cost_reduction: 0.03, scope: 0.1, peers: ["china-rail-yield-2015","union-pacific-ptc-2008","csx-psr-2017"] },
       { id: "f6", name: "B2B freight portal with API — for SME shippers (5,000+ accounts)",
         desc: "Self-service booking for small and medium shippers (segment currently sold by phone). Mirrors DB Cargo myRailLog but targeted at SMEs where relationship sales gap is smaller. WARNING: KTZ 2020 booking pilot failed in corporate segment — restrict scope to SME only.",
         segment: "freight", objective: "revenue_growth", risk: "aggressive", impl: "in_house",
         invest_min: 8, invest_max: 16, time_min: 12, time_max: 18,
-        rev_uplift: 0.02, cost_reduction: 0.005,
-        peers: ["db-cargo-myraillog-2017","sncf-fret-cabotage-2018","ktz-express-cargo-2020"],
+        rev_uplift: 0.02, cost_reduction: 0.005, scope: 0.1, peers: ["db-cargo-myraillog-2017","sncf-fret-cabotage-2018","ktz-express-cargo-2020"],
         flag: "prior_failure_2020_booking" },
       { id: "f7", name: "Dynamic tariffs for grain harvest peak (Aug–Oct)",
         desc: "Surge pricing for grain wagons during harvest peak when capacity is constrained. Yield management restricted to a 3-month seasonal window.",
         segment: "freight", objective: "revenue_growth", risk: "balanced", impl: "in_house",
         invest_min: 2, invest_max: 5, time_min: 4, time_max: 8,
-        rev_uplift: 0.025, cost_reduction: 0.0, peers: ["china-rail-yield-2015","rzd-its-2018"] },
+        rev_uplift: 0.025, cost_reduction: 0.0, scope: 0.1, peers: ["china-rail-yield-2015","rzd-its-2018"] },
       { id: "f8", name: "Cross-border customs pre-clearance with China Railway (Khorgos / Dostyk)",
         desc: "Pre-clearance of customs paperwork before container crosses border. Cuts dwell time at Khorgos terminal by 6–10 hours per shipment.",
         segment: "freight", objective: "service_quality", risk: "aggressive", impl: "jv",
         invest_min: 5, invest_max: 12, time_min: 12, time_max: 24,
-        rev_uplift: 0.02, cost_reduction: 0.01, peers: ["mongolian-rail-china-2020","ktz-express-cargo-2020","czech-rail-cd-2019"] },
+        rev_uplift: 0.02, cost_reduction: 0.01, scope: 0.1, peers: ["mongolian-rail-china-2020","ktz-express-cargo-2020","czech-rail-cd-2019"] },
       { id: "f9", name: "Container yield management at Khorgos terminal",
         desc: "Slot allocation + dynamic pricing for Khorgos dry-port containers. Direct extension of (f4) but localized to the terminal layer.",
         segment: "freight", objective: "revenue_growth", risk: "balanced", impl: "in_house",
         invest_min: 4, invest_max: 8, time_min: 6, time_max: 12,
-        rev_uplift: 0.03, cost_reduction: 0.005, peers: ["china-rail-yield-2015","ktz-express-cargo-2020"] },
+        rev_uplift: 0.03, cost_reduction: 0.005, scope: 0.1, peers: ["china-rail-yield-2015","ktz-express-cargo-2020"] },
       { id: "f10", name: "Full mainline fleet predictive maintenance rollout (after f1 pilot)",
         desc: "Scale predictive maintenance from Astana pilot to all 1,800 mainline locomotives. Requires successful f1 first.",
         segment: "freight", objective: "cost_reduction", risk: "balanced", impl: "vendor",
         invest_min: 80, invest_max: 140, time_min: 24, time_max: 42,
-        rev_uplift: 0.0, cost_reduction: 0.08, peers: ["bhp-mt-newman-2010","union-pacific-ptc-2008","rio-tinto-autohaul-2018"] },
+        rev_uplift: 0.0, cost_reduction: 0.08, scope: 0.1, peers: ["bhp-mt-newman-2010","union-pacific-ptc-2008","rio-tinto-autohaul-2018"] },
       { id: "f11", name: "AI-powered route optimization across mainline network",
         desc: "Network-wide path optimization considering maintenance windows, freight priorities and energy cost. Network Rail SCADA playbook.",
         segment: "freight", objective: "cost_reduction", risk: "aggressive", impl: "vendor",
         invest_min: 28, invest_max: 55, time_min: 18, time_max: 30,
-        rev_uplift: 0.015, cost_reduction: 0.04, peers: ["network-rail-scada-2019","union-pacific-ptc-2008","csx-psr-2017"] },
+        rev_uplift: 0.015, cost_reduction: 0.04, scope: 0.1, peers: ["network-rail-scada-2019","union-pacific-ptc-2008","csx-psr-2017"] },
       { id: "f12", name: "Automated freight classification (computer vision at yards)",
         desc: "Camera + ML auto-classification of incoming cargo for routing. Pilot at Almaty-1 yard.",
         segment: "freight", objective: "cost_reduction", risk: "balanced", impl: "vendor",
         invest_min: 4, invest_max: 9, time_min: 9, time_max: 15,
-        rev_uplift: 0.005, cost_reduction: 0.025, peers: ["cn-rail-edmonton-2017","bhp-mt-newman-2010"] },
+        rev_uplift: 0.005, cost_reduction: 0.025, scope: 0.1, peers: ["cn-rail-edmonton-2017","bhp-mt-newman-2010"] },
 
       // === OPERATIONS (8) ===
       { id: "o1", name: "Yard automation — Almaty-1 hub (Rio Tinto Pilbara playbook)",
         desc: "Autonomous shunting locomotives + automated coupling at the largest cargo yard. Pilot then scale.",
         segment: "operations", objective: "cost_reduction", risk: "aggressive", impl: "vendor",
         invest_min: 35, invest_max: 75, time_min: 18, time_max: 36,
-        rev_uplift: 0.0, cost_reduction: 0.07, peers: ["rio-tinto-autohaul-2018","bhp-mt-newman-2010","cn-rail-edmonton-2017"] },
+        rev_uplift: 0.0, cost_reduction: 0.07, scope: 0.1, peers: ["rio-tinto-autohaul-2018","bhp-mt-newman-2010","cn-rail-edmonton-2017"] },
       { id: "o2", name: "ML-based crew scheduling for long-distance freight routes",
         desc: "Optimization engine for crew rotations across 1,500+ km freight routes. Cuts overtime and crew downtime.",
         segment: "operations", objective: "cost_reduction", risk: "balanced", impl: "in_house",
         invest_min: 3, invest_max: 7, time_min: 6, time_max: 12,
-        rev_uplift: 0.0, cost_reduction: 0.02, peers: ["csx-psr-2017","cn-rail-edmonton-2017","union-pacific-ptc-2008"] },
+        rev_uplift: 0.0, cost_reduction: 0.02, scope: 0.1, peers: ["csx-psr-2017","cn-rail-edmonton-2017","union-pacific-ptc-2008"] },
       { id: "o3", name: "Energy management for traction electricity — recuperative braking",
         desc: "ML control of regenerative braking and energy recovery on electric locomotives. Mainline electrified network 7,000+ km.",
         segment: "operations", objective: "decarbonization", risk: "balanced", impl: "vendor",
         invest_min: 15, invest_max: 35, time_min: 14, time_max: 22,
-        rev_uplift: 0.0, cost_reduction: 0.035, peers: ["network-rail-scada-2019","union-pacific-ptc-2008"] },
+        rev_uplift: 0.0, cost_reduction: 0.035, scope: 0.1, peers: ["network-rail-scada-2019","union-pacific-ptc-2008"] },
       { id: "o4", name: "Robotic track inspection (UK Network Rail playbook)",
         desc: "Autonomous inspection trains + ML defect detection. Cuts manual track-walking by 80% and catches defects earlier.",
         segment: "operations", objective: "cost_reduction", risk: "balanced", impl: "vendor",
         invest_min: 18, invest_max: 32, time_min: 15, time_max: 24,
-        rev_uplift: 0.0, cost_reduction: 0.04, peers: ["network-rail-scada-2019","bhp-mt-newman-2010","rio-tinto-autohaul-2018"] },
+        rev_uplift: 0.0, cost_reduction: 0.04, scope: 0.1, peers: ["network-rail-scada-2019","bhp-mt-newman-2010","rio-tinto-autohaul-2018"] },
       { id: "o5", name: "Centralized dispatch (CDC) modernization — replace 1990s SCADA",
         desc: "Modern EMS at central dispatch. Replaces legacy SCADA. Network Rail UK playbook — sanctions-aware vendor selection.",
         segment: "operations", objective: "resilience", risk: "balanced", impl: "vendor",
         invest_min: 45, invest_max: 95, time_min: 30, time_max: 48,
-        rev_uplift: 0.005, cost_reduction: 0.025, peers: ["network-rail-scada-2019","union-pacific-ptc-2008","cn-rail-edmonton-2017"] },
+        rev_uplift: 0.005, cost_reduction: 0.025, scope: 0.1, peers: ["network-rail-scada-2019","union-pacific-ptc-2008","cn-rail-edmonton-2017"] },
       { id: "o6", name: "Spare parts inventory optimization with ML forecasting",
         desc: "Demand-forecast-driven inventory at 30+ depots. Cuts working capital tied up in stock.",
         segment: "operations", objective: "cost_reduction", risk: "conservative", impl: "in_house",
         invest_min: 2, invest_max: 5, time_min: 6, time_max: 12,
-        rev_uplift: 0.0, cost_reduction: 0.02, peers: ["csx-psr-2017","indian-rail-fois-2018","cn-rail-edmonton-2017"] },
+        rev_uplift: 0.0, cost_reduction: 0.02, scope: 0.1, peers: ["csx-psr-2017","indian-rail-fois-2018","cn-rail-edmonton-2017"] },
       { id: "o7", name: "Locomotive driver simulator training rollout (12 regional depots)",
         desc: "VR-based simulators replace 30% of physical training. Improves safety, cuts diesel for training runs.",
         segment: "operations", objective: "cost_reduction", risk: "conservative", impl: "vendor",
         invest_min: 8, invest_max: 15, time_min: 9, time_max: 15,
-        rev_uplift: 0.0, cost_reduction: 0.015, peers: ["uzbek-rail-2018","ptt-tulomsas-2019","union-pacific-ptc-2008"] },
+        rev_uplift: 0.0, cost_reduction: 0.015, scope: 0.1, peers: ["uzbek-rail-2018","ptt-tulomsas-2019","union-pacific-ptc-2008"] },
       { id: "o8", name: "Workforce mobility apps for field operations",
         desc: "Mobile platform for inspectors, conductors, depot crews. Replaces paper forms; real-time defect reporting.",
         segment: "operations", objective: "cost_reduction", risk: "conservative", impl: "in_house",
         invest_min: 3, invest_max: 6, time_min: 8, time_max: 14,
-        rev_uplift: 0.0, cost_reduction: 0.018, peers: ["cn-rail-edmonton-2017","indian-rail-fois-2018"] },
+        rev_uplift: 0.0, cost_reduction: 0.018, scope: 0.1, peers: ["cn-rail-edmonton-2017","indian-rail-fois-2018"] },
 
       // === PASSENGER (6) ===
       { id: "p1", name: "E-ticketing replatform — Astana–Almaty Express (Talgo)",
         desc: "Mobile-first booking for the flagship 4-hour Astana–Almaty service. Direct revenue capture; loyalty link. Trenitalia / Brightline playbook.",
         segment: "passenger", objective: "revenue_growth", risk: "balanced", impl: "in_house",
         invest_min: 4, invest_max: 9, time_min: 9, time_max: 14,
-        rev_uplift: 0.06, cost_reduction: 0.015, peers: ["trenitalia-booking-2016","brightline-booking-2018"] },
+        rev_uplift: 0.06, cost_reduction: 0.015, scope: 0.1, peers: ["trenitalia-booking-2016","brightline-booking-2018"] },
       { id: "p2", name: "Dynamic pricing for off-peak passenger routes",
         desc: "Yield management on long-distance passenger trains during off-peak. Test in summer 2026.",
         segment: "passenger", objective: "revenue_growth", risk: "balanced", impl: "in_house",
         invest_min: 2, invest_max: 5, time_min: 6, time_max: 10,
-        rev_uplift: 0.035, cost_reduction: 0.0, peers: ["trenitalia-booking-2016","china-rail-yield-2015","brightline-booking-2018"] },
+        rev_uplift: 0.035, cost_reduction: 0.0, scope: 0.1, peers: ["trenitalia-booking-2016","china-rail-yield-2015","brightline-booking-2018"] },
       { id: "p3", name: 'Loyalty programme "Nomad Rail" (Air Astana Nomad Club model)',
         desc: "Tiered loyalty with miles-style rewards across passenger services. Cross-promo with Air Astana possible.",
         segment: "passenger", objective: "revenue_growth", risk: "balanced", impl: "in_house",
         invest_min: 5, invest_max: 11, time_min: 12, time_max: 18,
-        rev_uplift: 0.04, cost_reduction: 0.0, peers: ["trenitalia-booking-2016","brightline-booking-2018"] },
+        rev_uplift: 0.04, cost_reduction: 0.0, scope: 0.1, peers: ["trenitalia-booking-2016","brightline-booking-2018"] },
       { id: "p4", name: "Multimodal integration — rail + bus + taxi in passenger app",
         desc: "First/last-mile integration. Partnership with Yandex Taxi KZ + intercity bus operators.",
         segment: "passenger", objective: "service_quality", risk: "aggressive", impl: "jv",
         invest_min: 6, invest_max: 13, time_min: 15, time_max: 24,
-        rev_uplift: 0.025, cost_reduction: 0.0, peers: ["brightline-booking-2018","trenitalia-booking-2016"] },
+        rev_uplift: 0.025, cost_reduction: 0.0, scope: 0.1, peers: ["brightline-booking-2018","trenitalia-booking-2016"] },
       { id: "p5", name: "Real-time delay notifications + compensation automation",
         desc: "Push alerts, automatic refund for delays >30 min. Reduces complaint handling cost; improves NPS.",
         segment: "passenger", objective: "service_quality", risk: "conservative", impl: "in_house",
         invest_min: 2, invest_max: 4, time_min: 5, time_max: 9,
-        rev_uplift: 0.005, cost_reduction: 0.01, peers: ["trenitalia-booking-2016","brightline-booking-2018"] },
+        rev_uplift: 0.005, cost_reduction: 0.01, scope: 0.1, peers: ["trenitalia-booking-2016","brightline-booking-2018"] },
       { id: "p6", name: "Onboard WiFi + entertainment platform",
         desc: "Premium WiFi + content for long-distance and high-speed routes. Ad revenue + ticket upsell.",
         segment: "passenger", objective: "revenue_growth", risk: "balanced", impl: "vendor",
         invest_min: 8, invest_max: 16, time_min: 10, time_max: 16,
-        rev_uplift: 0.02, cost_reduction: 0.0, peers: ["brightline-booking-2018","trenitalia-booking-2016"] },
+        rev_uplift: 0.02, cost_reduction: 0.0, scope: 0.1, peers: ["brightline-booking-2018","trenitalia-booking-2016"] },
 
       // === STRATEGIC (8) ===
       { id: "s1", name: "Logistics-as-a-Service B2B platform — full transit corridor offering",
         desc: "Multi-modal corridor service: rail + dry port + customs + last mile. Compete with Maersk on Trans-Caspian.",
         segment: "strategic", objective: "revenue_growth", risk: "aggressive", impl: "jv",
         invest_min: 60, invest_max: 140, time_min: 30, time_max: 48,
-        rev_uplift: 0.06, cost_reduction: 0.0, peers: ["ktz-express-cargo-2020","rzd-its-2018","mongolian-rail-china-2020"] },
+        rev_uplift: 0.06, cost_reduction: 0.0, scope: 0.1, peers: ["ktz-express-cargo-2020","rzd-its-2018","mongolian-rail-china-2020"] },
       { id: "s2", name: "Green Rail premium service for EU exporters (carbon certified)",
         desc: "Branded carbon-neutral rail freight to Europe with verified emissions accounting. Targets ESG-conscious shippers paying premium.",
         segment: "strategic", objective: "decarbonization", risk: "balanced", impl: "in_house",
         invest_min: 12, invest_max: 28, time_min: 18, time_max: 28,
-        rev_uplift: 0.02, cost_reduction: 0.0, peers: ["network-rail-scada-2019","db-cargo-myraillog-2017"] },
+        rev_uplift: 0.02, cost_reduction: 0.0, scope: 0.1, peers: ["network-rail-scada-2019","db-cargo-myraillog-2017"] },
       { id: "s3", name: "Hydrogen locomotive pilot — northern corridor",
         desc: "First H2 locomotive in Central Asia. Long-term decarbonization play with EBRD financing potential.",
         segment: "strategic", objective: "decarbonization", risk: "aggressive", impl: "jv",
         invest_min: 80, invest_max: 180, time_min: 36, time_max: 72,
-        rev_uplift: 0.005, cost_reduction: 0.0, peers: ["network-rail-scada-2019","rio-tinto-autohaul-2018"] },
+        rev_uplift: 0.005, cost_reduction: 0.0, scope: 0.1, peers: ["network-rail-scada-2019","rio-tinto-autohaul-2018"] },
       { id: "s4", name: "M&A — acquire private wagon operator",
         desc: "Buy out a top-3 private freight wagon operator. Consolidates yield + reduces empty haul.",
         segment: "strategic", objective: "revenue_growth", risk: "aggressive", impl: "ma",
         invest_min: 150, invest_max: 380, time_min: 12, time_max: 24,
-        rev_uplift: 0.04, cost_reduction: 0.02, peers: ["csx-psr-2017","union-pacific-ptc-2008"] },
+        rev_uplift: 0.04, cost_reduction: 0.02, scope: 0.1, peers: ["csx-psr-2017","union-pacific-ptc-2008"] },
       { id: "s5", name: "Trans-Caspian Middle Corridor capacity scale-up",
         desc: "Double container throughput on Trans-Caspian route. Infrastructure + ferry coordination + digital flow.",
         segment: "strategic", objective: "revenue_growth", risk: "balanced", impl: "jv",
         invest_min: 220, invest_max: 480, time_min: 36, time_max: 60,
-        rev_uplift: 0.07, cost_reduction: 0.0, peers: ["ktz-express-cargo-2020","china-rail-yield-2015","mongolian-rail-china-2020"] },
+        rev_uplift: 0.07, cost_reduction: 0.0, scope: 0.1, peers: ["ktz-express-cargo-2020","china-rail-yield-2015","mongolian-rail-china-2020"] },
       { id: "s6", name: "Integrated freight forwarder spin-off",
         desc: "Separate freight forwarding entity that owns customer relationships. KTZ becomes infrastructure provider; forwarder competes commercially.",
         segment: "strategic", objective: "resilience", risk: "aggressive", impl: "ma",
         invest_min: 35, invest_max: 80, time_min: 18, time_max: 30,
-        rev_uplift: 0.02, cost_reduction: 0.01, peers: ["csx-psr-2017","rzd-its-2018","db-cargo-myraillog-2017"] },
+        rev_uplift: 0.02, cost_reduction: 0.01, scope: 0.1, peers: ["csx-psr-2017","rzd-its-2018","db-cargo-myraillog-2017"] },
       { id: "s7", name: "Cross-border dry port network — Iran connection",
         desc: "Rail + dry port infrastructure connecting KZ to Iran via Turkmenistan. Strategic alternative to Russian transit.",
         segment: "strategic", objective: "resilience", risk: "aggressive", impl: "jv",
         invest_min: 180, invest_max: 420, time_min: 36, time_max: 72,
-        rev_uplift: 0.045, cost_reduction: 0.0, peers: ["mongolian-rail-china-2020","ktz-express-cargo-2020"] },
+        rev_uplift: 0.045, cost_reduction: 0.0, scope: 0.1, peers: ["mongolian-rail-china-2020","ktz-express-cargo-2020"] },
       { id: "s8", name: "Mongolia / Uzbekistan rail interoperability standard",
         desc: "Common digital and gauge interface for regional corridor. KTZ leads the standard, controls coordination.",
         segment: "strategic", objective: "resilience", risk: "balanced", impl: "jv",
         invest_min: 25, invest_max: 60, time_min: 24, time_max: 42,
-        rev_uplift: 0.025, cost_reduction: 0.0, peers: ["mongolian-rail-china-2020","uzbek-rail-2018","czech-rail-cd-2019"] },
+        rev_uplift: 0.025, cost_reduction: 0.0, scope: 0.1, peers: ["mongolian-rail-china-2020","uzbek-rail-2018","czech-rail-cd-2019"] },
 
       // === TECH FOUNDATION (6) ===
       { id: "t1", name: "Cybersecurity for critical rail infrastructure",
         desc: "OT/IT segmentation, intrusion detection, regulator compliance for critical infrastructure. Pre-requisite for most other tech initiatives.",
         segment: "tech", objective: "resilience", risk: "conservative", impl: "vendor",
         invest_min: 14, invest_max: 28, time_min: 14, time_max: 22,
-        rev_uplift: 0.0, cost_reduction: 0.0, peers: ["network-rail-scada-2019","union-pacific-ptc-2008"] },
+        rev_uplift: 0.0, cost_reduction: 0.0, scope: 0.1, peers: ["network-rail-scada-2019","union-pacific-ptc-2008"] },
       { id: "t2", name: "Data lakehouse for ops + commercial analytics",
         desc: "Unified data layer across ops and commercial. Foundation for ML initiatives like f4 / f5 / o2.",
         segment: "tech", objective: "resilience", risk: "balanced", impl: "vendor",
         invest_min: 10, invest_max: 22, time_min: 12, time_max: 20,
-        rev_uplift: 0.005, cost_reduction: 0.01, peers: ["jpmorgan-tech","union-pacific-ptc-2008","cn-rail-edmonton-2017"] },
+        rev_uplift: 0.005, cost_reduction: 0.01, scope: 0.1, peers: ["jpmorgan-tech","union-pacific-ptc-2008","cn-rail-edmonton-2017"] },
       { id: "t3", name: "Cloud migration from on-prem ERPs",
         desc: "SAP and ancillary ERPs to private cloud. Cost-base reduction and continuous deployment.",
         segment: "tech", objective: "cost_reduction", risk: "balanced", impl: "vendor",
         invest_min: 22, invest_max: 48, time_min: 24, time_max: 36,
-        rev_uplift: 0.0, cost_reduction: 0.02, peers: ["network-rail-scada-2019","indian-rail-fois-2018"] },
+        rev_uplift: 0.0, cost_reduction: 0.02, scope: 0.1, peers: ["network-rail-scada-2019","indian-rail-fois-2018"] },
       { id: "t4", name: "API platform for partner integration (shippers, customs, neighbours)",
         desc: "Unified API gateway. Required for f3, f8, p4. Enables fast partner onboarding.",
         segment: "tech", objective: "service_quality", risk: "balanced", impl: "in_house",
         invest_min: 4, invest_max: 9, time_min: 9, time_max: 14,
-        rev_uplift: 0.005, cost_reduction: 0.005, peers: ["db-cargo-myraillog-2017","cn-rail-edmonton-2017"] },
+        rev_uplift: 0.005, cost_reduction: 0.005, scope: 0.1, peers: ["db-cargo-myraillog-2017","cn-rail-edmonton-2017"] },
       { id: "t5", name: "AI/ML platform consolidation",
         desc: "Standardize tooling for the 8+ ML initiatives. Cuts duplication, raises quality of models in production.",
         segment: "tech", objective: "cost_reduction", risk: "balanced", impl: "in_house",
         invest_min: 4, invest_max: 9, time_min: 12, time_max: 18,
-        rev_uplift: 0.0, cost_reduction: 0.012, peers: ["union-pacific-ptc-2008","jpmorgan-tech"] },
+        rev_uplift: 0.0, cost_reduction: 0.012, scope: 0.1, peers: ["union-pacific-ptc-2008","jpmorgan-tech"] },
       { id: "t6", name: "Network observability + RCA automation",
         desc: "Network-wide observability for IT and OT systems. ML-driven root-cause analysis cuts incident response time.",
         segment: "tech", objective: "service_quality", risk: "conservative", impl: "vendor",
         invest_min: 3, invest_max: 7, time_min: 8, time_max: 14,
-        rev_uplift: 0.0, cost_reduction: 0.012, peers: ["network-rail-scada-2019","cn-rail-edmonton-2017"] }
+        rev_uplift: 0.0, cost_reduction: 0.012, scope: 0.1, peers: ["network-rail-scada-2019","cn-rail-edmonton-2017"] }
     ];
 
     // ===================================================================
@@ -1367,7 +1544,7 @@ streamlit run src/timestone/interfaces/web/dashboard.py</code></pre>
           const adoption = adoptionCurve[Math.min(yearsSinceImpl, adoptionCurve.length - 1)];
           const grossRev = baselineRevenue * revImpact;
           const grossCost = baselineOpCosts * costImpact;
-          const annualBenefit = (grossRev + grossCost) * adoption * activeFraction;
+          const annualBenefit = (grossRev + grossCost) * adoption * activeFraction * (scenario.scope || 0.10);
           npv += annualBenefit / Math.pow(1 + discountRate, y);
           cum += annualBenefit;
           if (payback > horizonYears && cum >= 0) payback = y;
@@ -1891,6 +2068,383 @@ streamlit run src/timestone/interfaces/web/dashboard.py</code></pre>
 
       doc.save("TimeStone_KTZ_Assessment.pdf");
     });
+
+  
+
+    // ============================================================
+    // ENTITY GRAPH · v0.3 preview
+    // ============================================================
+    const EG_ENTITIES = [
+      // External factors (left column, x=70, color=primary)
+      { id: "ef_oil", label: "Brent oil", cat: "external", x: 70, y: 70 },
+      { id: "ef_kzt", label: "KZT/USD", cat: "external", x: 70, y: 140 },
+      { id: "ef_sanc", label: "RU sanctions", cat: "external", x: 70, y: 210 },
+      { id: "ef_china", label: "China demand", cat: "external", x: 70, y: 280 },
+      { id: "ef_winter", label: "Winter severity", cat: "external", x: 70, y: 350 },
+      { id: "ef_grain", label: "Grain harvest", cat: "external", x: 70, y: 420 },
+
+      // Depots + infrastructure (x=220-240, color=accent)
+      { id: "depot_astana", label: "Astana hub", cat: "depot", x: 230, y: 60 },
+      { id: "depot_almaty", label: "Almaty-1 hub", cat: "depot", x: 230, y: 110 },
+      { id: "depot_karaganda", label: "Karaganda", cat: "depot", x: 230, y: 160 },
+      { id: "depot_atyrau", label: "Atyrau", cat: "depot", x: 230, y: 210 },
+      { id: "depot_shymkent", label: "Shymkent", cat: "depot", x: 230, y: 260 },
+      { id: "depot_aktobe", label: "Aktobe", cat: "depot", x: 230, y: 310 },
+      { id: "infra_khorgos", label: "Khorgos terminal", cat: "depot", x: 230, y: 370 },
+      { id: "infra_aktau", label: "Aktau port-rail", cat: "depot", x: 230, y: 420 },
+
+      // Fleet + wagons (x=430, color=success)
+      { id: "fleet_te10m", label: "TE10M / 2TE10M", cat: "fleet", x: 430, y: 60 },
+      { id: "fleet_3te10m", label: "3TE10M heavy", cat: "fleet", x: 430, y: 105 },
+      { id: "fleet_vl80", label: "VL80 electric", cat: "fleet", x: 430, y: 150 },
+      { id: "fleet_vl85", label: "VL85 electric", cat: "fleet", x: 430, y: 195 },
+      { id: "fleet_tem", label: "TEM shunting", cat: "fleet", x: 430, y: 240 },
+      { id: "wagon_open", label: "Open wagons", cat: "fleet", x: 430, y: 295 },
+      { id: "wagon_hopper", label: "Hopper / grain", cat: "fleet", x: 430, y: 340 },
+      { id: "wagon_tank", label: "Tank cars", cat: "fleet", x: 430, y: 385 },
+      { id: "wagon_container", label: "Container flat", cat: "fleet", x: 430, y: 430 },
+
+      // Top customers (x=640, color=warn)
+      { id: "cust_kmg", label: "KazMunayGas", cat: "customer", x: 640, y: 60 },
+      { id: "cust_erg", label: "ERG", cat: "customer", x: 640, y: 105 },
+      { id: "cust_kazminerals", label: "KAZ Minerals", cat: "customer", x: 640, y: 150 },
+      { id: "cust_bogatyr", label: "Bogatyr Komir", cat: "customer", x: 640, y: 195 },
+      { id: "cust_kazatomprom", label: "Kazatomprom", cat: "customer", x: 640, y: 240 },
+      { id: "cust_kazchrome", label: "Kazchrome", cat: "customer", x: 640, y: 285 },
+      { id: "cust_arcelor", label: "ArcelorMittal Tem.", cat: "customer", x: 640, y: 330 },
+      { id: "cust_grain", label: "Grain pool", cat: "customer", x: 640, y: 375 },
+      { id: "cust_passenger", label: "Passenger pool", cat: "customer", x: 640, y: 420 },
+      { id: "cust_sme", label: "SME shippers (5K+)", cat: "customer", x: 640, y: 465 },
+
+      // Stakeholders (x=830, color=pink)
+      { id: "comp_truck", label: "Trucking", cat: "stake", x: 830, y: 60 },
+      { id: "comp_private", label: "Private operators", cat: "stake", x: 830, y: 110 },
+      { id: "comp_pipe", label: "Pipelines", cat: "stake", x: 830, y: 160 },
+      { id: "reg_miir", label: "MIIR ministry", cat: "stake", x: 830, y: 210 },
+      { id: "reg_tariff", label: "KREMZK", cat: "stake", x: 830, y: 260 },
+      { id: "reg_antimon", label: "Antimonopoly", cat: "stake", x: 830, y: 310 },
+      { id: "intf_china", label: "China Rail (Khorgos)", cat: "stake", x: 830, y: 360 },
+      { id: "intf_rzd", label: "RZD (north)", cat: "stake", x: 830, y: 410 },
+      { id: "intf_caspian", label: "Caspian ferry", cat: "stake", x: 830, y: 460 },
+    ];
+    const CAT_COLOR = {
+      external: "#818CF8", depot: "#22D3EE", fleet: "#34D399",
+      customer: "#FBBF24", stake: "#F472B6",
+    };
+
+    // Edges (a small representative set — the visualization is meant to show pattern, not full graph)
+    const EG_EDGES = [
+      // externals -> customers (oil affects KMG, sanctions affect interfaces, etc.)
+      ["ef_oil","cust_kmg"],["ef_oil","cust_grain"],
+      ["ef_kzt","cust_kmg"],["ef_kzt","cust_kazatomprom"],["ef_kzt","cust_arcelor"],
+      ["ef_sanc","intf_rzd"],["ef_sanc","cust_kmg"],
+      ["ef_china","intf_china"],["ef_china","cust_kazchrome"],["ef_china","infra_khorgos"],
+      ["ef_winter","depot_atyrau"],["ef_winter","depot_aktobe"],
+      ["ef_grain","cust_grain"],["ef_grain","wagon_hopper"],
+      // depots -> fleet
+      ["depot_astana","fleet_te10m"],["depot_astana","fleet_vl80"],
+      ["depot_almaty","fleet_te10m"],["depot_almaty","fleet_vl80"],
+      ["depot_karaganda","fleet_3te10m"],["depot_atyrau","fleet_te10m"],
+      ["depot_shymkent","fleet_vl85"],["depot_aktobe","fleet_te10m"],
+      ["infra_khorgos","wagon_container"],["infra_aktau","wagon_container"],
+      // fleet -> wagons
+      ["fleet_te10m","wagon_open"],["fleet_te10m","wagon_hopper"],
+      ["fleet_3te10m","wagon_tank"],["fleet_3te10m","wagon_open"],
+      ["fleet_vl80","wagon_container"],["fleet_vl85","wagon_container"],
+      ["fleet_tem","wagon_open"],
+      // wagons -> customers
+      ["wagon_open","cust_erg"],["wagon_open","cust_kazminerals"],["wagon_open","cust_bogatyr"],
+      ["wagon_hopper","cust_grain"],
+      ["wagon_tank","cust_kmg"],
+      ["wagon_container","cust_arcelor"],["wagon_container","cust_kazchrome"],
+      ["wagon_container","cust_kazatomprom"],
+      // passenger
+      ["fleet_te10m","cust_passenger"],["fleet_vl80","cust_passenger"],
+      // SME pool
+      ["wagon_open","cust_sme"],["wagon_container","cust_sme"],
+      // competitors -> customers
+      ["comp_truck","cust_grain"],["comp_truck","cust_sme"],
+      ["comp_pipe","cust_kmg"],
+      ["comp_private","cust_erg"],["comp_private","cust_bogatyr"],
+      // regulators -> segments / customers
+      ["reg_miir","cust_passenger"],["reg_tariff","cust_grain"],["reg_tariff","cust_passenger"],
+      ["reg_antimon","comp_private"],
+      // interfaces -> customers (transit traffic)
+      ["intf_china","infra_khorgos"],["intf_rzd","cust_kmg"],["intf_caspian","infra_aktau"],
+    ];
+
+    // Which entities each scenario "touches" (drives its impact propagation)
+    function scenarioAffects(scen) {
+      const a = new Set();
+      const tags = (scen.id + " " + scen.name + " " + scen.desc).toLowerCase();
+
+      // Generic by segment
+      if (scen.segment === "freight" || scen.segment === "operations") {
+        a.add("wagon_open"); a.add("wagon_hopper"); a.add("wagon_container");
+      }
+      if (scen.segment === "passenger") {
+        a.add("cust_passenger"); a.add("fleet_vl80"); a.add("fleet_te10m"); a.add("reg_miir");
+      }
+
+      // Keyword-driven targeting
+      const k = (s) => tags.includes(s);
+      if (k("astana hub") || k("astana depot") || k("astana")) a.add("depot_astana");
+      if (k("almaty-1") || k("almaty hub") || k("almaty")) a.add("depot_almaty");
+      if (k("karaganda")) a.add("depot_karaganda");
+      if (k("atyrau")) a.add("depot_atyrau");
+      if (k("aktobe")) a.add("depot_aktobe");
+      if (k("khorgos") || k("dostyk") || k("middle corridor") || k("china rail")) {
+        a.add("infra_khorgos"); a.add("intf_china"); a.add("wagon_container");
+      }
+      if (k("trans-caspian") || k("caspian") || k("aktau")) { a.add("infra_aktau"); a.add("intf_caspian"); }
+      if (k("te10m") || k("2te10m") || k("diesel locomotive")) { a.add("fleet_te10m"); a.add("fleet_3te10m"); }
+      if (k("electric") || k("vl80") || k("vl85")) { a.add("fleet_vl80"); a.add("fleet_vl85"); }
+      if (k("grain") || k("harvest")) { a.add("cust_grain"); a.add("wagon_hopper"); a.add("ef_grain"); }
+      if (k("sme")) a.add("cust_sme");
+      if (k("nomad rail") || k("loyalty") || k("e-ticket") || k("passenger")) {
+        a.add("cust_passenger"); a.add("fleet_vl80"); a.add("fleet_te10m");
+      }
+      if (k("yard automation")) { a.add("depot_almaty"); a.add("fleet_tem"); }
+      if (k("track inspection")) { a.add("infra_khorgos"); a.add("infra_aktau"); }
+      if (k("scada") || k("dispatch")) { a.add("depot_astana"); a.add("depot_almaty"); a.add("depot_karaganda"); }
+      if (k("hydrogen")) { a.add("fleet_te10m"); a.add("depot_atyrau"); }
+      if (k("acquisition") || k("private wagon") || k("m&a")) { a.add("comp_private"); }
+      if (k("cybersecurity")) { a.add("depot_astana"); a.add("depot_almaty"); }
+      if (k("customs")) { a.add("intf_china"); a.add("infra_khorgos"); }
+      if (k("logistics-as-a-service") || k("freight forwarder") || k("laas")) {
+        a.add("cust_sme"); a.add("cust_grain"); a.add("comp_private");
+      }
+      if (k("green rail") || k("decarbon") || k("carbon")) { a.add("reg_miir"); a.add("cust_arcelor"); a.add("cust_kazchrome"); }
+      if (k("dynamic tariff") || k("yield management") || k("dynamic pricing")) { a.add("reg_tariff"); }
+
+      return Array.from(a);
+    }
+
+    // Render the entity graph
+    function renderEntityGraph() {
+      const svg = document.getElementById("eg-svg");
+      // Edges first
+      let edgeHTML = '';
+      const byId = Object.fromEntries(EG_ENTITIES.map(e => [e.id, e]));
+      EG_EDGES.forEach(([a, b]) => {
+        const A = byId[a], B = byId[b];
+        if (!A || !B) return;
+        edgeHTML += `<line class="eg-edge" data-a="${a}" data-b="${b}" x1="${A.x}" y1="${A.y}" x2="${B.x}" y2="${B.y}"/>`;
+      });
+      // Nodes
+      let nodeHTML = '';
+      EG_ENTITIES.forEach(e => {
+        const c = CAT_COLOR[e.cat];
+        nodeHTML += `<g data-id="${e.id}" data-cat="${e.cat}">
+          <circle class="eg-node" cx="${e.x}" cy="${e.y}" r="7" fill="${c}"/>
+          <text class="eg-label" x="${e.x + 11}" y="${e.y + 3}">${e.label}</text>
+        </g>`;
+      });
+      svg.innerHTML = edgeHTML + nodeHTML;
+      // Hover tooltips - update node-detail panel
+      svg.querySelectorAll("g[data-id]").forEach(g => {
+        g.addEventListener("mouseenter", () => updateNodeDetail(g.dataset.id));
+      });
+    }
+    function updateNodeDetail(id) {
+      const e = EG_ENTITIES.find(x => x.id === id);
+      if (!e) return;
+      const RU = I18N.cur === "ru";
+      const catLabel = { external: RU ? "Внешний фактор" : "External factor",
+                          depot: RU ? "Депо / инфра" : "Depot / infra",
+                          fleet: RU ? "Парк" : "Fleet",
+                          customer: RU ? "Клиент" : "Customer",
+                          stake: RU ? "Стейкхолдер" : "Stakeholder" }[e.cat];
+      const inEdges = EG_EDGES.filter(([a,b]) => a === id || b === id).length;
+      const affectedBy = window.__lastAffected && window.__lastAffected.includes(id);
+      const detail = document.getElementById("eg-node-detail");
+      detail.innerHTML = `<h4>${e.label}</h4>
+        <div style="font-size: 12px; color: var(--text-soft); line-height: 1.7;">
+          <div><span style="color: var(--muted);">${RU ? "Тип" : "Type"}:</span> <span style="color: ${CAT_COLOR[e.cat]};">${catLabel}</span></div>
+          <div><span style="color: var(--muted);">${RU ? "Связей" : "Edges"}:</span> ${inEdges}</div>
+          <div><span style="color: var(--muted);">${RU ? "Затрагивается текущим сценарием" : "Affected by current scenario"}:</span> <span style="color: ${affectedBy ? 'var(--danger)' : 'var(--success)'};">${affectedBy ? (RU?"да":"yes") : (RU?"нет":"no")}</span></div>
+        </div>`;
+    }
+    renderEntityGraph();
+
+    // Populate scenario dropdown
+    const egScen = document.getElementById("eg-scen");
+    KTZ_SCENARIOS.forEach((s, i) => {
+      const opt = document.createElement("option");
+      opt.value = i; opt.textContent = "#" + s.id + " · " + s.name;
+      egScen.appendChild(opt);
+    });
+    egScen.value = "1"; // default to f2
+
+    // External-factor handlers (update display values + visually highlight related nodes)
+    function efLabel(id, val) {
+      if (id === "ef-oil") return "$" + val;
+      if (id === "ef-kzt") return val;
+      if (id === "ef-sanc") return val + "%";
+      if (id === "ef-cn") return (val > 0 ? "+" : "") + val + "%";
+      if (id === "ef-w") return ["Mild", "Normal", "Harsh"][parseInt(val)];
+      if (id === "ef-grain") return (val > 0 ? "+" : "") + val + "%";
+      return val;
+    }
+    ["ef-oil","ef-kzt","ef-sanc","ef-cn","ef-w","ef-grain"].forEach(id => {
+      const el = document.getElementById(id);
+      el.addEventListener("input", e => {
+        document.getElementById(id + "-v").textContent = efLabel(id, e.target.value);
+      });
+    });
+
+    // Read current external state
+    function readExternals() {
+      return {
+        oil: parseFloat($("ef-oil").value),
+        kzt: parseFloat($("ef-kzt").value),
+        sanc: parseFloat($("ef-sanc").value),
+        cn: parseFloat($("ef-cn").value),
+        w: parseInt($("ef-w").value),
+        grain: parseFloat($("ef-grain").value),
+      };
+    }
+
+    // Compute population NPV distribution for a scenario under current externals
+    function syntheticPopulation(scenario, popSize, ext) {
+      const samples = [];
+      // External effect multipliers on revenue / cost / failure
+      // Oil price: 80 baseline. Each $10 above → +1% rev (KMG higher volumes), each below → -1.5%
+      const oilMul = 1 + ((ext.oil - 80) / 10) * 0.01;
+      // KZT/USD: 510 baseline. Weaker tenge = higher export revenue
+      const kztMul = 1 + ((ext.kzt - 510) / 50) * 0.015;
+      // Sanctions: 40 baseline. Higher = more risk to RZD interface but more Middle Corridor demand
+      const sancEffectRev = (ext.sanc - 40) / 100 * 0.04;
+      // China demand: 0 baseline
+      const cnMul = 1 + (ext.cn / 100) * 0.06;
+      // Winter severity: 0/1/2 → 1.05 / 1.0 / 0.93
+      const wMul = ext.w === 0 ? 1.05 : ext.w === 1 ? 1.0 : 0.93;
+      // Grain harvest: 0 baseline
+      const grainMul = 1 + (ext.grain / 100) * 0.08;
+
+      const compositeRevMul = oilMul * kztMul * cnMul * wMul * grainMul * (1 + sancEffectRev);
+
+      const prior = buildPrior(scenario, BASELINE_REVENUE, BASELINE_OP_COSTS);
+      // For each synthetic KTZ, run a quick MC with perturbed entity states
+      for (let p = 0; p < popSize; p++) {
+        // Synthetic perturbation per population member: each entity's state has ±15% jitter
+        const perturbedRev = prior.revImpact * compositeRevMul * (0.85 + Math.random() * 0.30);
+        const perturbedCost = prior.costImpact * (0.85 + Math.random() * 0.30);
+        const perturbedFailure = Math.min(0.65, prior.failureProb * (0.7 + Math.random() * 0.6));
+        const pertPrior = { revImpact: perturbedRev, costImpact: perturbedCost,
+                              failureProb: perturbedFailure, peers: prior.peers };
+        const mcSamples = simulate(scenario, BASELINE_REVENUE, BASELINE_OP_COSTS, pertPrior, {iterations: 80});
+        const agg = aggregate(mcSamples);
+        samples.push({ npv: agg.meanNPV, p: agg.successP });
+      }
+      return samples;
+    }
+
+    function drawPopulation(samples) {
+      const canvas = document.getElementById("eg-pop-canvas");
+      const ctx = canvas.getContext("2d");
+      const W = canvas.width, H = canvas.height;
+      const npvs = samples.map(s => s.npv / 1e6);
+      let lo = Math.min(...npvs), hi = Math.max(...npvs);
+      const pad = (hi - lo) * 0.08;
+      lo -= pad; hi += pad;
+      if (hi - lo < 50) { lo -= 25; hi += 25; }
+
+      ctx.clearRect(0, 0, W, H);
+      // axis
+      ctx.strokeStyle = "#1F2A44";
+      ctx.beginPath(); ctx.moveTo(40, H - 24); ctx.lineTo(W - 10, H - 24); ctx.stroke();
+      // zero line
+      const zeroX = 40 + (0 - lo) / (hi - lo) * (W - 50);
+      if (zeroX >= 40 && zeroX <= W - 10) {
+        ctx.strokeStyle = "#F1F5F9"; ctx.setLineDash([4, 3]);
+        ctx.beginPath(); ctx.moveTo(zeroX, 20); ctx.lineTo(zeroX, H - 24); ctx.stroke();
+        ctx.setLineDash([]);
+        ctx.fillStyle = "#94A3B8"; ctx.font = "10px JetBrains Mono, monospace";
+        ctx.fillText("0", zeroX - 4, H - 8);
+      }
+      ctx.fillStyle = "#94A3B8"; ctx.font = "10px JetBrains Mono, monospace";
+      ctx.fillText(lo.toFixed(0) + "M", 40, H - 8);
+      ctx.fillText(hi.toFixed(0) + "M", W - 50, H - 8);
+
+      // Dots: each synthetic KTZ
+      samples.forEach((s, i) => {
+        const x = 40 + (s.npv / 1e6 - lo) / (hi - lo) * (W - 50);
+        const y = 30 + Math.random() * (H - 70);
+        const color = s.p > 0.7 ? "rgba(52,211,153,0.85)" :
+                       s.p > 0.45 ? "rgba(251,191,36,0.85)" :
+                                     "rgba(248,113,113,0.85)";
+        ctx.fillStyle = color;
+        ctx.beginPath(); ctx.arc(x, y, 4, 0, Math.PI * 2); ctx.fill();
+      });
+
+      // Mean line
+      const meanNPV = samples.reduce((a,s) => a + s.npv, 0) / samples.length;
+      const meanX = 40 + (meanNPV / 1e6 - lo) / (hi - lo) * (W - 50);
+      ctx.strokeStyle = "#22D3EE"; ctx.lineWidth = 2;
+      ctx.beginPath(); ctx.moveTo(meanX, 14); ctx.lineTo(meanX, H - 24); ctx.stroke();
+      ctx.fillStyle = "#22D3EE"; ctx.font = "11px Inter, sans-serif";
+      ctx.fillText("mean", meanX + 5, 18);
+    }
+
+    document.getElementById("eg-run").addEventListener("click", () => {
+      const scen = KTZ_SCENARIOS[parseInt($("eg-scen").value, 10)];
+      const popSize = parseInt($("eg-popsize").value, 10);
+      const ext = readExternals();
+      const RU = I18N.cur === "ru";
+
+      // 1. Highlight affected entities
+      const affected = scenarioAffects(scen);
+      window.__lastAffected = affected;
+      document.querySelectorAll("#eg-svg g[data-id]").forEach(g => {
+        g.querySelector("circle").classList.toggle("affected", affected.includes(g.dataset.id));
+        const c = g.querySelector("circle");
+        c.setAttribute("fill", affected.includes(g.dataset.id) ? "#F87171" : CAT_COLOR[g.dataset.cat]);
+      });
+      document.querySelectorAll("#eg-svg line").forEach(l => {
+        const lit = affected.includes(l.dataset.a) || affected.includes(l.dataset.b);
+        l.classList.toggle("lit", lit);
+      });
+
+      // 2. Run population simulation
+      const samples = syntheticPopulation(scen, popSize, ext);
+      const mean = samples.reduce((a,s) => a + s.npv, 0) / samples.length;
+      const pPos = samples.filter(s => s.npv > 0).length / samples.length;
+      const best = Math.max(...samples.map(s => s.npv));
+      const worst = Math.min(...samples.map(s => s.npv));
+
+      document.getElementById("eg-population").style.display = "block";
+      document.getElementById("eg-pop-sub").textContent =
+        (RU ? popSize + " альтернативных KTZ · сценарий распространён через граф · " + affected.length + " сущностей затронуто"
+            : popSize + " alternate KTZ states · scenario propagated through graph · " + affected.length + " entities affected");
+      document.getElementById("eg-mean").textContent =
+        (mean >= 0 ? "$" : "-$") + Math.abs(mean / 1e6).toFixed(1) + "M";
+      document.getElementById("eg-p").textContent = (pPos * 100).toFixed(0) + "%";
+      document.getElementById("eg-best").textContent = "$" + (best / 1e6).toFixed(0) + "M";
+      document.getElementById("eg-worst").textContent =
+        (worst >= 0 ? "$" : "-$") + Math.abs(worst / 1e6).toFixed(0) + "M";
+
+      drawPopulation(samples);
+      // Update node detail in case user is hovering
+      const hov = document.querySelector("#eg-svg g[data-id]:hover");
+      if (hov) updateNodeDetail(hov.dataset.id);
+    });
+
+    // First-render impact for default scenario (so the graph isn't empty)
+    setTimeout(() => {
+      const defaultScen = KTZ_SCENARIOS[1];
+      const aff = scenarioAffects(defaultScen);
+      window.__lastAffected = aff;
+      document.querySelectorAll("#eg-svg g[data-id]").forEach(g => {
+        g.querySelector("circle").classList.toggle("affected", aff.includes(g.dataset.id));
+        const c = g.querySelector("circle");
+        if (aff.includes(g.dataset.id)) c.setAttribute("fill", "#F87171");
+      });
+      document.querySelectorAll("#eg-svg line").forEach(l => {
+        const lit = aff.includes(l.dataset.a) || aff.includes(l.dataset.b);
+        l.classList.toggle("lit", lit);
+      });
+    }, 100);
 
   </script>
 </body>
