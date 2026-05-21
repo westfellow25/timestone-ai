@@ -4968,4 +4968,124 @@ streamlit run src/timestone/interfaces/web/dashboard.py</code></pre>
       const riskScore = result.successP;
       const timeScore = Math.max(0, Math.min(1, (5 - result.medianPayback) / 5));
       const stratScore = scen && scen.scope ? Math.max(0, Math.min(1, scen.scope * 1.2)) : 0.5;
-      const w 
+      const w = MO_WEIGHTS;
+      return w.npv * npvScore + w.risk * riskScore + w.time * timeScore + w.strat * stratScore;
+    }
+    function rerankWithMO() {
+      if (!window.__lastTop3) return;
+      const all = window.__lastAllResults || window.__lastTop3;
+      const ranked = [...all].map(r => ({...r, mo_score: scoreScenario(r.agg, r.scenario)}))
+                              .sort((a,b) => b.mo_score - a.mo_score).slice(0, 3);
+      if (typeof showRecs === "function") showRecs(ranked);
+    }
+    function moHandler() {
+      const npv = parseInt(document.getElementById("mo-npv").value, 10);
+      const risk = parseInt(document.getElementById("mo-risk").value, 10);
+      const time = parseInt(document.getElementById("mo-time").value, 10);
+      const strat = parseInt(document.getElementById("mo-strat").value, 10);
+      const total = npv + risk + time + strat || 1;
+      MO_WEIGHTS.npv = npv / total;
+      MO_WEIGHTS.risk = risk / total;
+      MO_WEIGHTS.time = time / total;
+      MO_WEIGHTS.strat = strat / total;
+      document.getElementById("mo-w-npv").textContent = Math.round(MO_WEIGHTS.npv * 100);
+      document.getElementById("mo-w-risk").textContent = Math.round(MO_WEIGHTS.risk * 100);
+      document.getElementById("m = MO_WEIGHTS;
+      return w.npv * npvScore + w.risk * riskScore + w.time * timeScore + w.strat * stratScore;
+    }
+    function rerankWithMO() {
+      if (!window.__lastTop3) return;
+      const all = window.__lastAllResults || window.__lastTop3;
+      const ranked = [...all].map(r => ({...r, mo_score: scoreScenario(r.agg, r.scenario)}))
+                              .sort((a,b) => b.mo_score - a.mo_score).slice(0, 3);
+      if (typeof showRecs === "function") showRecs(ranked);
+    }
+    function moHandler() {
+      const npv = parseInt(document.getElementById("mo-npv").value, 10);
+      const risk = parseInt(document.getElementById("mo-risk").value, 10);
+      const time = parseInt(document.getElementById("mo-time").value, 10);
+      const strat = parseInt(document.getElementById("mo-strat").value, 10);
+      const total = npv + risk + time + strat || 1;
+      MO_WEIGHTS.npv = npv / total;
+      MO_WEIGHTS.risk = risk / total;
+      MO_WEIGHTS.time = time / total;
+      MO_WEIGHTS.strat = strat / total;
+      document.getElementById("mo-w-npv").textContent = Math.round(MO_WEIGHTS.npv * 100);
+      document.getElementById("mo-w-risk").textContent = Math.round(MO_WEIGHTS.risk * 100);
+      document.getElementById("mo-w-time").textContent = Math.round(MO_WEIGHTS.time * 100);
+      document.getElementById("mo-w-strat").textContent = Math.round(MO_WEIGHTS.strat * 100);
+      rerankWithMO();
+    }
+    ["mo-npv","mo-risk","mo-time","mo-strat"].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.addEventListener("input", moHandler);
+    });
+
+    // SCENARIO INTERACTION - portfolio synergy
+    function pairOverlap(a, b) {
+      const sa = new Set(a.peers || []), sb = new Set(b.peers || []);
+      let inter = 0; sa.forEach(p => { if (sb.has(p)) inter++; });
+      const uni = sa.size + sb.size - inter || 1;
+      const peerJ = inter / uni;
+      const segMatch = (a.segment === b.segment) ? 0.20 : 0;
+      const objMatch = (a.objective === b.objective) ? 0.20 : 0;
+      const implMatch = (a.impl === b.impl) ? 0.10 : 0;
+      return Math.min(1, peerJ * 0.5 + segMatch + objMatch + implMatch);
+    }
+    function computePortfolioSynergy(top3) {
+      if (!top3 || top3.length < 2) return null;
+      const npvs = top3.map(r => r.agg.meanNPV);
+      const sumNPV = npvs.reduce((a, v) => a + v, 0);
+      let penalty = 0;
+      const pairNotes = [];
+      for (let i = 0; i < top3.length; i++) {
+        for (let j = i + 1; j < top3.length; j++) {
+          const ov = pairOverlap(top3[i].scenario, top3[j].scenario);
+          const smaller = Math.min(npvs[i], npvs[j]);
+          const pen = ov * 0.18 * Math.max(0, smaller);
+          penalty += pen;
+          if (ov > 0.15) {
+            pairNotes.push({
+              a: top3[i].scenario.name.split("-")[0].trim(),
+              b: top3[j].scenario.name.split("-")[0].trim(),
+              ov: ov, pen: pen,
+            });
+          }
+        }
+      }
+      return { sumNPV: sumNPV, penalty: penalty, net: sumNPV - penalty, pairs: pairNotes };
+    }
+
+    function renderSynergy(top3) {
+      var card = document.getElementById("synergy-card");
+      if (!card) return;
+      var s = computePortfolioSynergy(top3);
+      if (!s) { card.classList.remove("shown"); return; }
+      card.classList.add("shown");
+      var fmt = function(v) { return (v >= 0 ? "$" : "-$") + Math.abs(v / 1e6).toFixed(1) + "M"; };
+      var sumEl = document.getElementById("syn-sum");
+      var penEl = document.getElementById("syn-pen");
+      var netEl = document.getElementById("syn-net");
+      if (sumEl) sumEl.textContent = fmt(s.sumNPV);
+      if (penEl) penEl.textContent = "-" + fmt(Math.abs(s.penalty)).replace("-", "");
+      if (netEl) netEl.textContent = fmt(s.net);
+      var pairsEl = document.getElementById("syn-pairs");
+      if (pairsEl) {
+        if (s.pairs.length === 0) {
+          pairsEl.innerHTML = "Top-3 initiatives are relatively independent.";
+        } else {
+          pairsEl.innerHTML = "<strong>Pairwise overlaps:</strong> " + s.pairs.map(function(p){return "<code>" + p.a + " + " + p.b + "</code> " + (p.ov*100).toFixed(0) + "%";}).join(" | ");
+        }
+      }
+    }
+    if (typeof showRecs === "function") {
+      var _origShowRecsSyn2 = showRecs;
+      showRecs = async function(recsData) {
+        await _origShowRecsSyn2(recsData);
+        renderSynergy(recsData);
+      };
+    }
+
+  </script>
+</body>
+</html>
