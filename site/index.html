@@ -4656,6 +4656,30 @@ streamlit run src/timestone/interfaces/web/dashboard.py</code></pre>
       el.innerHTML = html;
     }
 
+    function renderValidationAll() {
+      const m = computeValidationMetrics();
+      renderValidationKPIs(m);
+      renderCalibrationPlot();
+      renderCoverageBars();
+      renderValidationTable();
+      renderBrierTable(m);
+      renderValidationHonesty();
+      if (typeof renderLOOScatter === "function") renderLOOScatter();
+      if (typeof renderMckComparison === "function") renderMckComparison();
+    }
+
+    // Initial render after DOM ready
+    if (document.readyState !== "loading") {
+      renderValidationAll();
+    } else {
+      document.addEventListener("DOMContentLoaded", renderValidationAll);
+    }
+    // Re-render on language switch
+    document.querySelectorAll(".lang-toggle button").forEach(b => {
+      b.addEventListener("click", () => setTimeout(renderValidationAll, 100));
+    });
+
+
     // ============================================================
     // LOO cross-validation scatter
     // ============================================================
