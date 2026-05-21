@@ -1,0 +1,26 @@
+{
+  "_note": "Tenant store for the TimeStone REST API. API keys here are TEST KEYS for local development and demos only — production keys must be hashed and stored in Postgres + rotated.",
+  "tenants": [
+    {
+      "tenant_id": "ktz",
+      "name": "Kazakhstan Temir Zholy (KTZ)",
+      "api_keys": ["ts_pilot_ktz_2026_demo"],
+      "plan": "pilot",
+      "quota_assess_per_day": 30
+    },
+    {
+      "tenant_id": "kaspi",
+      "name": "Kaspi.kz",
+      "api_keys": ["ts_pilot_kaspi_2026_demo"],
+      "plan": "pilot",
+      "quota_assess_per_day": 30
+    },
+    {
+      "tenant_id": "internal",
+      "name": "TimeStone Internal Ops",
+      "api_keys": ["ts_internal_2026_demo"],
+      "plan": "enterprise",
+      "quota_assess_per_day": 500
+    }
+  ]
+}
