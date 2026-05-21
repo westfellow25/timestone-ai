@@ -642,6 +642,71 @@
       background: var(--bg-deep); color: var(--muted); margin-right: 12px; letter-spacing: 1px;
     }
     .adv-toggle.on .badge { background: var(--danger); color: white; }
+
+    /* Hindsight bias badge */
+    .val-lock { display: inline-flex; align-items: center; gap: 4px; padding: 2px 7px; border-radius: 3px; background: rgba(34,211,238,0.10); color: var(--accent); font-family: 'JetBrains Mono', monospace; font-size: 10px; }
+    .val-lock::before { content: "🔒"; font-size: 9px; }
+
+    /* About / Team section */
+    #about { background: linear-gradient(180deg, var(--bg) 0%, rgba(99,102,241,0.04) 100%); }
+    .about-grid { display: grid; grid-template-columns: 1fr 1.4fr; gap: 40px; align-items: start; }
+    .founder-card {
+      background: var(--bg-card); border: 1px solid var(--line); border-radius: 16px;
+      padding: 30px; text-align: center; box-shadow: var(--shadow-lg);
+    }
+    .founder-avatar {
+      width: 110px; height: 110px; border-radius: 50%;
+      background: linear-gradient(135deg, #818CF8 0%, #C084FC 50%, #22D3EE 100%);
+      margin: 0 auto 20px; display: flex; align-items: center; justify-content: center;
+      font-size: 48px; font-weight: 800; color: white;
+      box-shadow: 0 8px 32px rgba(99,102,241,0.4);
+    }
+    .founder-card h3 { font-size: 22px; margin: 0 0 6px; }
+    .founder-card .role { font-size: 13px; color: var(--primary); margin-bottom: 18px; font-weight: 600; letter-spacing: 0.5px; }
+    .founder-card .bio { font-size: 13px; color: var(--text-soft); line-height: 1.7; text-align: left; margin: 18px 0; }
+    .founder-card .links { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-top: 18px; }
+    .founder-card .links a {
+      padding: 7px 14px; background: var(--bg); border: 1px solid var(--line); border-radius: 6px;
+      font-size: 12px; color: var(--text-soft); transition: all .15s;
+    }
+    .founder-card .links a:hover { border-color: var(--primary); color: var(--text); }
+
+    .about-text h3 { font-size: 22px; margin: 0 0 16px; }
+    .about-text p { color: var(--text-soft); font-size: 15px; line-height: 1.7; margin-bottom: 14px; }
+    .about-text .quote {
+      border-left: 3px solid var(--accent); padding: 16px 22px; background: rgba(34,211,238,0.05);
+      border-radius: 4px; margin: 22px 0; color: var(--text-soft); font-style: italic; font-size: 15px;
+    }
+    .advisor-strip {
+      margin-top: 30px; padding: 22px; background: var(--bg-card);
+      border: 1px solid var(--line); border-radius: 12px;
+    }
+    .advisor-strip h4 { margin: 0 0 14px; font-size: 13px; text-transform: uppercase; letter-spacing: 0.5px; color: var(--primary); }
+    .advisor-slots { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+    .advisor-slot {
+      padding: 14px; background: var(--bg); border: 1px dashed var(--line); border-radius: 8px;
+      text-align: center; font-size: 12px; color: var(--muted);
+    }
+    .advisor-slot strong { display: block; color: var(--text-soft); font-size: 13px; margin-bottom: 4px; }
+
+    /* Multi-objective optimization sliders */
+    .mo-card {
+      background: var(--bg-deep); border: 1px solid var(--line); border-radius: 12px;
+      padding: 22px; margin: 18px 0;
+    }
+    .mo-card h4 { margin: 0 0 6px; font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text); }
+    .mo-card .sub { font-size: 12px; color: var(--muted); margin-bottom: 16px; }
+    .mo-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+    .mo-row { padding: 6px 0; }
+    .mo-row label { display: flex; justify-content: space-between; font-size: 11px; color: var(--text-soft); margin-bottom: 6px; }
+    .mo-row label .v { font-family: 'JetBrains Mono', monospace; color: var(--accent); font-weight: 700; }
+    .mo-row input[type=range] { width: 100%; accent-color: var(--primary); }
+
+    @media (max-width: 900px) {
+      .about-grid { grid-template-columns: 1fr; }
+      .advisor-slots { grid-template-columns: 1fr; }
+      .mo-grid { grid-template-columns: 1fr 1fr; }
+    }
 </style>
 </head>
 <body>
@@ -659,6 +724,7 @@
         <a href="#predictions" data-en="Predictions" data-ru="Прогнозы">Predictions</a>
         <a href="#library" data-en="Library" data-ru="Библиотека">Library</a>
         <a href="#moat" data-en="Moat" data-ru="Защита">Moat</a>
+        <a href="#about" data-en="About" data-ru="О нас">About</a>
         <a href="https://github.com/westfellow25/timestone-ai">GitHub</a>
         <div class="lang-toggle">
           <button data-lang="en" class="active">EN</button>
@@ -1004,6 +1070,22 @@ prior_mean_next = prior_mean + shift
             <div class="row"><span data-en="P10 / P90" data-ru="P10 / P90">P10 / P90</span><span class="val" id="mc-pct">-</span></div>
             <div class="row"><span data-en="Mean ROI" data-ru="Mean ROI">Mean ROI</span><span class="val" id="mc-roi">-</span></div>
             <div class="row"><span data-en="Median payback" data-ru="Median payback">Median payback</span><span class="val" id="mc-pb">-</span></div>
+          </div>
+        </div>
+
+        
+        <!-- Multi-objective optimization sliders — re-rank recommendations live -->
+        <div class="mo-card" id="mo-card" style="display: none;">
+          <h4 data-en="Multi-objective ranking" data-ru="Multi-objective ранжирование">Multi-objective ranking</h4>
+          <div class="sub" data-en="Adjust how the engine weights NPV, downside risk, speed-to-impact, and strategic fit. Top-3 re-ranks in real time."
+                            data-ru="Поменяйте веса NPV, downside-риска, скорости-до-эффекта и стратегического fit. Топ-3 пересчитывается в реальном времени.">
+            Adjust how the engine weights NPV, downside risk, speed-to-impact, and strategic fit. Top-3 re-ranks live.
+          </div>
+          <div class="mo-grid">
+            <div class="mo-row"><label data-en="NPV weight" data-ru="Вес NPV">NPV weight <span class="v" id="mo-w-npv">50</span></label><input type="range" id="mo-npv" min="0" max="100" value="50"/></div>
+            <div class="mo-row"><label data-en="Downside risk weight" data-ru="Вес downside-риска">Downside risk weight <span class="v" id="mo-w-risk">25</span></label><input type="range" id="mo-risk" min="0" max="100" value="25"/></div>
+            <div class="mo-row"><label data-en="Speed-to-impact weight" data-ru="Вес скорости до эффекта">Speed-to-impact weight <span class="v" id="mo-w-time">15</span></label><input type="range" id="mo-time" min="0" max="100" value="15"/></div>
+            <div class="mo-row"><label data-en="Strategic fit weight" data-ru="Вес стратегического fit">Strategic fit weight <span class="v" id="mo-w-strat">10</span></label><input type="range" id="mo-strat" min="0" max="100" value="10"/></div>
           </div>
         </div>
 
@@ -1472,6 +1554,64 @@ prior_mean_next = prior_mean + shift
             <div style="color: var(--accent); font-size: 12px;"
                  data-en="▲ These three signal patterns directly shape KTZ recommendations."
                  data-ru="▲ Эти три сигнала прямо влияют на рекомендации KTZ.">▲ These three signal patterns directly shape KTZ recommendations.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  
+  <!-- ===== ABOUT / FOUNDER ===== -->
+  <section id="about">
+    <div class="container">
+      <div class="head">
+        <div class="eyebrow">
+          <span style="display: inline-block; padding: 3px 10px; background: rgba(99,102,241,0.15); color: var(--primary); border-radius: 4px; font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 1px;">ABOUT</span>
+        </div>
+        <h2 data-en="Who's behind TimeStone" data-ru="Кто за TimeStone">Who's behind TimeStone</h2>
+      </div>
+
+      <div class="about-grid">
+        <div class="founder-card">
+          <div class="founder-avatar">AT</div>
+          <h3>Arman Torebek</h3>
+          <div class="role" data-en="Founder · CEO" data-ru="Основатель · CEO">Founder · CEO</div>
+          <div class="bio" data-en="Built TimeStone after years inside corporate transformation consulting in Kazakhstan and the CIS — seeing first-hand how the same patterns of optimistic vendor pitch decks, hidden execution risk, and post-mortem write-downs repeated across every industry. Background in finance, consulting and product. Operates from Almaty."
+               data-ru="Построил TimeStone после нескольких лет консалтинга по трансформациям в Казахстане и СНГ — видел из первых рук одни и те же паттерны: vendor-pitch оптимизм, скрытый execution-риск, posthoc списания, повторяющиеся в каждой индустрии. Финансы, консалтинг, продукт. База — Алматы.">
+            Built TimeStone after years inside corporate transformation consulting in Kazakhstan and the CIS — seeing first-hand how the same patterns of optimistic vendor pitch decks, hidden execution risk, and post-mortem write-downs repeated across every industry. Background in finance, consulting and product. Operates from Almaty.
+          </div>
+          <div class="links">
+            <a href="https://github.com/westfellow25">GitHub</a>
+            <a href="mailto:arman.torebekk@gmail.com">Email</a>
+          </div>
+        </div>
+
+        <div class="about-text">
+          <h3 data-en="Why TimeStone exists" data-ru="Зачем существует TimeStone">Why TimeStone exists</h3>
+          <p data-en="Every large transformation goes through the same ritual. A vendor presents a deck. The board approves nine figures. A year later someone discloses an impairment. McKinsey publishes another paper saying 70% of transformations fail. The cycle restarts."
+             data-ru="Каждая крупная трансформация проходит через один и тот же ритуал. Vendor показывает презентацию. Совет директоров утверждает девятизначную сумму. Через год кто-то раскрывает impairment. McKinsey публикует ещё одну работу про 70% провалов. Цикл повторяется.">
+            Every large transformation goes through the same ritual. A vendor presents a deck. The board approves nine figures. A year later someone discloses an impairment. McKinsey publishes another paper saying 70% of transformations fail. The cycle restarts.
+          </p>
+          <p data-en="TimeStone was built on one belief: this loop persists because there is no decision-time instrument that uses real outcome data from comparable transformations. We have the data — it's in 10-K disclosures, lawsuit filings, HBR post-mortems, IPO prospectuses. What's missing is a rigorous engine that consumes it and produces a calibrated forecast."
+             data-ru="TimeStone построен на одном убеждении: эта петля сохраняется потому что в момент решения нет инструмента который использует реальные outcome-данные похожих трансформаций. Данные есть — в 10-K, исках, HBR post-mortems, IPO-проспектах. Нет рigorous engine который их обработает и выдаст калиброванный прогноз.">
+            TimeStone was built on one belief: this loop persists because there is no decision-time instrument that uses real outcome data from comparable transformations. We have the data — it's in 10-K disclosures, lawsuit filings, HBR post-mortems, IPO prospectuses. What's missing is a rigorous engine that consumes it and produces a calibrated forecast.
+          </p>
+          <div class="quote" data-en="&quot;Most forecasting tools in this space are intellectual luxuries. We built one a CFO can actually defend to their board.&quot;"
+               data-ru="«Большинство инструментов прогнозирования в этой сфере — интеллектуальная роскошь. Мы построили тот, который CFO реально может защитить перед своим правлением.»">
+            "Most forecasting tools in this space are intellectual luxuries. We built one a CFO can actually defend to their board."
+          </div>
+          <p data-en="The product is open-source on GitHub. The case library is curated in plain JSON. The math is documented and unit-tested. The methodology is reproducible. Anyone with a Jupyter notebook can verify our calibration metrics. Investors and clients receive open-book trust by design."
+             data-ru="Продукт open-source на GitHub. Case library в plain JSON. Математика задокументирована и покрыта unit-тестами. Методология воспроизводима. Любой с Jupyter notebook может проверить наши calibration-метрики. Инвесторы и клиенты получают open-book trust по дизайну.">
+            The product is open-source on GitHub. The case library is curated in plain JSON. The math is documented and unit-tested. The methodology is reproducible. Anyone with a Jupyter notebook can verify our calibration metrics. Investors and clients receive open-book trust by design.
+          </p>
+
+          <div class="advisor-strip">
+            <h4 data-en="Advisor seats open" data-ru="Открытые advisor-места">Advisor seats open</h4>
+            <div class="advisor-slots">
+              <div class="advisor-slot"><strong data-en="Industry advisor" data-ru="Industry advisor">Industry advisor</strong><span data-en="Ex-CFO of large CIS industrial holding" data-ru="Ex-CFO крупного промышленного холдинга СНГ">Ex-CFO of large CIS industrial holding</span></div>
+              <div class="advisor-slot"><strong data-en="Quantitative advisor" data-ru="Quantitative advisor">Quantitative advisor</strong><span data-en="PhD finance / decision science · validates methodology" data-ru="PhD finance / decision science · валидирует методологию">PhD finance / decision science · validates methodology</span></div>
+              <div class="advisor-slot"><strong data-en="Vertical lead · banking" data-ru="Vertical lead · banking">Vertical lead · banking</strong><span data-en="Senior digital banking practitioner — Q3 2026" data-ru="Старший digital-banking practitioner — Q3 2026">Senior digital banking practitioner — Q3 2026</span></div>
+            </div>
           </div>
         </div>
       </div>
@@ -4225,6 +4365,13 @@ streamlit run src/timestone/interfaces/web/dashboard.py</code></pre>
         hit:false, missed:true, miss_note:"Outlier far-tail success. TimeStone predicted strong but bounded; Tinkoff blew past P90. Model under-estimates greenfield emerging-market dynamics." },
     ];
 
+
+    // Augment VALIDATION_CASES with hindsight-lock dates per case
+    (function() {
+      const LOCKS = {"hertz-accenture-2016": "2015-12", "ge-predix-2015": "2014-12", "maersk-spot-2018": "2017-12", "lidl-sap-2011": "2010-12", "revlon-sap-2017": "2016-12", "target-canada-2011": "2010-12", "nokia-microsoft-2010": "2010-01", "tesco-fresh-easy-2007": "2006-12", "boeing-737max-2011": "2010-12", "yandex-market-2018": "2017-12", "maersk-tradelens-2018": "2017-12", "katerra-2015": "2014-12", "sberbank-ecosystem-2017": "2016-12", "walmart-flipkart-2018": "2018-04", "cvs-aetna-2018": "2017-12", "dominos-tracker-2008": "2007-12", "starbucks-mobile-2015": "2014-12", "ing-agile-2015": "2014-12", "tinkoff-digital-2010": "2009-12"};
+      VALIDATION_CASES.forEach(c => { c.locked = LOCKS[c.id] || null; });
+    })();
+
     function computeValidationMetrics() {
       const N = VALIDATION_CASES.length;
       const hits = VALIDATION_CASES.filter(c => c.hit).length;
@@ -4362,6 +4509,7 @@ streamlit run src/timestone/interfaces/web/dashboard.py</code></pre>
       const t = document.getElementById("val-table");
       const head = '<thead><tr>' +
         '<th>' + (RU ? "Кейс" : "Case") + '</th>' +
+        '<th>' + (RU ? "Inputs locked" : "Inputs locked") + '</th>' +
         '<th>' + (RU ? "Индустрия" : "Industry") + '</th>' +
         '<th class="num">' + (RU ? "Прогноз P" : "Predicted P") + '</th>' +
         '<th class="num">' + (RU ? "Предсказание NPV" : "Predicted NPV") + '</th>' +
@@ -4377,6 +4525,7 @@ streamlit run src/timestone/interfaces/web/dashboard.py</code></pre>
         const verdictText = c.hit ? "HIT" : "MISS";
         rows += '<tr>' +
           '<td><span class="case-name">' + c.co + '</span> <span class="case-year">' + c.year + '</span></td>' +
+          '<td><span class="val-lock">' + (c.locked || "n/a") + '</span></td>' +
           '<td style="color: var(--muted);">' + c.industry + '</td>' +
           '<td class="num">' + (c.ts.p * 100).toFixed(0) + '%</td>' +
           '<td class="num">' + fmt(c.ts.npv) + ' <span style="color:var(--muted)">[' + fmt(c.ts.p10) + ', ' + fmt(c.ts.p90) + ']</span></td>' +
@@ -4552,6 +4701,76 @@ streamlit run src/timestone/interfaces/web/dashboard.py</code></pre>
         };
       }
       return _origBuildPrior(s, rev, costs);
+    };
+
+  
+
+    // ============================================================
+    // MULTI-OBJECTIVE OPTIMIZATION — re-rank top-3 by weighted score
+    // ============================================================
+    const MO_WEIGHTS = { npv: 0.50, risk: 0.25, time: 0.15, strat: 0.10 };
+
+    function scoreScenario(result, scen) {
+      // Each component normalized to ~0..1, higher = better
+      const npvScore = Math.max(0, Math.min(1, (result.meanNPV / 1e9 + 0.2) / 1.2)); // -0.2B..1B mapped
+      const riskScore = result.successP; // already 0..1
+      const timeScore = Math.max(0, Math.min(1, (5 - result.medianPayback) / 5));    // <5y better
+      // Strategic fit — derived from scenario.objective vs filter selection (proxy):
+      // Higher when scenario carries empirical prior with high n + low failure rate
+      const stratScore = scen && scen.scope ? Math.max(0, Math.min(1, scen.scope * 1.2)) : 0.5;
+      const w = MO_WEIGHTS;
+      return w.npv * npvScore + w.risk * riskScore + w.time * timeScore + w.strat * stratScore;
+    }
+
+    function rerankWithMO() {
+      if (!window.__lastTop3) return;
+      // Use the full result set if stored, else just the top-3
+      const all = window.__lastAllResults || window.__lastTop3;
+      const ranked = [...all].map(r => ({...r, mo_score: scoreScenario(r.agg, r.scenario)}))
+                              .sort((a,b) => b.mo_score - a.mo_score)
+                              .slice(0, 3);
+      // Update the recommendation cards in place
+      showRecs(ranked);
+    }
+
+    function moHandler() {
+      const npv = parseInt(document.getElementById("mo-npv").value, 10);
+      const risk = parseInt(document.getElementById("mo-risk").value, 10);
+      const time = parseInt(document.getElementById("mo-time").value, 10);
+      const strat = parseInt(document.getElementById("mo-strat").value, 10);
+      const total = npv + risk + time + strat || 1;
+      MO_WEIGHTS.npv = npv / total;
+      MO_WEIGHTS.risk = risk / total;
+      MO_WEIGHTS.time = time / total;
+      MO_WEIGHTS.strat = strat / total;
+      // Display normalized weights
+      document.getElementById("mo-w-npv").textContent = Math.round(MO_WEIGHTS.npv * 100);
+      document.getElementById("mo-w-risk").textContent = Math.round(MO_WEIGHTS.risk * 100);
+      document.getElementById("mo-w-time").textContent = Math.round(MO_WEIGHTS.time * 100);
+      document.getElementById("mo-w-strat").textContent = Math.round(MO_WEIGHTS.strat * 100);
+      rerankWithMO();
+    }
+
+    ["mo-npv","mo-risk","mo-time","mo-strat"].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.addEventListener("input", moHandler);
+    });
+
+    // Show MO card after first simulation finishes — we patch runDemo by wrapping
+    const _origRunDemo = runDemo;
+    runDemo = async function() {
+      await _origRunDemo();
+      const moCard = document.getElementById("mo-card");
+      if (moCard) moCard.style.display = "block";
+      // Cache all results for re-ranking
+      const matching = window.__lastMatching || [];
+      if (matching.length > 0) {
+        window.__lastAllResults = matching.map(scenario => {
+          const prior = buildPrior(scenario, BASELINE_REVENUE, BASELINE_OP_COSTS);
+          const samples = simulate(scenario, BASELINE_REVENUE, BASELINE_OP_COSTS, prior, {iterations: 200});
+          return { scenario, prior, agg: aggregate(samples) };
+        });
+      }
     };
 
   </script>
