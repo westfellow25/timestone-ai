@@ -4990,7 +4990,22 @@ streamlit run src/timestone/interfaces/web/dashboard.py</code></pre>
       MO_WEIGHTS.strat = strat / total;
       document.getElementById("mo-w-npv").textContent = Math.round(MO_WEIGHTS.npv * 100);
       document.getElementById("mo-w-risk").textContent = Math.round(MO_WEIGHTS.risk * 100);
-      document.getElementById("m = MO_WEIGHTS;
+      document.getElementById("mo-w-time").textContent = Math.round(MO_WEIGHTS.time * 100);
+      document.getElementById("mo-w-strat").textContent = Math.round(MO_WEIGHTS.strat * 100);
+      rerankWithMO();
+    }
+    ["mo-npv","mo-risk","mo-time","mo-strat"].forEach(function(id) {
+      var el = document.getElementById(id);
+      if (el) el.addEventListener("input", moHandler);
+    });
+
+    // Scoring helper used by rerankWithMO above
+    function scoreScenario(result, scen) {
+      var npvScore = Math.max(0, Math.min(1, (result.meanNPV / 1e9 + 0.2) / 1.2));
+      var riskScore = result.successP;
+      var timeScore = Math.max(0, Math.min(1, (5 - result.medianPayback) / 5));
+      var stratScore = scen && scen.scope ? Math.max(0, Math.min(1, scen.scope * 1.2)) : 0.5;
+      var w = MO_WEIGHTS;
       return w.npv * npvScore + w.risk * riskScore + w.time * timeScore + w.strat * stratScore;
     }
     function rerankWithMO() {
