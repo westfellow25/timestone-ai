@@ -2875,6 +2875,12 @@ streamlit run src/timestone/interfaces/web/dashboard.py</code></pre>
       ["intf_china","infra_khorgos"],["intf_rzd","cust_kmg"],["intf_caspian","infra_aktau"],
     ];
 
+    // FORWARD-DECLARATION: ACTIVE_CO must be initialised before any of the
+    // entity-graph / time-series / backtest renderers run on page load.
+    // The COMPANIES registry and the switchCompany() function are defined
+    // further down — they just re-assign ACTIVE_CO, no new `let` needed.
+    var ACTIVE_CO = "ktz";
+
     // Which entities each scenario "touches" (delegates to vertical-specific mapper)
     function scenarioAffects(scen) {
       if (typeof ACTIVE_CO !== "undefined" && ACTIVE_CO === "kaspi") {
@@ -3530,7 +3536,7 @@ streamlit run src/timestone/interfaces/web/dashboard.py</code></pre>
         avatar: "₸", lib_count: 14,
       },
     };
-    let ACTIVE_CO = "ktz";
+    // (ACTIVE_CO is forward-declared earlier in this script — see line ~2882)
 
     function switchCompany(coId) {
       if (!COMPANIES[coId]) return;
@@ -4957,15 +4963,4 @@ streamlit run src/timestone/interfaces/web/dashboard.py</code></pre>
       MO_WEIGHTS.strat = strat / total;
       document.getElementById("mo-w-npv").textContent = Math.round(MO_WEIGHTS.npv * 100);
       document.getElementById("mo-w-risk").textContent = Math.round(MO_WEIGHTS.risk * 100);
-      document.getElementById("mo-w-time").textContent = Math.round(MO_WEIGHTS.time * 100);
-      document.getElementById("mo-w-strat").textContent = Math.round(MO_WEIGHTS.strat * 100);
-      rerankWithMO();
-    }
-    ["mo-npv","mo-risk","mo-time","mo-strat"].forEach(id => {
-      const el = document.getElementById(id);
-      if (el) el.addEventListener("input", moHandler);
-    });
-
-  </script>
-</body>
-</html>
+      document.getElementById("m
