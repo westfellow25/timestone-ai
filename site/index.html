@@ -65,6 +65,25 @@
     .lang-toggle { margin-left: 14px; display: inline-flex; border: 1px solid var(--line); border-radius: 6px; overflow: hidden; }
     .lang-toggle button { background: transparent; border: none; color: var(--muted); padding: 6px 12px; font-size: 12px; font-weight: 600; cursor: pointer; font-family: inherit; transition: all .15s; }
     .lang-toggle button.active { background: var(--primary-strong); color: white; }
+    /* Compact single-button language flip — always visible even when nav is tight */
+    .lang-flip {
+      margin-left: 10px;
+      background: var(--primary-strong);
+      color: white;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      padding: 6px 14px;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: inherit;
+      letter-spacing: 0.3px;
+      transition: all .15s;
+      white-space: nowrap;
+    }
+    .lang-flip:hover { background: var(--primary); }
+    /* Hide the original two-button toggle, keep the new single-button flip */
+    .lang-toggle { display: none !important; }
 
     .hero { padding: 90px 0 70px; position: relative; }
     .hero-eyebrow {
@@ -771,9 +790,10 @@
         <a href="#about" data-en="About" data-ru="О нас">About</a>
         <a href="https://github.com/westfellow25/timestone-ai">GitHub</a>
         <div class="lang-toggle">
-          <button data-lang="en" class="active">EN</button>
-          <button data-lang="ru">RU</button>
+          <button data-lang="en" class="active" id="lang-en">EN</button>
+          <button data-lang="ru" id="lang-ru">RU</button>
         </div>
+        <button id="lang-flip" class="lang-flip" title="Switch language" aria-label="Switch language">EN / RU</button>
       </div>
     </div>
   </nav>
@@ -2066,12 +2086,19 @@ streamlit run src/timestone/interfaces/web/dashboard.py</code></pre>
         document.querySelectorAll(".lang-toggle button").forEach(b => {
           b.classList.toggle("active", b.dataset.lang === this.cur);
         });
+        // Single-button flip: label shows the OTHER language (the one you'll
+        // switch to on click).
+        const flip = document.getElementById("lang-flip");
+        if (flip) flip.textContent = this.cur === "en" ? "RU" : "EN";
       },
       set(lang) { this.cur = lang; localStorage.setItem("ts-lang", lang); this.apply(); },
+      flip() { this.set(this.cur === "en" ? "ru" : "en"); },
     };
     document.querySelectorAll(".lang-toggle button").forEach(b => {
       b.addEventListener("click", () => I18N.set(b.dataset.lang));
     });
+    const _langFlipBtn = document.getElementById("lang-flip");
+    if (_langFlipBtn) _langFlipBtn.addEventListener("click", () => I18N.flip());
     I18N.apply();
 
     // ===================================================================
@@ -4941,26 +4968,4 @@ streamlit run src/timestone/interfaces/web/dashboard.py</code></pre>
       const riskScore = result.successP;
       const timeScore = Math.max(0, Math.min(1, (5 - result.medianPayback) / 5));
       const stratScore = scen && scen.scope ? Math.max(0, Math.min(1, scen.scope * 1.2)) : 0.5;
-      const w = MO_WEIGHTS;
-      return w.npv * npvScore + w.risk * riskScore + w.time * timeScore + w.strat * stratScore;
-    }
-    function rerankWithMO() {
-      if (!window.__lastTop3) return;
-      const all = window.__lastAllResults || window.__lastTop3;
-      const ranked = [...all].map(r => ({...r, mo_score: scoreScenario(r.agg, r.scenario)}))
-                              .sort((a,b) => b.mo_score - a.mo_score).slice(0, 3);
-      if (typeof showRecs === "function") showRecs(ranked);
-    }
-    function moHandler() {
-      const npv = parseInt(document.getElementById("mo-npv").value, 10);
-      const risk = parseInt(document.getElementById("mo-risk").value, 10);
-      const time = parseInt(document.getElementById("mo-time").value, 10);
-      const strat = parseInt(document.getElementById("mo-strat").value, 10);
-      const total = npv + risk + time + strat || 1;
-      MO_WEIGHTS.npv = npv / total;
-      MO_WEIGHTS.risk = risk / total;
-      MO_WEIGHTS.time = time / total;
-      MO_WEIGHTS.strat = strat / total;
-      document.getElementById("mo-w-npv").textContent = Math.round(MO_WEIGHTS.npv * 100);
-      document.getElementById("mo-w-risk").textContent = Math.round(MO_WEIGHTS.risk * 100);
-      document.getElementById("m
+      const w 
