@@ -986,22 +986,22 @@ prior_mean_next = prior_mean + shift
   <section id="demo">
     <div class="container">
       <div class="head">
-        <div class="eyebrow" data-en="The actual decision tool" data-ru="Реальный инструмент принятия решений">The actual decision tool</div>
+        <div class="eyebrow" data-en="The actual decision tool · 2 verticals live" data-ru="Реальный инструмент принятия решений · 2 вертикали в работе">The actual decision tool · 2 verticals live</div>
         <h2 data-en="Live demo" data-ru="Живое демо">Live demo</h2>
-        <p class="lead" data-en="Filter the universe of railway transformation initiatives by your real constraints, run the engine, drill into top scenarios, stress-test with what-if sliders, export the executive PDF. This is what the CEO of a national rail holding gets in 60 seconds."
-           data-ru="Отфильтруйте воронку железнодорожных инициатив под реальные ограничения, запустите движок, посмотрите топ-сценарии, проверьте под what-if, выгрузите PDF. Это то что CEO национального rail-холдинга получает за 60 секунд.">
-          Filter the universe of railway initiatives by your real constraints, run the engine, drill into top scenarios, stress-test with what-if, export PDF. 60 seconds for a CEO.
+        <p class="lead" data-en="Switch between Rail (KTZ) and Banking (Kaspi) verticals — same engine, different peer libraries. Filter initiatives by your real constraints, run Monte Carlo, drill into top scenarios, stress-test with what-if sliders, export PDF. 60 seconds for a CEO."
+           data-ru="Переключайтесь между Rail (КТЖ) и Banking (Kaspi) вертикалями — один движок, разные peer-библиотеки. Фильтруйте инициативы под реальные ограничения, запустите Monte Carlo, посмотрите топ-сценарии, проверьте what-if, выгрузите PDF. 60 секунд для CEO.">
+          Switch between Rail (KTZ) and Banking (Kaspi) verticals — same engine, different peer libraries. 60 seconds for a CEO.
         </p>
       </div>
 
       <div class="demo-card">
-        <!-- Company pick: KTZ active, others locked as 'coming soon' -->
+        <!-- Company pick: KTZ (rail) + Kaspi (banking) active; 3 more locked as 'coming soon' -->
         <div class="company-pick">
-          <button class="active" data-co="ktz">Kazakhstan Temir Zholy (KTZ)</button>
-          <button class="locked" data-co="rzd" disabled>RZD (Russian Railways)</button>
-          <button class="locked" data-co="ir" disabled>Indian Railways</button>
-          <button class="locked" data-co="db" disabled>DB Cargo</button>
-          <button class="locked" data-co="cz" disabled>China Railway</button>
+          <button class="active" data-co="ktz" data-en="KTZ · Rail" data-ru="КТЖ · Rail">KTZ · Rail</button>
+          <button data-co="kaspi" data-en="Kaspi · Banking" data-ru="Kaspi · Банкинг">Kaspi · Banking</button>
+          <button class="locked" data-co="kmg" disabled data-en="KazMunayGas · Oil&Gas" data-ru="КазМунайГаз · Oil&Gas">KazMunayGas · Oil&amp;Gas</button>
+          <button class="locked" data-co="kegoc" disabled data-en="KEGOC · Utilities" data-ru="KEGOC · Энергетика">KEGOC · Utilities</button>
+          <button class="locked" data-co="x5" disabled data-en="X5 · Retail" data-ru="X5 · Retail">X5 · Retail</button>
         </div>
 
         <!-- Twin context bar -->
@@ -1096,7 +1096,7 @@ prior_mean_next = prior_mean + shift
           <div>
             <span data-en="Scenarios matching your filters:" data-ru="Сценариев под фильтры:">Scenarios matching your filters:</span>
             <span class="matches" id="match-count">50</span>
-            <small data-en="of 50 in the rail library" data-ru="из 50 в rail-библиотеке">of 50 in the rail library</small>
+            <small id="match-lib-label" data-en="of 50 in the active library" data-ru="из 50 в активной библиотеке">of 50 in the active library</small>
           </div>
           <button class="btn btn-primary" id="run-demo">
             <span data-en="Run simulation" data-ru="Запустить симуляцию">Run simulation</span>
