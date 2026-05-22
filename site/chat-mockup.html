@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TimeStone AI — CFO Assistant · v1.0 preview</title>
+<style>
+  :root {
+    --bg: #060912;
+    --bg-side: #0B1024;
+    --bg-card: #151B33;
+    --bg-input: #1E2547;
+    --line: #2A3454;
+    --text: #F8FAFC;
+    --text-soft: #C7D2FE;
+    --muted: #94A3B8;
+    --primary: #6366F1;
+    --primary-strong: #4F46E5;
+    --accent: #22D3EE;
+    --success: #34D399;
+    --warn: #FBBF24;
+    --danger: #F87171;
+    --grad: linear-gradient(135deg, #818CF8 0%, #22D3EE 100%);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; background: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif; overflow: hidden; }
+
+  .app { display: grid; grid-template-columns: 260px 1fr; height: 100vh; }
+
+  /* ===== Sidebar ===== */
+  .side { background: var(--bg-side); border-right: 1px solid var(--line); display: flex; flex-direction: column; }
+  .side-head { padding: 16px; display: flex; align-items: center; gap: 10px; border-bottom: 1px solid var(--line); }
+  .side-logo { width: 28px; height: 28px; border-radius: 8px; background: var(--grad); display: flex; align-items: center; justify-content: center; color: white; font-weight: 800; font-size: 14px; }
+  .side-title { font-weight: 700; font-size: 14px; }
+  .side-sub { font-size: 11px; color: var(--muted); font-family: 'JetBrains Mono', Consolas, monospace; }
+  .side-new { margin: 12px; padding: 10px 14px; border: 1px solid var(--line); border-radius: 10px; color: var(--text); background: transparent; cursor: pointer; font-size: 13px; display: flex; align-items: center; gap: 8px; transition: all .2s; }
+  .side-new:hover { background: var(--bg-card); border-color: var(--primary); }
+  .side-new .plus { width: 18px; height: 18px; border-radius: 50%; background: var(--primary); display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 14px; }
+  .side-section { padding: 6px 16px 4px; font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; margin-top: 8px; font-family: 'JetBrains Mono', Consolas, monospace; }
+  .side-chat-list { flex: 1; overflow-y: auto; padding: 0 8px; }
+  .side-chat { padding: 8px 12px; border-radius: 8px; cursor: pointer; font-size: 13px; color: var(--text-soft); margin: 2px 0; display: flex; align-items: center; gap: 8px; transition: background .15s; }
+  .side-chat:hover { background: var(--bg-card); }
+  .side-chat.active { background: rgba(99, 102, 241, 0.15); color: var(--text); }
+  .side-chat .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--muted); flex-shrink: 0; }
+  .side-chat.active .dot { background: var(--accent); }
+  .side-foot { padding: 12px 16px; border-top: 1px solid var(--line); font-size: 11px; color: var(--muted); }
+  .side-foot a { color: var(--accent); text-decoration: none; }
+
+  /* ===== Main chat ===== */
+  .main { display: flex; flex-direction: column; height: 100vh; }
+  .main-head { padding: 14px 24px; border-bottom: 1px solid var(--line); display: flex; align-items: center; justify-content: space-between; }
+  .main-title { font-weight: 700; font-size: 16px; display: flex; align-items: center; gap: 10px; }
+  .badge { font-size: 10px; padding: 3px 8px; background: rgba(34, 211, 238, 0.15); color: var(--accent); border-radius: 4px; font-family: 'JetBrains Mono', Consolas, monospace; letter-spacing: 1px; }
+  .main-back { font-size: 12px; color: var(--muted); text-decoration: none; }
+  .main-back:hover { color: var(--accent); }
+
+  /* ===== Messages ===== */
+  .msgs { flex: 1; overflow-y: auto; padding: 32px 0; }
+  .msgs-inner { max-width: 860px; margin: 0 auto; padding: 0 24px; }
+  .msg { display: flex; gap: 16px; margin-bottom: 28px; opacity: 0; transform: translateY(8px); transition: all .4s; }
+  .msg.shown { opacity: 1; transform: translateY(0); }
+  .msg-avatar { width: 32px; height: 32px; border-radius: 8px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 13px; }
+  .msg-user .msg-avatar { background: #2A3454; color: var(--text-soft); }
+  .msg-bot .msg-avatar { background: var(--grad); color: white; }
+  .msg-body { flex: 1; min-width: 0; }
+  .msg-name { font-weight: 700; font-size: 13px; margin-bottom: 6px; color: var(--text); }
+  .msg-bot .msg-name { color: var(--accent); }
+  .msg-text { font-size: 15px; line-height: 1.65; color: var(--text-soft); white-space: pre-wrap; word-wrap: break-word; }
+  .msg-text strong { color: var(--text); font-weight: 700; }
+  .msg-text em { color: var(--accent); font-style: normal; }
+  .msg-text code { background: var(--bg-card); padding: 2px 7px; border-radius: 4px; font-family: 'JetBrains Mono', Consolas, monospace; font-size: 13px; color: var(--accent); }
+
+  /* Inline result cards rendered inside assistant messages */
+  .res-card { background: var(--bg-card); border: 1px solid var(--line); border-radius: 12px; padding: 18px 20px; margin-top: 14px; }
+  .res-card-h { font-weight: 700; font-size: 14px; display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+  .res-card-h .num { width: 26px; height: 26px; background: var(--primary); color: white; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 12px; }
+  .res-card-h .verdict { margin-left: auto; font-size: 10px; padding: 4px 10px; border-radius: 4px; letter-spacing: 0.7px; font-weight: 700; }
+  .res-card-h .verdict.strong { background: rgba(52, 211, 153, 0.15); color: var(--success); }
+  .res-card-h .verdict.caution { background: rgba(251, 191, 36, 0.15); color: var(--warn); }
+  .res-metrics { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; padding: 12px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); margin: 8px 0 10px; }
+  .res-metric .l { font-size: 9px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; font-family: 'JetBrains Mono', Consolas, monospace; }
+  .res-metric .v { font-size: 16px; font-weight: 700; margin-top: 3px; }
+  .res-peers { font-size: 11px; color: var(--muted); font-family: 'JetBrains Mono', Consolas, monospace; }
+  .res-peers code { background: rgba(99, 102, 241, 0.15); color: var(--accent); margin-right: 4px; }
+
+  /* Peer-case mini cards */
+  .peer-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 12px; }
+  .peer-card { background: var(--bg-card); border: 1px solid var(--line); border-radius: 8px; padding: 12px 14px; }
+  .peer-card .ph { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; }
+  .peer-card .pname { font-weight: 700; font-size: 13px; }
+  .peer-card .pstatus { font-size: 9px; padding: 2px 7px; border-radius: 3px; letter-spacing: 0.5px; font-weight: 700; }
+  .peer-card .pstatus.failed { background: rgba(248, 113, 113, 0.15); color: var(--danger); }
+  .peer-card .pstatus.success { background: rgba(52, 211, 153, 0.15); color: var(--success); }
+  .peer-card .pdesc { font-size: 11px; color: var(--muted); line-height: 1.5; }
+
+  /* Update summary inline */
+  .update-box { background: rgba(99, 102, 241, 0.08); border-left: 3px solid var(--primary); padding: 12px 16px; margin-top: 14px; border-radius: 4px; font-size: 13px; color: var(--text-soft); }
+  .update-box .arrow { color: var(--accent); font-weight: 700; font-family: 'JetBrains Mono', Consolas, monospace; }
+  .update-box strong { color: var(--text); }
+
+  /* PDF block */
+  .pdf-block { display: flex; align-items: center; gap: 14px; padding: 14px 18px; background: var(--bg-card); border: 1px solid var(--accent); border-radius: 10px; margin-top: 14px; cursor: pointer; transition: all .2s; }
+  .pdf-block:hover { border-color: var(--primary); transform: translateY(-1px); }
+  .pdf-icon { width: 40px; height: 48px; background: rgba(34, 211, 238, 0.1); border-radius: 6px; display: flex; align-items: center; justify-content: center; color: var(--accent); font-weight: 800; font-size: 11px; font-family: 'JetBrains Mono', Consolas, monospace; flex-shrink: 0; }
+  .pdf-info .pn { font-weight: 700; font-size: 14px; color: var(--text); }
+  .pdf-info .ps { font-size: 12px; color: var(--muted); margin-top: 2px; }
+
+  /* Thinking indicator */
+  .thinking { display: flex; align-items: center; gap: 10px; padding: 8px 0; color: var(--muted); font-size: 13px; font-style: italic; }
+  .thinking .dots { display: flex; gap: 4px; }
+  .thinking .dots span { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); animation: bounce 1.4s infinite ease-in-out both; }
+  .thinking .dots span:nth-child(1) { animation-delay: -0.32s; }
+  .thinking .dots span:nth-child(2) { animation-delay: -0.16s; }
+  @keyframes bounce { 0%, 80%, 100% { transform: scale(0); } 40% { transform: scale(1); } }
+
+  /* ===== Input area ===== */
+  .input-wrap { padding: 16px 24px 24px; }
+  .input-wrap-inner { max-width: 860px; margin: 0 auto; }
+  .input-box { display: flex; align-items: flex-end; gap: 10px; padding: 14px 18px; background: var(--bg-input); border: 1px solid var(--line); border-radius: 16px; transition: border-color .2s; }
+  .input-box:focus-within { border-color: var(--primary); }
+  .input-box textarea { flex: 1; background: transparent; border: none; outline: none; color: var(--text); font-family: inherit; font-size: 15px; resize: none; max-height: 200px; line-height: 1.5; }
+  .input-box textarea::placeholder { color: var(--muted); }
+  .input-send { width: 36px; height: 36px; border-radius: 10px; background: var(--primary); border: none; color: white; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 18px; transition: all .2s; flex-shrink: 0; }
+  .input-send:hover { background: var(--primary-strong); transform: scale(1.05); }
+  .input-send:disabled { opacity: 0.4; cursor: not-allowed; }
+
+  /* Suggested prompts (shown when empty) */
+  .suggestions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 14px; }
+  .sg-card { padding: 14px 16px; background: var(--bg-card); border: 1px solid var(--line); border-radius: 12px; cursor: pointer; transition: all .2s; }
+  .sg-card:hover { border-color: var(--primary); transform: translateY(-1px); background: var(--bg-input); }
+  .sg-card .sgt { font-size: 13px; font-weight: 700; color: var(--text); margin-bottom: 4px; }
+  .sg-card .sgd { font-size: 11px; color: var(--muted); }
+
+  .input-foot { text-align: center; font-size: 11px; color: var(--muted); margin-top: 10px; font-family: 'JetBrains Mono', Consolas, monospace; }
+  .input-foot .pulse { display: inline-block; width: 6px; height: 6px; background: var(--accent); border-radius: 50%; margin-right: 6px; animation: pulse 1.8s ease-in-out infinite; }
+  @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+
+  /* Empty state hero */
+  .hero { max-width: 760px; margin: 60px auto 30px; padding: 0 24px; text-align: center; }
+  .hero h1 { font-size: 32px; font-weight: 800; margin-bottom: 12px; background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; letter-spacing: -0.5px; }
+  .hero p { color: var(--muted); font-size: 14px; line-height: 1.6; }
+
+  .demo-controls { padding: 10px 16px; background: rgba(34, 211, 238, 0.05); border-bottom: 1px solid var(--line); display: flex; justify-content: space-between; align-items: center; font-size: 12px; }
+  .demo-controls .pill { display: inline-flex; align-items: center; gap: 6px; padding: 4px 12px; background: rgba(251, 191, 36, 0.1); border: 1px solid rgba(251, 191, 36, 0.4); border-radius: 4px; color: var(--warn); font-family: 'JetBrains Mono', Consolas, monospace; letter-spacing: 0.5px; }
+  .demo-controls .btns { display: flex; gap: 8px; }
+  .demo-btn { padding: 6px 12px; background: var(--primary); color: white; border: none; border-radius: 6px; cursor: pointer; font-size: 12px; font-weight: 600; font-family: inherit; transition: background .15s; }
+  .demo-btn:hover { background: var(--primary-strong); }
+  .demo-btn.ghost { background: transparent; border: 1px solid var(--line); color: var(--text-soft); }
+  .demo-btn.ghost:hover { border-color: var(--primary); }
+
+  @media (max-width: 900px) {
+    .side { display: none; }
+    .app { grid-template-columns: 1fr; }
+    .suggestions { grid-template-columns: 1fr; }
+    .res-metrics { grid-template-columns: repeat(2, 1fr); }
+    .peer-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="app">
+
+  <!-- ============ SIDEBAR ============ -->
+  <aside class="side">
+    <div class="side-head">
+      <div class="side-logo">TS</div>
+      <div>
+        <div class="side-title">TimeStone AI</div>
+        <div class="side-sub">v1.0 · CFO assistant</div>
+      </div>
+    </div>
+
+    <button class="side-new" onclick="resetDemo()">
+      <span class="plus">+</span>
+      <span>Новый разговор</span>
+    </button>
+
+    <div class="side-section">Сегодня</div>
+    <div class="side-chat-list">
+      <div class="side-chat active"><span class="dot"></span>Топ-3 инициативы под $25M бюджет</div>
+      <div class="side-chat"><span class="dot"></span>Backtest GE Predix · обсуждение</div>
+      <div class="side-chat"><span class="dot"></span>Should we acquire Caspian ferry?</div>
+      <div class="side-chat"><span class="dot"></span>Стресс-тест на санкции +60%</div>
+
+      <div class="side-section">Вчера</div>
+      <div class="side-chat"><span class="dot"></span>Подготовь board memo · Q3</div>
+      <div class="side-chat"><span class="dot"></span>Decarbonization · сценарий</div>
+      <div class="side-chat"><span class="dot"></span>Сравнить с DB Cargo myRailLog</div>
+
+      <div class="side-section">На неделе</div>
+      <div class="side-chat"><span class="dot"></span>Pre-registered прогноз KTZ Express</div>
+      <div class="side-chat"><span class="dot"></span>Kaspi vertical · onboarding</div>
+    </div>
+
+    <div class="side-foot">
+      ● connected · <a href="index.html">← к основному сайту</a>
+    </div>
+  </aside>
+
+  <!-- ============ MAIN ============ -->
+  <main class="main">
+    <div class="main-head">
+      <div class="main-title">
+        TimeStone CFO Assistant
+        <span class="badge">v1.0 PREVIEW</span>
+      </div>
+      <a href="index.html" class="main-back">← к основному сайту</a>
+    </div>
+
+    <div class="demo-controls">
+      <span class="pill">🎬 DEMO MODE</span>
+      <div class="btns">
+        <button class="demo-btn" onclick="playDemo()">▶ Запустить демо</button>
+        <button class="demo-btn ghost" onclick="resetDemo()">⟲ Сбросить</button>
+      </div>
+    </div>
+
+    <div class="msgs" id="msgs">
+      <div class="msgs-inner" id="msgs-inner">
+        <div class="hero" id="hero">
+          <h1>Спросите всё о трансформации КТЖ</h1>
+          <p>Я смоделирую 1000 будущих, найду похожие реальные кейсы и дам рекомендацию с числами. Просто напишите что вас интересует — или выберите вопрос ниже.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="input-wrap">
+      <div class="input-wrap-inner">
+        <div class="suggestions" id="suggestions">
+          <div class="sg-card" onclick="useSuggestion(0)">
+            <div class="sgt">3 инициативы под $25M</div>
+            <div class="sgd">Грузовой сегмент, снижение затрат, консервативный риск</div>
+          </div>
+          <div class="sg-card" onclick="useSuggestion(1)">
+            <div class="sgt">Стоит ли купить Caspian ferry?</div>
+            <div class="sgd">M&A анализ против реальных rail M&A прецедентов</div>
+          </div>
+          <div class="sg-card" onclick="useSuggestion(2)">
+            <div class="sgt">Сравни с провалами 2020</div>
+            <div class="sgd">Какие из инициатив похожи на наш digital booking provал</div>
+          </div>
+          <div class="sg-card" onclick="useSuggestion(3)">
+            <div class="sgt">Подготовь board memo</div>
+            <div class="sgd">Executive summary для совета директоров · PDF</div>
+          </div>
+        </div>
+        <div class="input-box">
+          <textarea id="input" placeholder="Спросите о КТЖ-трансформации..." rows="1"></textarea>
+          <button class="input-send" id="send" onclick="manualSend()">↑</button>
+        </div>
+        <div class="input-foot">
+          <span class="pulse"></span>Powered by Monte Carlo · 54 real cases · Claude Sonnet 4.6
+        </div>
+      </div>
+    </div>
+  </main>
+
+</div>
+
+<script>
+// ============================================================
+// Demo conversation script — predefined Q&A flow
+// ============================================================
+const SUGGESTIONS = [
+  "Дай мне 3 инициативы для КТЖ на ближайшие 2 года. Бюджет до $25M на каждую, фокус на снижение затрат, без агрессивного риска.",
+  "А стоит ли КТЖ купить долю в Caspian ferry consortium? Бюджет до $300M, горизонт 5-7 лет.",
+  "Какие из топ-3 похожи на наш digital booking pilot 2020? Хочу убедиться что мы не повторяем ту же ошибку.",
+  "Подготовь executive summary для совета директоров на основе этих рекомендаций."
+];
+
+const FLOW = [
+  // Turn 1
+  {
+    user: SUGGESTIONS[0],
+    botName: "TimeStone",
+    botPre: "Запускаю анализ против rail-библиотеки (18 peers) и 50 KTZ-сценариев...",
+    thinking: 1800,
+    botHTML: `
+      <div class="msg-text">Из 50 инициатив под ваши фильтры (cost reduction · ≤$25M · conservative) проходит <strong>8 кандидатов</strong>. После 1000 итераций Монте-Карло с шоками — топ-3 по risk-adjusted NPV:</div>
+      <div class="res-card">
+        <div class="res-card-h">
+          <span class="num">1</span>
+          <span>Wheel-rail interface sensors · грузовой коридор</span>
+          <span class="verdict strong">СИЛЬНАЯ</span>
+        </div>
+        <div class="res-metrics">
+          <div class="res-metric"><div class="l">P(NPV>0)</div><div class="v">94%</div></div>
+          <div class="res-metric"><div class="l">MEAN NPV</div><div class="v">$115.6M</div></div>
+          <div class="res-metric"><div class="l">ROI</div><div class="v">22.9×</div></div>
+          <div class="res-metric"><div class="l">PAYBACK</div><div class="v">2.0y</div></div>
+          <div class="res-metric"><div class="l">INVEST</div><div class="v">$5M</div></div>
+        </div>
+        <div class="res-peers">На rail peers: <code>bhp-mt-newman-2010</code> <code>union-pacific-ptc-2008</code></div>
+      </div>
+      <div class="res-card">
+        <div class="res-card-h">
+          <span class="num">2</span>
+          <span>ML-based crew scheduling · дальние грузовые</span>
+          <span class="verdict strong">СИЛЬНАЯ</span>
+        </div>
+        <div class="res-metrics">
+          <div class="res-metric"><div class="l">P(NPV>0)</div><div class="v">97%</div></div>
+          <div class="res-metric"><div class="l">MEAN NPV</div><div class="v">$108.2M</div></div>
+          <div class="res-metric"><div class="l">ROI</div><div class="v">18.7×</div></div>
+          <div class="res-metric"><div class="l">PAYBACK</div><div class="v">2.0y</div></div>
+          <div class="res-metric"><div class="l">INVEST</div><div class="v">$6M</div></div>
+        </div>
+        <div class="res-peers">На rail peers: <code>union-pacific-ptc-2008</code> <code>csx-psr-2017</code></div>
+      </div>
+      <div class="res-card">
+        <div class="res-card-h">
+          <span class="num">3</span>
+          <span>Predictive maintenance pilot · Астана hub TE10M</span>
+          <span class="verdict strong">СИЛЬНАЯ</span>
+        </div>
+        <div class="res-metrics">
+          <div class="res-metric"><div class="l">P(NPV>0)</div><div class="v">91%</div></div>
+          <div class="res-metric"><div class="l">MEAN NPV</div><div class="v">$87.4M</div></div>
+          <div class="res-metric"><div class="l">ROI</div><div class="v">14.2×</div></div>
+          <div class="res-metric"><div class="l">PAYBACK</div><div class="v">2.5y</div></div>
+          <div class="res-metric"><div class="l">INVEST</div><div class="v">$18M</div></div>
+        </div>
+        <div class="res-peers">На rail peers: <code>bhp-mt-newman-2010</code> <code>cn-rail-edmonton-2017</code></div>
+      </div>
+      <div class="msg-text" style="margin-top:14px;"><strong>Портфельный итог:</strong> сумма NPV $311M минус overlap penalty $7.8M = <em>$303M реалистичных</em>. Можем углубиться в любой из топ-3 или прогнать what-if.</div>
+    `,
+  },
+
+  // Turn 2 — discount rate stress
+  {
+    user: "А что если поднимем дисконтную ставку с 12% до 18%? Покажи как меняется ранжирование.",
+    botName: "TimeStone",
+    botPre: "Пересчитываю Monte Carlo при WACC = 18%...",
+    thinking: 1100,
+    botHTML: `
+      <div class="msg-text">Пересчитал при <code>WACC = 18%</code>. Все три ещё прибыльны, но <strong>сильно сокращается NPV</strong>, и порядок слегка меняется:</div>
+      <div class="update-box">
+        <strong>#1</strong> Wheel-rail sensors: $115.6M <span class="arrow">→</span> $82.1M · P(NPV>0) 94% <span class="arrow">→</span> 89%<br>
+        <strong>#2</strong> ML crew scheduling: $108.2M <span class="arrow">→</span> $76.8M · payback 2.0y <span class="arrow">→</span> 2.3y<br>
+        <strong>#3</strong> Predictive maintenance: $87.4M <span class="arrow">→</span> $51.2M · <em>опускается в ранжировании ниже из-за больших капзатрат и длинного payback</em>
+      </div>
+      <div class="msg-text" style="margin-top:12px;">Топ-1 и топ-2 остаются прежними. Топ-3 теперь — <strong>«Dynamic pricing off-peak passenger routes»</strong> (NPV $74M при 18% WACC, payback 2.0y, invest $4M). Маленькие капексы лучше переживают рост ставки.</div>
+      <div class="msg-text" style="margin-top:10px;">Хотите, я смоделирую промежуточные значения 14% / 16% / 20% чтобы найти точку перелома?</div>
+    `,
+  },
+
+  // Turn 3 — peer-case comparison + KTZ 2020 flag
+  {
+    user: SUGGESTIONS[2],
+    botName: "TimeStone",
+    botPre: "Сверяю топ-3 против failure modes КТЖ 2020 booking pilot...",
+    thinking: 1400,
+    botHTML: `
+      <div class="msg-text">Хорошо что спросили — это критический вопрос. КТЖ 2020 booking pilot провалился по <strong>3-м failure modes</strong>: corporate-B2B adoption gap, relationship sales замещение, vendor lock-in. Сверяю топ-3:</div>
+      <div class="peer-grid">
+        <div class="peer-card">
+          <div class="ph"><div class="pname">Wheel-rail sensors</div><div class="pstatus success">SAFE</div></div>
+          <div class="pdesc">Hardware-проект, не B2B-платформа. Failure modes 2020 неприменимы. BHP-аналог отработал.</div>
+        </div>
+        <div class="peer-card">
+          <div class="ph"><div class="pname">ML crew scheduling</div><div class="pstatus success">SAFE</div></div>
+          <div class="pdesc">Внутренняя оптимизация, не клиентский продукт. Adoption — на наших же диспетчерах.</div>
+        </div>
+        <div class="peer-card">
+          <div class="ph"><div class="pname">Predictive maintenance</div><div class="pstatus success">SAFE</div></div>
+          <div class="pdesc">CN Rail 2017 — успешный аналог. Vendor risk умеренный, но scope ограничен депо.</div>
+        </div>
+        <div class="peer-card">
+          <div class="ph"><div class="pname">B2B freight portal (#f6, отбракован)</div><div class="pstatus failed">⚠ FLAGGED</div></div>
+          <div class="pdesc">Прямое повторение booking 2020. Корпоративная B2B-адопция — наш known weakness. Если запустите — только в SME-сегменте, не corporate.</div>
+        </div>
+      </div>
+      <div class="msg-text" style="margin-top:14px;">Топ-3 чистый. Failure-mode aware retrieval автоматически понизил <code>#f6 B2B freight portal</code> с 0.62 до 0.18 успеха — поэтому его нет в рекомендации. Это и есть наш moat.</div>
+    `,
+  },
+
+  // Turn 4 — board memo PDF
+  {
+    user: SUGGESTIONS[3],
+    botName: "TimeStone",
+    botPre: "Формирую executive summary для board · 12 пунктов · 4 страницы...",
+    thinking: 1300,
+    botHTML: `
+      <div class="msg-text">Собрал executive memo. Структура:
+      <br>1. Контекст и strategic priorities
+      <br>2. Топ-3 рекомендации с финансовыми KPIs
+      <br>3. Sensitivity к дисконтной ставке (12% / 18%)
+      <br>4. Risk register — 8 шоков, моделирование
+      <br>5. Сверка с прошлым (КТЖ 2020 booking)
+      <br>6. Портфельный NPV с overlap penalty
+      <br>7. Roadmap: пилот → масштабирование
+      <br>8. Финансовый план: $29M total invest, $303M expected return
+      <br>9. Calibration evidence — 89% hit rate на 20 кейсах
+      <br>10. Источники (18 rail peer cases)
+      <br>11. Open questions для board
+      <br>12. Recommended next step: pilot Wheel-rail на Q4 2026</div>
+
+      <div class="pdf-block" onclick="alert('В реальном продукте — скачается PDF. Это мокап.')">
+        <div class="pdf-icon">PDF</div>
+        <div class="pdf-info">
+          <div class="pn">KTZ_Board_Memo_Q4_2026.pdf</div>
+          <div class="ps">4 страницы · готов к board meeting · обновлено только что</div>
+        </div>
+      </div>
+
+      <div class="msg-text" style="margin-top:14px;">Готов уточнить любой раздел или добавить slide для presentation. Просто скажите — например «добавь slide про конкурентный landscape» или «упрости язык для не-финансистов».</div>
+    `,
+  },
+];
+
+// ============================================================
+// Engine
+// ============================================================
+let step = 0;
+let isPlaying = false;
+const inner = document.getElementById('msgs-inner');
+const hero = document.getElementById('hero');
+const suggestions = document.getElementById('suggestions');
+
+function escapeHTML(s) {
+  return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+}
+
+function scrollBottom() {
+  const c = document.getElementById('msgs');
+  c.scrollTop = c.scrollHeight;
+}
+
+function appendUser(text) {
+  if (hero) hero.style.display = 'none';
+  if (suggestions) suggestions.style.display = 'none';
+  const m = document.createElement('div');
+  m.className = 'msg msg-user';
+  m.innerHTML = `
+    <div class="msg-avatar">CFO</div>
+    <div class="msg-body">
+      <div class="msg-name">CFO · Kazakhstan Temir Zholy</div>
+      <div class="msg-text">${escapeHTML(text)}</div>
+    </div>
+  `;
+  inner.appendChild(m);
+  setTimeout(() => m.classList.add('shown'), 20);
+  scrollBottom();
+}
+
+function appendThinking(preText, ms) {
+  const m = document.createElement('div');
+  m.className = 'msg msg-bot msg-thinking';
+  m.innerHTML = `
+    <div class="msg-avatar">TS</div>
+    <div class="msg-body">
+      <div class="msg-name">TimeStone</div>
+      <div class="thinking">
+        <span>${escapeHTML(preText)}</span>
+        <div class="dots"><span></span><span></span><span></span></div>
+      </div>
+    </div>
+  `;
+  inner.appendChild(m);
+  setTimeout(() => m.classList.add('shown'), 20);
+  scrollBottom();
+  return new Promise(res => setTimeout(() => {
+    m.remove();
+    res();
+  }, ms));
+}
+
+function appendBot(html) {
+  const m = document.createElement('div');
+  m.className = 'msg msg-bot';
+  m.innerHTML = `
+    <div class="msg-avatar">TS</div>
+    <div class="msg-body">
+      <div class="msg-name">TimeStone</div>
+      ${html}
+    </div>
+  `;
+  inner.appendChild(m);
+  setTimeout(() => m.classList.add('shown'), 20);
+  scrollBottom();
+}
+
+async function runStep(i) {
+  const t = FLOW[i];
+  if (!t) return;
+  appendUser(t.user);
+  await new Promise(r => setTimeout(r, 600));
+  await appendThinking(t.botPre, t.thinking);
+  appendBot(t.botHTML);
+}
+
+async function playDemo() {
+  if (isPlaying) return;
+  isPlaying = true;
+  resetDemo(true);
+  for (let i = 0; i < FLOW.length; i++) {
+    await runStep(i);
+    if (i < FLOW.length - 1) await new Promise(r => setTimeout(r, 2200));
+  }
+  isPlaying = false;
+}
+
+function resetDemo(keepPlaying) {
+  inner.innerHTML = '';
+  const h = document.createElement('div');
+  h.className = 'hero';
+  h.id = 'hero';
+  h.innerHTML = `
+    <h1>Спросите всё о трансформации КТЖ</h1>
+    <p>Я смоделирую 1000 будущих, найду похожие реальные кейсы и дам рекомендацию с числами. Просто напишите что вас интересует — или выберите вопрос ниже.</p>
+  `;
+  inner.appendChild(h);
+  if (!keepPlaying) {
+    suggestions.style.display = 'grid';
+  }
+  step = 0;
+}
+
+function useSuggestion(idx) {
+  const ta = document.getElementById('input');
+  ta.value = SUGGESTIONS[idx];
+  ta.focus();
+  // auto-grow
+  ta.style.height = 'auto';
+  ta.style.height = ta.scrollHeight + 'px';
+}
+
+async function manualSend() {
+  const ta = document.getElementById('input');
+  const text = ta.value.trim();
+  if (!text) return;
+  // Find matching scripted turn (otherwise generic "thinking" response)
+  const idx = FLOW.findIndex(t => t.user === text);
+  ta.value = '';
+  ta.style.height = 'auto';
+  if (idx >= 0) {
+    await runStep(idx);
+  } else {
+    appendUser(text);
+    await new Promise(r => setTimeout(r, 500));
+    await appendThinking("Запускаю Monte Carlo...", 1400);
+    appendBot(`
+      <div class="msg-text">Это <strong>демо-мокап</strong>. В реальном продукте здесь будет ответ Claude, который проанализирует ваш вопрос и сформирует ответ с цифрами из движка Monte Carlo. Попробуйте один из готовых вопросов выше для полного демо-флоу.</div>
+    `);
+  }
+}
+
+// Auto-grow textarea
+document.getElementById('input').addEventListener('input', function() {
+  this.style.height = 'auto';
+  this.style.height = this.scrollHeight + 'px';
+});
+
+// Enter to send
+document.getElementById('input').addEventListener('keydown', function(e) {
+  if (e.key === 'Enter' && !e.shiftKey) {
+    e.preventDefault();
+    manualSend();
+  }
+});
+
+// Reset on load to show hero
+resetDemo();
+</script>
+
+</body>
+</html>
