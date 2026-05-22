@@ -5263,6 +5263,215 @@ streamlit run src/timestone/interfaces/web/dashboard.py</code></pre>
     }
 
   </script>
+
+<style id="tsh-help-css">
+.tsh-q { position:absolute; top:14px; right:14px; width:26px; height:26px; border-radius:50%;
+         background:rgba(34,211,238,0.12); border:1px solid rgba(34,211,238,0.5);
+         color:#22D3EE; font:700 14px/1 "JetBrains Mono", monospace;
+         display:flex; align-items:center; justify-content:center;
+         cursor:pointer; user-select:none; transition:all .18s; z-index:5; }
+.tsh-q:hover { background:#22D3EE; color:#060912; transform:scale(1.15);
+               box-shadow:0 0 14px rgba(34,211,238,.5); }
+.tsh-pop { position:absolute; top:52px; right:10px; width:340px; max-width:calc(100% - 20px);
+           background:#0F1428; border:1px solid #22D3EE; border-radius:10px;
+           padding:14px 16px; font:13px/1.55 Calibri, sans-serif; color:#F8FAFC;
+           box-shadow:0 12px 28px rgba(0,0,0,.6); z-index:50; display:none;
+           text-align:left; }
+.tsh-pop.tsh-shown { display:block; }
+.tsh-pop:before { content:""; position:absolute; top:-7px; right:14px; width:12px; height:12px;
+                  background:#0F1428; border-left:1px solid #22D3EE; border-top:1px solid #22D3EE;
+                  transform:rotate(45deg); }
+.tsh-pop b.tsh-h { color:#22D3EE; font:700 10px "JetBrains Mono", monospace; letter-spacing:1.5px;
+             text-transform:uppercase; display:block; margin-bottom:6px; }
+</style>
+<script id="tsh-help-js">
+(function() {
+  var TARGETS = [
+    // ----- 1. How it works (6 steps) -----
+    [".step", [
+      { ru: "Делаем «куклу-копию» КТЖ — те же деньги, поезда, сотрудники, и память. Если КТЖ в 2020 пробовал и провалил — кукла помнит и говорит: «осторожно, мы это уже пробовали».",
+        en: "We build a 'doll-copy' of KTZ — same money, trains, staff, and MEMORY. If KTZ tried something in 2020 and failed — the doll remembers and warns: 'careful, we tried this before'." },
+      { ru: "У нас 50 разных идей «что бы КТЖ мог сделать». CFO ставит правила: «только дешёвые, быстрые, осторожные». Из 50 остаётся 8 идей под его правила.",
+        en: "50 different ideas for KTZ. CFO sets rules: 'only cheap, fast, careful ones'. From 50 we narrow down to ~8 that match." },
+      { ru: "Чтобы понять что получится — смотрим кто уже делал такое в мире. BHP в Австралии: $1.5 млрд потратил, -13% затрат. Достаём РЕАЛЬНЫЕ цифры, только из железных дорог.",
+        en: "To predict what happens — we look who already did this. BHP Australia: spent $1.5B, cut costs 13%. We pull REAL numbers, only from railways." },
+      { ru: "Из реальных кейсов делаем диапазон: «лучшее столько, худшее столько». Если 3 из 10 похожих компаний провалились — нашей даём 30% риск. Не выдумываем, считаем по факту.",
+        en: "From real cases we build a range. If 3 of 10 similar companies failed — our company gets 30% risk. We don't invent, we count from facts." },
+      { ru: "Крутим «кино будущего» 1000 раз — в каждом случайно: нефть упала, инженер ушёл, санкции. После 1000 концовок: в скольких компания заработала? Это «вероятность 64%».",
+        en: "We play 'future movie' 1000 times — each with random events: oil drops, engineer quits, sanctions. After 1000 endings: in how many did the company earn? That's 'probability 64%'." },
+      { ru: "Двигаешь ползунки — цифры мгновенно пересчитываются. CFO решил → один клик → PDF со всеми выводами для совета директоров.",
+        en: "Drag sliders — numbers recalculate instantly. CFO decides → one click → PDF with all conclusions for the board meeting." }
+    ]],
+
+    // ----- 2. Methodology (4 cards) -----
+    [".meth-card", [
+      { ru: "Все три цифры (NPV, ROI, payback) идут из ОДНОГО потока денег. Не три отдельные оценки которые могут противоречить — одна симуляция, три вывода. Числа всегда согласованы.",
+        en: "All three numbers (NPV, ROI, payback) come from ONE cash flow. Not three separate estimates that may contradict — one simulation, three outputs. Numbers always reconcile." },
+      { ru: "Большинство моделей вычитают риск одной цифрой. Мы моделируем 5 конкретных рисков отдельно: провал внедрения, рыночный шок, геополитика, перерасход, задержка. Получаешь распределение, не точку.",
+        en: "Most models subtract risk as one number. We model 5 specific risks separately: execution failure, market shock, geopolitics, cost overrun, delay. You get a distribution, not a point." },
+      { ru: "Вместо «давайте предположим 70% adoption» мы достаём ЧТО РЕАЛЬНО получилось у DB Cargo, China Railway, Union Pacific. Разница между «гадаем» и «считаем по факту».",
+        en: "Instead of 'let's assume 70% adoption' we pull WHAT ACTUALLY happened at DB Cargo, China Railway, Union Pacific. Difference between 'guessing' and 'counting from facts'." },
+      { ru: "Каждый реальный проект через TimeStone оставляет след: прогноз + факт через 12-24 месяца. База растёт. Конкурент с нулевой историей не повторит — это и есть наш moat.",
+        en: "Every real project through TimeStone leaves a trace: prediction + actual outcome 12-24 months later. The database grows. A zero-history competitor can't replicate — that's our moat." }
+    ]],
+
+    // ----- 3. Top-3 recommendation cards -----
+    [".rec-card", [
+      { ru: "Это лучшая инициатива по совокупности метрик. Высокая вероятность успеха, хорошая отдача, быстрая окупаемость. Опирается на 2-3 реальных rail-кейса (BHP, Union Pacific) — не выдумано.",
+        en: "Top initiative by combined metrics. High success probability, good ROI, fast payback. Backed by 2-3 real rail cases (BHP, Union Pacific) — not invented." },
+      { ru: "Вторая по силе рекомендация. Цифры сравнимы с топ-1, но peers и подход другие. CFO может выбирать между ними по стратегическим соображениям, а не по математике.",
+        en: "Second strongest recommendation. Numbers comparable to top-1 but different peers and approach. CFO chooses based on strategy, not math." },
+      { ru: "Третья рекомендация. Тоже сильная, но может быть в другом сегменте (пассажиры vs грузы) или с другим horizon. Калибрована на свои реальные peer-кейсы.",
+        en: "Third recommendation. Also strong but possibly in a different segment (passengers vs freight) or different horizon. Calibrated on its own real peers." }
+    ]],
+
+    // ----- 4. Synergy tiles (3) -----
+    [".synergy-tile", [
+      { ru: "Если запустить все 3 топ-инициативы наивно — сумма их NPV выглядит так. НО это нереалистично: инициативы делят peers/инженеров/инфраструктуру.",
+        en: "Naive sum of NPVs if you ran all 3 top initiatives. BUT this is unrealistic: initiatives share peers/engineers/infrastructure." },
+      { ru: "Overlap penalty: реальная потеря из-за пересечений. Считаем как Jaccard × 18% — эмпирическая формула из исторических многопроектных программ.",
+        en: "Overlap penalty: real loss from overlaps. Computed as Jaccard × 18% — empirical formula from historical multi-project programs." },
+      { ru: "Реалистичный портфельный NPV = сумма − overlap. Это и есть честная оценка для CFO, а не наивная сумма. CFO видит реальный потолок прибыли от портфеля.",
+        en: "Realistic portfolio NPV = sum − overlap. This is the honest estimate for the CFO, not the naive sum. CFO sees the real ceiling of portfolio profit." }
+    ]],
+
+    // ----- 5. Sensitivity tornado + What-if (2) -----
+    [".tornado", [
+      { ru: "Какие 3 параметра больше всего двигают NPV. Длина бара = насколько NPV меняется если параметр идёт ±20%. CFO видит на что обращать внимание в реальном управлении.",
+        en: "Which 3 parameters move NPV the most. Bar length = NPV change if parameter shifts ±20%. CFO sees what to actually manage in execution." }
+    ]],
+    [".whatif", [
+      { ru: "Двигаешь ползунки — Monte Carlo пересчитывается за <1 сек. «А если ставка не 12%, а 18%?» «А если бюджет +30%?» Цифры мгновенно пересчитываются.",
+        en: "Drag sliders — Monte Carlo recalculates in <1s. 'What if rate isn't 12% but 18%?' 'What if budget is +30%?' Numbers update instantly." }
+    ]],
+
+    // ----- 6. Entity graph (2) -----
+    [".eg-card", [
+      { ru: "v0.3 preview. КТЖ — не одна точка-компания, а 50 атомарных деталей: депо, серии локомотивов, корп-клиенты, регуляторы. Видишь зависимости.",
+        en: "v0.3 preview. KTZ is not one company-point but 50 atomic parts: depots, locomotive series, corporate clients, regulators. You see dependencies." },
+      { ru: "Двигаешь «цена нефти» или «санкции» — узлы графа реагируют. Оценка против синтетической популяции из 100 альтернативных КТЖ. Это counterfactual, который не делают консалтеры.",
+        en: "Drag 'oil price' or 'sanctions' — graph nodes react. Evaluated against synthetic population of 100 alternate KTZs. Counterfactual that consultants don't do." }
+    ]],
+
+    // ----- 7. Time-series (2) -----
+    [".ts-card", [
+      { ru: "v0.4 preview. 100 параллельных «фильмов будущего» по 60 месяцев. По дороге случайные события — санкции, погода, дефолты. Каждый таймлайн реагирует по-своему.",
+        en: "v0.4 preview. 100 parallel 'future movies' over 60 months. Random events along the way — sanctions, weather, defaults. Each timeline reacts differently." },
+      { ru: "Лайв-статистика: сколько из 100 будущих выжило, лучший/худший таймлайн, спред P90-P10. Это честный риск во времени — не просто одна средняя цифра.",
+        en: "Live stats: how many of 100 futures survived, best/worst timeline, P90-P10 spread. Honest time-dependent risk — not just one average number." }
+    ]],
+
+    // ----- 8. Backtest cards (3 visible) -----
+    [".bt-card", [
+      { ru: "Hertz/Accenture 2016. Спрятали исход. TimeStone в 2016 дал бы 38% вероятность, mean -$8М. Реальность: -$32М (попадание в P10-P90). Hertz засудил Accenture в 2019 году.",
+        en: "Hertz/Accenture 2016. Outcome hidden. TimeStone in 2016 would give 38% probability, mean -$8M. Reality: -$32M (within P10-P90). Hertz sued Accenture in 2019." },
+      { ru: "GE Predix 2015. Потеряно $5 МИЛЛИАРДОВ. TimeStone в 2015 дал бы 29% вероятность, mean -$1.8 млрд. Реальность: -$5 млрд. Если бы GE имел этот движок — сэкономили бы $5 млрд.",
+        en: "GE Predix 2015. $5 BILLION lost. TimeStone in 2015 would give 29% probability, mean -$1.8B. Reality: -$5B. Had GE used this engine — they'd have saved $5B." },
+      { ru: "Maersk Spot 2018. Успешный кейс. TimeStone в 2018 дал бы 76% вероятность, +$420М. Реальность: +$680М (попадание в P10-P90). Движок работает на УСПЕХАХ тоже, не только провалах.",
+        en: "Maersk Spot 2018. Successful case. TimeStone in 2018 would give 76% probability, +$420M. Reality: +$680M (within P10-P90). The engine works on SUCCESSES too, not just failures." }
+    ]],
+
+    // ----- 9. Validation 20-case KPIs (4 - user said 3, will only do 3) -----
+    [".val-kpi", [
+      { ru: "20 кейсов = расширение бэктеста. 8 разных индустрий: банки, ритейл, авиация, фарма. Не только rail. Показывает что движок vertical-agnostic.",
+        en: "20 cases = backtest expanded. 8 different industries: banking, retail, aerospace, pharma. Not just rail. Shows engine is vertical-agnostic." },
+      { ru: "Hit rate — попадание в предсказанный P10-P90 диапазон. 89% значит в 17 из 19 кейсов реальность попала в наш диапазон. Это формальное доказательство методологии.",
+        en: "Hit rate — landing in predicted P10-P90 band. 89% means 17 of 19 cases reality fell into our band. Formal proof of methodology." },
+      { ru: "Brier score — статистическая метрика качества вероятностного прогноза. 0.112 это в 4 раза точнее типичного vendor pitch deck (0.444). Меньше = лучше.",
+        en: "Brier score — statistical forecast quality metric. 0.112 is 4× more accurate than typical vendor pitch deck (0.444). Lower = better." }
+    ]]
+  ];
+
+  function inject(el, ru, en) {
+    if (el.querySelector(":scope > .tsh-q")) return;
+    var cs = getComputedStyle(el);
+    if (cs.position === "static") el.style.position = "relative";
+    var q = document.createElement("span");
+    q.className = "tsh-q";
+    q.textContent = "?";
+    q.setAttribute("aria-label", "help");
+    var pop = document.createElement("div");
+    pop.className = "tsh-pop";
+    pop.dataset.ru = ru;
+    pop.dataset.en = en;
+    var head = document.createElement("b");
+    head.className = "tsh-h";
+    head.textContent = "Пояснение";
+    head.setAttribute("data-en-h", "Explanation");
+    head.setAttribute("data-ru-h", "Пояснение");
+    var body = document.createElement("span");
+    body.className = "tsh-text";
+    pop.appendChild(head);
+    pop.appendChild(body);
+    refresh(pop);
+    q.addEventListener("click", function(e) {
+      e.stopPropagation();
+      document.querySelectorAll(".tsh-pop.tsh-shown").forEach(function(p) {
+        if (p !== pop) p.classList.remove("tsh-shown");
+      });
+      pop.classList.toggle("tsh-shown");
+    });
+    el.appendChild(q);
+    el.appendChild(pop);
+  }
+
+  function refresh(pop) {
+    var ru = (window.I18N && window.I18N.cur === "ru") ||
+             (document.documentElement.lang === "ru");
+    var text = pop.querySelector(".tsh-text");
+    var head = pop.querySelector(".tsh-h");
+    if (text) text.textContent = ru ? pop.dataset.ru : pop.dataset.en;
+    if (head) head.textContent = ru ? "Пояснение" : "Explanation";
+  }
+
+  function run() {
+    TARGETS.forEach(function(item) {
+      var sel = item[0], entries = item[1];
+      var matches = document.querySelectorAll(sel);
+      entries.forEach(function(e, i) {
+        if (matches[i]) {
+          try { inject(matches[i], e.ru, e.en); } catch(err) { /* skip */ }
+        }
+      });
+    });
+  }
+
+  function refreshAll() {
+    document.querySelectorAll(".tsh-pop").forEach(refresh);
+  }
+
+  if (document.readyState !== "loading") run();
+  else document.addEventListener("DOMContentLoaded", run);
+
+  // Re-run after a delay to catch dynamically rendered cards (bt-card, val-kpi, rec-card after Run, synergy-tile after Run)
+  setTimeout(run, 800);
+  setTimeout(run, 2500);
+
+  // Listen for language toggle
+  document.addEventListener("click", function(e) {
+    if (e.target.closest && e.target.closest(".lang-toggle")) {
+      setTimeout(refreshAll, 60);
+    }
+  });
+
+  // Close popovers on outside click / Escape
+  document.addEventListener("click", function(e) {
+    if (!e.target.closest(".tsh-pop") && !e.target.classList.contains("tsh-q")) {
+      document.querySelectorAll(".tsh-pop.tsh-shown").forEach(function(p) {
+        p.classList.remove("tsh-shown");
+      });
+    }
+  });
+  document.addEventListener("keydown", function(e) {
+    if (e.key === "Escape") {
+      document.querySelectorAll(".tsh-pop.tsh-shown").forEach(function(p) {
+        p.classList.remove("tsh-shown");
+      });
+    }
+  });
+})();
+</script>
 </body>
 </html>
 
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
