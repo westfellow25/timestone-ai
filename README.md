@@ -35,7 +35,7 @@ TimeStone creates a **digital twin** of a company, generates **up to 1,000 trans
 
 ---
 
-## Example output (KTZ - National Railway)
+## Example output (Railway Company)
 
 ```
 RANK #1  Dynamic Pricing Implementation
